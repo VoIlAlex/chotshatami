@@ -1,0 +1,29 @@
+.form-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.form-input label {
+    margin-bottom: 5px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.form-input input {
+    height: 40px;
+    font-size: 15px;
+    padding-left: 15px;
+    border: 1px solid #C4C4C4;
+    border-radius: 4px;
+}
+
+.form-input__description {
+    text-align: right;
+    color: #C4C4C4;
+    font-family: 'Roboto';
+    font-size: 12px;
+    margin-top: 3px;
+}
