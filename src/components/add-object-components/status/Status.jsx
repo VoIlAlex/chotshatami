@@ -14,7 +14,7 @@ const Status = () => {
                 btnWidth={'110px'}
                 btnHeight={'40px'}
                 buttonValue={'Сохранить'}
-                optionWidth={'60%'}
+                optionWidth={'50%'}
                 optionMargin={'0 -15px 0 0'}
                 reverse
             />

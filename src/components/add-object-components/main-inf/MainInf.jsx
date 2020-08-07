@@ -44,11 +44,13 @@ const MainInf = () => {
                     labelValue={'Дата создания объяления'}
                     placeholder={'dd.mm.yyyy'}
                     width={'45%'}
+                    labelFontSize={'13px'}
                 />
                 <FormInput
                     labelValue={'Дата редактирования (ревизии) обьявления'}
                     placeholder={'dd.mm.yyyy'}
                     width={'50%'}
+                    labelFontSize={'13px'}
                 />
             </div>
         </div>

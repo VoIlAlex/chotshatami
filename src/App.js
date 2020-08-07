@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import Aside from "./components/aside/Aside";
 import AddObjectPage from "./pages/add-object-page/AddObjectPage";
+import AllObjectPage from "./pages/all-object-page/AllObjectPage";
+import CategoriesPage from "./pages/categories/CategoriesPage";
 import './App.css';
 
 const App = () => {
@@ -12,6 +14,8 @@ const App = () => {
                 <Aside/>
                 <Switch>
                     <Route path={'/add_object'} component={AddObjectPage}/>
+                    <Route path={'/all_objects'} component={AllObjectPage}/>
+                    <Route path={'/categories'} component={CategoriesPage}/>
                 </Switch>
             </Router>
         </div>

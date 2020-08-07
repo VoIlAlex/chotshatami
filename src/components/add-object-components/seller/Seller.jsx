@@ -15,16 +15,16 @@ const Seller = () => {
                 btnWidth={'110px'}
                 btnHeight={'40px'}
                 buttonValue={'Сохранить'}
-                optionWidth={'60%'}
+                optionWidth={'50%'}
                 optionMargin={'0 -15px 0 0'}
                 reverse
             />
             <div className="seller_inputs">
-                <FormInput labelValue={'Контактный телефон (+375291234567)'} width={'95%'} margin={'15px 0 15px 0'}/>
-                <FormInput labelValue={'Контактный телефон 2 (+375291234567)'}  width={'95%'} margin={'15px 0 15px 0'}/>
-                <FormInput labelValue={'Имя агента (+375291234567)'}  width={'95%'} margin={'15px 0 15px 0'}/>
-                <FormInput labelValue={'Email продавца (+375291234567)'}  width={'95%'} margin={'15px 0 15px 0'}/>
-                <FormInput labelValue={'Цена в USD (+375291234567)'}  width={'95%'} margin={'15px 0 15px 0'}/>
+                <FormInput labelValue={'Контактный телефон (+375291234567)'} width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Контактный телефон 2 (+375291234567)'}  width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Имя агента (+375291234567)'}  width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Email продавца (+375291234567)'}  width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Цена в USD (+375291234567)'}  width={'95%'} margin={'15px 0 15px 15px'}/>
             </div>
         </div>
     )

@@ -17,7 +17,8 @@ const HeadComponent = props => {
                 className="head-options"
                 style={{
                     width: props.optionWidth,
-                    margin: props.optionMargin
+                    margin: props.optionMargin,
+                    display:props.display
                 }}
             >
                 {

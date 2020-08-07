@@ -11,7 +11,7 @@ const FormInput = props => {
                 margin: props.margin
             }}
         >
-            <label>{props.labelValue}</label>
+            <label style={{fontSize:props.labelFontSize}}>{props.labelValue}</label>
             <input
                 type="text"
                 placeholder={props.placeholder}

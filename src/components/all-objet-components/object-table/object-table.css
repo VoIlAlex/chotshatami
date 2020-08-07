@@ -1,0 +1,12 @@
+.object-table{
+    width: 92%;
+    margin-left: 30px;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+tr {
+    height: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto';
+}

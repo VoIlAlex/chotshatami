@@ -6,6 +6,8 @@ import ProductImage from "../../components/add-object-components/ProductImage/Pr
 import CEOData from "../../components/add-object-components/CEOData/CEOData";
 import Status from "../../components/add-object-components/status/Status";
 import Seller from "../../components/add-object-components/seller/Seller";
+import Location from "../../components/add-object-components/location/Location";
+import SpecificationsResidential from "../../components/add-object-components/specifications- residential/SpecificationsResidential";
 import './add-object-page.css'
 
 const AddObjectPage = () => {
@@ -28,9 +30,10 @@ const AddObjectPage = () => {
                 <div className="add-object-page__forms-right">
                     <Status/>
                     <Seller />
+                    <Location />
+                    <SpecificationsResidential />
                 </div>
             </div>
-
         </div>
     )
 }

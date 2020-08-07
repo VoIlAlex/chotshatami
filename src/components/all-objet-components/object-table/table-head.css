@@ -1,0 +1,22 @@
+thead {
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+
+thead td p{
+    margin-left: 10px;
+}
+
+thead .filter-icon{
+    margin-right: 3px;
+}
+
+thead .arrow-up {
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+thead .arrow-down {
+    cursor: pointer;
+    margin-right: 5px;
+}
