@@ -28,12 +28,14 @@ const HeadComponent = props => {
                             <TransparentButton
                                 width={props.btnWidth}
                                 height={props.btnHeight}
+                                onClick={props.onClick?() => props.onClick(): ()=>{}}
                             >{props.buttonValue}</TransparentButton>
                         </>):(
                         <>
                             <TransparentButton
                                 width={props.btnWidth}
                                 height={props.btnHeight}
+                                onClick={props.onClick?() => props.onClick(): ()=>{}}
                             >{props.buttonValue}</TransparentButton>
                             <p>{props.p}</p>
                         </>

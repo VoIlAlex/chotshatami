@@ -2,12 +2,21 @@
     width: 100%;
     margin-left: 10px;
     margin-top: 15px;
-    min-height: 700px;
+    min-height: 720px;
     border: 1px solid #C4C4C4;
     border-radius: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.location .location__type {
+    width: 90%;
+    text-align: left;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-bottom: 0;
 }
 
 .location__selects{
@@ -24,7 +33,8 @@
 }
 
 .location__types{
-    width: 90%;
+    margin-left: -12px;
+    width: 80%;
     padding: 0;
     list-style: none;
     display: flex;
@@ -33,13 +43,14 @@
 }
 
 .location__types li {
-    padding: 10px 16px;
+    padding: 1.2vh 1.14vw;
     border: 1px solid #C4C4C4;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 0.8em;
     cursor: pointer;
+    border-right: none;
 }
 
 .location__types li:first-of-type {
@@ -48,4 +59,15 @@
 
 .location__types li:last-of-type {
     border-radius: 0 4px 4px 0;
+    border-right: 1px solid #C4C4C4;
+}
+
+.location__types li.active {
+    background: #731919 ;
+    color: white;
+}
+
+.location__types li:hover{
+    background: #731919 ;
+    color: white;
 }

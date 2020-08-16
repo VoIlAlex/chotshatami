@@ -6,6 +6,7 @@ const TransparentButton = props => {
     return (
             <button
                 className={'transparent-button'}
+                onClick={props.onClick?() => props.onClick(): () => {}}
                 style={{width: props.width, height: props.height, fontSize: props.fontSize, margin: props.margin}}
             >{props.children}
             </button>

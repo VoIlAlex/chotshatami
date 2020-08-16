@@ -1,5 +1,5 @@
 aside {
-    width: 260px;
+    width: 18vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,5 +17,6 @@ aside .menu-btn {
 
 
 aside .option-btn{
+    color: black;
     margin: 0 10px;
 }

@@ -10,13 +10,13 @@ const Seller = () => {
             <HeadComponent
                 width={'90%'}
                 h2={'Продавец'}
-                h2FontSize={'20px'}
+                h2FontSize={'1.3em'}
                 p={'К списку'}
-                btnWidth={'110px'}
+                btnWidth={'55%'}
                 btnHeight={'40px'}
                 buttonValue={'Сохранить'}
                 optionWidth={'50%'}
-                optionMargin={'0 -15px 0 0'}
+                optionMargin={'0'}
                 reverse
             />
             <div className="seller_inputs">

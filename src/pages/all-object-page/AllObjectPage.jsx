@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
 import HeadComponent from "../../components/head-component/HeadComponent";
 import PaginationBlock from "../../components/all-objet-components/pagination-block/PaginationBlock";
@@ -6,7 +7,7 @@ import ObjectTable from "../../components/all-objet-components/object-table/Obje
 import PagePagination from "../../components/all-objet-components/page-pagination/PagePagination";
 import './all-object-page.css'
 
-const AllObjectPage = () => {
+const AllObjectPage = ({history}) => {
     return (
         <div className="all-object-page">
             <HeadComponent
@@ -16,6 +17,7 @@ const AllObjectPage = () => {
                 btnWidth={'200px'}
                 btnHeight={'50px'}
                 buttonValue={'Добавить объект'}
+                onClick={() => history.push('/add_object')}
             />
             <PaginationBlock />
             <ObjectTable />
@@ -24,4 +26,4 @@ const AllObjectPage = () => {
     )
 }
 
-export default AllObjectPage
+export default withRouter(AllObjectPage)

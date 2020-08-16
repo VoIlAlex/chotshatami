@@ -2,7 +2,7 @@
     width: 100%;
     margin-left: 10px;
     margin-top: 15px;
-    min-height: 1500px;
+    min-height: 1370px;
     border: 1px solid #C4C4C4;
     border-radius: 3px;
     display: flex;
@@ -32,7 +32,7 @@
 
 .specifications__inf p {
     font-family: 'Roboto';
-    font-size: 14px;
+    font-size: 0.9em;
     font-weight: 500;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .specifications__has-phone li {
-    padding:  12px 15px;
+    padding: 12px 15px;
     border: 1px solid #C4C4C4;
     font-family: Roboto;
     font-style: normal;
@@ -60,7 +60,39 @@
     border-right: none;
 }
 
+.specifications__has-phone li:nth-of-type(2){
+    border-left: none;
+}
+
 .specifications__has-phone li:last-of-type {
     border-radius: 0 4px 4px 0;
     border-left: none;
+}
+
+.specifications__has-phone li:hover{
+    background: #731919 ;
+    color: white;
+}
+
+.specifications__has-phone li.active {
+    background: #731919 ;
+    color: white;
+}
+
+.specifications__add-object{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.specifications__add-object p {
+    padding-right: 30px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #731919;
+    cursor: pointer;
 }

@@ -15,7 +15,7 @@ const TableHead = () => {
                         return (<td><p>{column}</p></td>)
                     }
                     return (
-                        <td>
+                        <td key={i}>
                             <p>
                                 <ArrowDown className={'arrow-up'}/>
                                 <ArrowUp className={'arrow-down'}/>

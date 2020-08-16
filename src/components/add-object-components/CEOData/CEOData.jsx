@@ -10,9 +10,9 @@ const CEOData = () => {
             <HeadComponent
                 width={'97%'}
                 h2={'СЕО данные'}
-                h2FontSize={'20px'}
+                h2FontSize={'1.3em'}
                 p={'К списку'}
-                btnWidth={'130px'}
+                btnWidth={'50%'}
                 btnHeight={'45px'}
                 buttonValue={'Сохранить'}
                 optionWidth={'40%'}

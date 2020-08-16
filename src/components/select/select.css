@@ -25,6 +25,10 @@
     appearance: none;
 }
 
+.select select option {
+    height: 40px;
+}
+
 .select .select-with-arrow {
     width: 100%;
     display: flex;

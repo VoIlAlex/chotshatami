@@ -1,0 +1,25 @@
+.suburban-specifications{
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 15px;
+    min-height: 2100px;
+    border: 1px solid #C4C4C4;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.suburban-specifications__rooms{
+    margin-top: 15px;
+    width: 90%;
+}
+
+.suburban-specifications .specifications-inputs{
+    margin-left: 15px;
+    margin-top: 20px;
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}

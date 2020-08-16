@@ -14,7 +14,7 @@ const CategoriesPage = () => {
                 h2Margin={'0 0 0 30px'}
                 display={'none'}
             />
-            <div className="categries-page__categories">
+            <div className="categories-page__categories">
                 <CategoriesList
                     categoryName={'Продажа'}
                     categories={sale}

@@ -1,5 +1,5 @@
 .transparent-button {
-    width: 200px;
+    width: 15vw;
     height: 55px;
     background: none;
     outline: none;
@@ -10,7 +10,7 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1em;
     cursor: pointer;
     color:#731919;
 }

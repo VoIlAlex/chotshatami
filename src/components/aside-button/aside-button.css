@@ -8,15 +8,23 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}
+
+.aside-button a {
+    text-decoration: none;
     font-family: Roboto;
     font-style: normal;
+    color: black;
     font-weight: 500;
     font-size: 16px;
     transition: 0.15s;
 }
 
-.selected {
+.aside-button.selected{
     background: #731919;
+}
+
+.aside-button.selected a {
     color: white;
 }
 

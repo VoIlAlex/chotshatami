@@ -1,4 +1,5 @@
 .categories-item{
+    cursor: pointer;
     width: 250px;
     height: 60px;
     display: flex;

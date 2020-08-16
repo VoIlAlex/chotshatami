@@ -1,13 +1,13 @@
 .categories-page{
-    width: 85%;
+    width: 80%;
     display: flex;
     flex-direction: column;
 }
 
-.categries-page__categories{
-    width: 90%;
+.categories-page__categories{
+    margin-left: 1.4vw;
+    width: 95%;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    margin-left: 30px;
 }
