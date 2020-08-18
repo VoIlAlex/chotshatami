@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 import Aside from "./components/aside/Aside";
 import AddObjectPage from "./pages/add-object-page/AddObjectPage";
@@ -16,6 +16,7 @@ const App = () => {
                     <Route path={'/add_object'} component={AddObjectPage}/>
                     <Route path={'/all_objects'} component={AllObjectPage}/>
                     <Route path={'/categories'} component={CategoriesPage}/>
+                    <Redirect to="/all_objects" />
                 </Switch>
             </Router>
         </div>

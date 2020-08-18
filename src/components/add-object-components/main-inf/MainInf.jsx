@@ -6,17 +6,6 @@ import './main-inf.css'
 
 const MainInf = props => {
     const {mainCategory, additionalCategory, setAdditionalCategory, setMainCategory} = props
-    const categoryHandler = (name, categoryNumber) => {
-        const newState = {}
-        if (categoryNumber === 1) {
-            Object.keys(mainCategory).map(el => el === name ? newState[el] = true : newState[el] = false)
-            setMainCategory(newState)
-        } else {
-            if(!Object.values(mainCategory).some(el => el)) return
-            Object.keys(additionalCategory).map(el => el === name ? newState[el] = true : newState[el] = false)
-            setAdditionalCategory(newState)
-        }
-    }
 
     return (
         <div className="main-inf">
@@ -36,39 +25,58 @@ const MainInf = props => {
                 <div className="category__active">
                     <ul>
                         <li
-                            className={mainCategory.residential ? 'active' : ''}
-                            onClick={() => categoryHandler('residential',1)}
+                            className={mainCategory==='sale' ? 'active' : ''}
+                            onClick={() => setMainCategory('sale')}
                         >Продажа
                         </li>
                         <li
-                            className={mainCategory.rent ? 'active' : ''}
-                            onClick={() => categoryHandler('rent', 1)}
+                            className={mainCategory==='rent' ? 'active' : ''}
+                            onClick={() => setMainCategory('rent')}
                         >Аренда
                         </li>
                         <li
-                            className={mainCategory.building ? 'active' : ''}
-                            onClick={() => categoryHandler('building', 1)}
+                            className={mainCategory==='building' ? 'active' : ''}
+                            onClick={() => setMainCategory('building')}
                         >Строительство
                         </li>
                     </ul>
                 </div>
                 <div className={Object.values(mainCategory).some(el => el) ? 'category__active' : `category__disabled`}>
                     <ul>
-                        <li
-                            className={additionalCategory.residential ? 'active' : ''}
-                            onClick={() => categoryHandler('residential')}
-                        >Жилая
-                        </li>
-                        <li
-                            className={additionalCategory.suburban ? 'active' : ''}
-                            onClick={() => categoryHandler('suburban')}
-                        >Загородная
-                        </li>
-                        <li
-                            className={additionalCategory.commercial ? 'active' : ''}
-                            onClick={() => categoryHandler('commercial')}
-                        >Коммерческая
-                        </li>
+                        {
+                            mainCategory==='building'? (
+                                <>
+                                    <li
+                                        className={additionalCategory==='abroad' ? 'active' : ''}
+                                        onClick={() => setAdditionalCategory('abroad')}
+                                    >Недвижимость за рубежом
+                                    </li>
+                                    <li
+                                        className={additionalCategory==='newBuildings' ? 'active' : ''}
+                                        onClick={() => setAdditionalCategory('newBuildings')}
+                                    >Новостройки
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li
+                                        className={additionalCategory==='residential' ? 'active' : ''}
+                                        onClick={() => setAdditionalCategory('residential')}
+                                    >Жилая
+                                    </li>
+                                    <li
+                                        className={additionalCategory==='suburban' ? 'active' : ''}
+                                        onClick={() => setAdditionalCategory('suburban')}
+                                    >Загородная
+                                    </li>
+                                    <li
+                                        className={additionalCategory==='commercial' ? 'active' : ''}
+                                        onClick={() => setAdditionalCategory('commercial')}
+                                    >Коммерческая
+                                    </li>
+                                </>
+                            )
+                        }
                     </ul>
                 </div>
             </div>

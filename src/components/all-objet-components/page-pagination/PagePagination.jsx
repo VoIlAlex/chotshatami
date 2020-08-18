@@ -2,10 +2,10 @@ import React from 'react'
 
 import './page-pagination.css'
 
-const PagePagination = () => {
+const PagePagination = props => {
     return (
         <div className="page-pagination">
-            <p>Показано 1 по 25 из 705 записей</p>
+            <p>Показано 1 по {props.numberElements} из 705 записей</p>
             <div className="page-pagination__pagination">
                 <p>&#8592; &nbsp;Предыдущая</p>
                 <ul>

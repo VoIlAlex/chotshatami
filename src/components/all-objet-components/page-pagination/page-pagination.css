@@ -33,11 +33,21 @@
 }
 
 .page-pagination__pagination ul li {
-    padding: 7px 10px;
+    padding: 0.9vh 0.7vw;
     border: 1px solid #C4C4C4;
+    border-left: none;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 0.9em;
     cursor: pointer;
+}
+
+.page-pagination__pagination ul li:hover{
+    background: #731919;
+    color: white;
+}
+
+.page-pagination__pagination ul li:first-of-type{
+    border-left: 1px solid #C4C4C4;
 }

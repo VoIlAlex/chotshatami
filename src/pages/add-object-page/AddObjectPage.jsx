@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {withRouter} from 'react-router-dom'
 
 import HeadComponent from "../../components/head-component/HeadComponent";
 import MainInf from "../../components/add-object-components/main-inf/MainInf";
@@ -15,19 +16,18 @@ import CommercialSpecifications from "../../components/add-object-components/com
 import RentCommercial from "../../components/rent/RentCommercial";
 import './add-object-page.css'
 
-const AddObjectPage = () => {
+const accodance = {
+    'Продажа':'sale',
+    'Аренда':'rent',
+    'Строительство':'building',
+    'Жилая':'residential',
+    'Недвижимость за рубежом':'abroad',
+    'Новостройки':'newBuildings'
+}
 
-    const [mainCategory, setMainCategory] = useState({
-        residential: false,
-        rent: false,
-        building: false
-    })
-
-    const [additionalCategory, setAdditionalCategory] = useState({
-        residential: false,
-        suburban: false,
-        commercial: false
-    })
+const AddObjectPage = props => {
+    const [mainCategory, setMainCategory] = useState(accodance[props.location.mainCategory] || '')
+    const [additionalCategory, setAdditionalCategory] = useState(accodance[props.location.additionalCategory]|| '')
 
     const [settlementType, setSettlementType] = useState({
         g: false,
@@ -67,19 +67,19 @@ const AddObjectPage = () => {
                     <Seller />
                     <Location settlementType={settlementType} setSettlementType={setSettlementType}/>
                     {/*Продажа*/}
-                    {mainCategory.residential && additionalCategory.residential && <SpecificationsResidential/>}
-                    {mainCategory.residential && additionalCategory.suburban && <SuburbanSpecifications/>}
-                    {mainCategory.residential && additionalCategory.commercial && <CommercialSpecifications />}
+                    {mainCategory==='sale' && additionalCategory==='residential' && <SpecificationsResidential/>}
+                    {mainCategory==='sale' && additionalCategory==='suburban' && <SuburbanSpecifications/>}
+                    {mainCategory==='sale' && additionalCategory==='commercial' && <CommercialSpecifications />}
                     {/*Аренда*/}
-                    {mainCategory.rent && additionalCategory.residential && <RentSpecifications />}
-                    {mainCategory.rent && additionalCategory.suburban && <RentSubUrban />}
-                    {mainCategory.rent && additionalCategory.commercial && <RentCommercial/>}
-                    {/*Новостройки == SuburbanSpecifications*/}
-                    {/*Зарубежная == SpecificationsResidential*/}
+                    {mainCategory==='rent' && additionalCategory==='residential' && <RentSpecifications />}
+                    {mainCategory==='rent' && additionalCategory==='suburban' && <RentSubUrban />}
+                    {mainCategory==='rent' && additionalCategory==='commercial' && <RentCommercial/>}
+                    {mainCategory==='building' && additionalCategory==='newBuildings' && <SuburbanSpecifications />}
+                    {mainCategory==='building' && additionalCategory==='abroad' && <SpecificationsResidential />}
                 </div>
             </div>
         </div>
     )
 }
 
-export default AddObjectPage
+export default withRouter(AddObjectPage)

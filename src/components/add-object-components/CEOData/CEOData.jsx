@@ -23,16 +23,19 @@ const CEOData = () => {
                 labelValue={'Название страницы (meta title)'}
                 width={'97%'}
                 description={'Максимально 80 символов'}
+                maxlength={'80'}
             />
             <FormInput
                 labelValue={'Ключевые слова (meta keywords)'}
                 width={'97%'}
                 description={'Максимально 250 символов'}
+                maxlength={'250'}
             />
             <FormInput
                 labelValue={'Описание (meta description)'}
                 width={'97%'}
                 description={'Максимально 160 символов'}
+                maxlength={'160'}
             />
         </div>
     )

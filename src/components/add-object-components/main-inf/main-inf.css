@@ -77,6 +77,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 0.8em;
+    border-right: none;
 }
 
 .main-inf__category ul li:first-of-type{
@@ -85,16 +86,30 @@
 
 .main-inf__category ul li:last-of-type{
     border-radius: 0 4px 4px 0;
+    border-right: 1px solid #C4C4C4;
 }
 
-.main-inf__category ul li.active {
+.main-inf__category .category__active li.active {
     background: #731919 ;
-    border: 1px solid #731919 ;
     color: white;
 }
 
 .main-inf__category .category__active ul li:hover{
     background: #731919 ;
-    border: 1px solid #731919 ;
     color: white;
+}
+
+.category__disabled{
+    color: #C4C4C4;
+    width: 45%;
+}
+
+.category__disabled li:hover{
+    color: #C4C4C4;
+    background: none;
+}
+
+.category__disabled li.active{
+    background: none;
+    color: #C4C4C4;
 }

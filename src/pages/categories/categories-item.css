@@ -6,15 +6,21 @@
     align-items: center;
     justify-content: center;
     margin: 15px 0;
+    color: #731919;
     border: 3px solid #731919;
     box-sizing: border-box;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     font-family: 'Roboto';
+    transition: background-color 0.3s;
 }
 
 .categories-item h5 {
     font-size: 17px;
     font-weight: 500;
-    color: #731919;
+}
+
+.categories-item:hover{
+    background: #731919;
+    color: white;
 }

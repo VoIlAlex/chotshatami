@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 
 import HeadComponent from "../../components/head-component/HeadComponent";
@@ -8,20 +8,22 @@ import PagePagination from "../../components/all-objet-components/page-paginatio
 import './all-object-page.css'
 
 const AllObjectPage = ({history}) => {
+    const [numberElements, setNumberElements] = useState(25)
+
     return (
         <div className="all-object-page">
             <HeadComponent
                 /*TODO counter in h2*/
                 h2={'Всего объектов: 703'}
-                h2Margin={'0 0 0 30px'}
-                btnWidth={'200px'}
+                h2Margin={'0 0 0 1.4vw'}
+                btnWidth={'55%'}
                 btnHeight={'50px'}
                 buttonValue={'Добавить объект'}
                 onClick={() => history.push('/add_object')}
             />
-            <PaginationBlock />
+            <PaginationBlock setNumberElements={setNumberElements}/>
             <ObjectTable />
-            <PagePagination />
+            <PagePagination numberElements={numberElements}/>
         </div>
     )
 }

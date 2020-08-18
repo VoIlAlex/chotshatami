@@ -15,6 +15,7 @@ const FormInput = props => {
             <input
                 type="text"
                 placeholder={props.placeholder}
+                maxLength={props.maxlength}
             />
             { props.description&&(<small className={'form-input__description'}>{props.description}</small>) }
         </div>
