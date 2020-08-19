@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import HeadComponent from "../../head-component/HeadComponent";
 import './status.css'
 
 const Status = () => {
+
+    const [status, setStatus] = useState('published')
+
     return (
         <div className="status">
             <HeadComponent
@@ -18,10 +21,20 @@ const Status = () => {
                 optionMargin={'0'}
                 reverse
             />
-            <div className="status__buttons">
-                <button>Опубликовано</button>
-                <button className={'posted'}>Не опубликовано</button>
-            </div>
+            <ul className={'status__buttons'}>
+                <li
+                    className={status==='published'?'selected':''}
+                    onClick={() => setStatus('published')}
+                >Опубликованно</li>
+                <li
+                    className={status==='unpublished'?'selected':''}
+                    onClick={() => setStatus('unpublished')}
+                >Не опубликованно</li>
+            </ul>
+            {/*<div className="status__buttons">*/}
+            {/*    <button>Опубликовано</button>*/}
+            {/*    <button className={'posted'}>Не опубликовано</button>*/}
+            {/*</div>*/}
         </div>
     )
 }
