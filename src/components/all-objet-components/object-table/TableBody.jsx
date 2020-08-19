@@ -14,7 +14,7 @@ const TableBody = () => {
         <tbody>
         {
             testData.map((el, i) => (
-                <tr>
+                <tr key={i}>
                     <td>{i + 1}</td>
                     <td className={'tbody-address'}>{el.address.region}/{el.address.city}/{el.address.street}</td>
                     <td>

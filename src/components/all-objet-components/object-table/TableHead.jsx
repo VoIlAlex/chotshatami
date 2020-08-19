@@ -12,7 +12,7 @@ const TableHead = () => {
             {
                 columns.map((column, i) => {
                     if(i===columns.length-1){
-                        return (<td><p>{column}</p></td>)
+                        return (<td key={i}><p>{column}</p></td>)
                     }
                     return (
                         <td key={i}>

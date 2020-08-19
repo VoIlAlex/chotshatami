@@ -22,13 +22,14 @@ const accodance = {
     'Строительство':'building',
     'Жилая':'residential',
     'Недвижимость за рубежом':'abroad',
-    'Новостройки':'newBuildings'
+    'Новостройки':'newBuildings',
+    'Загородная':'suburban',
+    'Коммерческая':'commercial'
 }
 
 const AddObjectPage = props => {
     const [mainCategory, setMainCategory] = useState(accodance[props.location.mainCategory] || '')
     const [additionalCategory, setAdditionalCategory] = useState(accodance[props.location.additionalCategory]|| '')
-
     const [settlementType, setSettlementType] = useState({
         g: false,
         ag: false,

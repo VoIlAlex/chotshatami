@@ -8,10 +8,10 @@ const CategoriesItem = props => {
         <div
             className="categories-item"
         >
-            {/*<h5>{props.category}</h5>*/}
-            <h5><Link to={{pathname:'/add_object',
-                mainCategory: props.category,
-                additionalCategory:props.categoryName
+            <h5><Link to={{
+                pathname: '/add_object',
+                additionalCategory: props.category,
+                mainCategory: props.categoryName
             }}>{props.category}</Link></h5>
         </div>
     )
