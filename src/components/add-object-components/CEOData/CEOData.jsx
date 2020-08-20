@@ -36,6 +36,7 @@ const CEOData = () => {
                 width={'97%'}
                 description={'Максимально 160 символов'}
                 maxlength={'160'}
+                margin={'0 0 15px 0'}
             />
         </div>
     )

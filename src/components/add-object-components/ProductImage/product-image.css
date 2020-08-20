@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .product-image__upload-input input:first-of-type{
@@ -136,4 +137,8 @@
     margin: 0;
     box-sizing: border-box;
     width: 100%;
+}
+
+.product-image form {
+    margin-bottom: 15px;
 }

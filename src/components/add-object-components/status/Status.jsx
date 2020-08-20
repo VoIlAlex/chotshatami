@@ -31,10 +31,6 @@ const Status = () => {
                     onClick={() => setStatus('unpublished')}
                 >Не опубликованно</li>
             </ul>
-            {/*<div className="status__buttons">*/}
-            {/*    <button>Опубликовано</button>*/}
-            {/*    <button className={'posted'}>Не опубликовано</button>*/}
-            {/*</div>*/}
         </div>
     )
 }
