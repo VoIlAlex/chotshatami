@@ -30,7 +30,8 @@
     cursor: pointer;
     padding: 0.9vh 1vw;
     border: 1px solid #C4C4C4;
-    border-left: none;
+    border-collapse: collapse;
+    margin-right: -1px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -40,15 +41,23 @@
 .pagination-block .elements-counter li:hover{
     background: #731919;
     color: white;
+    border: 1px solid #731919;
 }
 
 .pagination-block .elements-counter li:first-of-type{
     border-left: 1px solid #C4C4C4;
+    border-radius: 4px 0 0 4px;
 }
 
-.elements-counter li.selected {
+.pagination-block .elements-counter li:last-of-type{
+    border-left: 1px solid #C4C4C4;
+    border-radius: 0 4px 4px 0;
+}
+
+.elements-counter  li.selected {
     background: #731919;
     color: white;
+    border: 1px solid #731919;
 }
 
 .pagination-block__search-input{

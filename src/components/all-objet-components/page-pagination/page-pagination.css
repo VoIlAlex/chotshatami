@@ -41,13 +41,21 @@
     font-weight: normal;
     font-size: 0.9em;
     cursor: pointer;
+    border-radius: 0;
 }
 
 .page-pagination__pagination ul li:hover{
+    border: 1px solid #731919;
+    border-left: none;
     background: #731919;
     color: white;
 }
 
 .page-pagination__pagination ul li:first-of-type{
     border-left: 1px solid #C4C4C4;
+    border-radius: 4px 0 0 4px;
+}
+
+.page-pagination__pagination ul li:last-of-type{
+    border-radius: 0 4px 4px 0;
 }

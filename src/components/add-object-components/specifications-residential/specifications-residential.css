@@ -72,11 +72,11 @@
 .specifications__has-phone li:hover{
     background: #731919 ;
     color: white;
+    border: 1px solid #731919;
 }
 
-.specifications__has-phone li.active {
-    background: #731919 ;
-    color: white;
+.specifications__has-phone li:nth-of-type(2):hover{
+    border-left: none;
 }
 
 .specifications__add-object{
@@ -95,4 +95,15 @@
     font-size: 16px;
     color: #731919;
     cursor: pointer;
+}
+
+.specifications__has-phone li.active {
+    background: #731919 ;
+    color: white;
+    border: 1px solid #731919;
+}
+
+
+.specifications__has-phone li:nth-of-type(2).active{
+    border-left: none;
 }

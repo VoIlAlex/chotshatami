@@ -28,11 +28,13 @@
     padding: 2vh 1vw;
     text-align: center;
     width: 50%;
+    border: 1px solid #c4c4c4;
 }
 
 .status__buttons li:hover{
     background: #731919;
     color: white;
+    border: 1px solid #731919;
 }
 
 .status__buttons button{
@@ -48,14 +50,19 @@
 }
 
 .status__buttons li:first-of-type {
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px;
+    border-right: none;
+    margin-right: -5px;
 }
 
 .status__buttons li:last-of-type {
-    border-radius: 0 4px 4px 0;
+    border-radius: 4px ;
+    border-left: none;
 }
 
 .status__buttons .selected {
     background: #731919;
     color: white;
+    border: 1px solid #731919;
+    z-index: 100;
 }

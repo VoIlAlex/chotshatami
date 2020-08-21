@@ -32,6 +32,12 @@
 
 .categories-item h5 a {
     color: #731919;
+    display: block;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .categories-item h5:hover{

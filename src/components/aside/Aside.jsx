@@ -45,8 +45,8 @@ const Aside = () => {
                 <AsideButton selected={location=='/categories' || location=='/add_object'}>
                     {
                         location=='/categories' || location=='/add_object'?
-                            <HomeSearchWhite className={'option-btn'} />:
-                            <HomeSearchBlack className={'option-btn'} />
+                            <AddCircleWhite className={'option-btn'} />:
+                            <AddCircleBlack className={'option-btn'} />
                     }
                     <NavLink to={'/categories'} >Добавить объект</NavLink>
                 </AsideButton>

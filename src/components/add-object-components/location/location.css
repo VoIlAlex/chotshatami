@@ -62,12 +62,24 @@
     border-right: 1px solid #C4C4C4;
 }
 
-.location__types li.active {
-    background: #731919 ;
-    color: white;
-}
-
 .location__types li:hover{
     background: #731919 ;
     color: white;
+    border: 1px solid #731919;
+    border-right: none;
+}
+
+.location__types li:last-of-type:hover{
+    border-right: 1px solid #731919;
+}
+
+.location__types li.active {
+    background: #731919 ;
+    color: white;
+    border: 1px solid #731919;
+    border-right: none;
+}
+
+.location__types li.active {
+   border-right: 1px solid #731919;
 }
