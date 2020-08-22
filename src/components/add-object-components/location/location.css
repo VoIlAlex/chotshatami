@@ -70,7 +70,7 @@
 }
 
 .location__types li:last-of-type:hover{
-    border-right: 1px solid #731919;
+    /*border-right: 1px solid #731919;*/
 }
 
 .location__types li.active {
@@ -80,6 +80,3 @@
     border-right: none;
 }
 
-.location__types li.active {
-   border-right: 1px solid #731919;
-}
