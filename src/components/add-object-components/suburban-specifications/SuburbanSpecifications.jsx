@@ -141,7 +141,7 @@ const SuburbanSpecifications = () => {
                 <Select label={'Направление от города'} margin={'10px 0 0'}/>
                 <FormInput margin={'15px 0 0'} labelValue={'Расстояние от МКАД'} width={'100%'}/>
                 <FormInput margin={'15px 0 0'} labelValue={'Количество соток'} width={'100%'}/>
-                <Select  label={'Плита'} margin={'15px 0 0'}/>
+                <Select  label={'Плита'} margin={'15px 0 10px 0'}/>
             </div>
         </div>
     <div className="specifications__add-object">

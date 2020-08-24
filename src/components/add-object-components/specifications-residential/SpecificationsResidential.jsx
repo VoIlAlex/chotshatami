@@ -115,7 +115,7 @@ const SpecificationsResidential = () => {
                         >2 и более
                         </li>
                     </ul>
-                    <Select label={'Плита'} margin={'10px 0 0'}/>
+                    <Select label={'Плита'} margin={'10px 0 10px 0'}/>
                 </div>
             </div>
             <div className="specifications__add-object">

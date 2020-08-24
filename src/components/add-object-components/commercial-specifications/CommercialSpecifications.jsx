@@ -112,7 +112,7 @@ const CommercialSpecifications = () => {
                         >Нет</li>
                     </ul>
                     <FormInput labelValue={'Количество помещений'} width={'100%'} margin={'10px 0 0 0'}/>
-                    <Select label={'Дополнительная информация'} margin={'10px 0 0'}/>
+                    <Select label={'Дополнительная информация'} margin={'15px 0'}/>
                 </div>
             </div>
             <div className="specifications__add-object">
