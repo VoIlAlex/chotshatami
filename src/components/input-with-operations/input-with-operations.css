@@ -20,14 +20,14 @@
 }
 
 .input-with-operations .input-operation input{
-    width: 90px;
+    width: 96px;
     height: 40px;
     font-family: 'Roboto';
     font-weight: 500;
     font-size: 15px;
     border: 1px solid #C4C4C4;
     border-radius: 4px;
-    padding-left: 45%;
+    padding-left:45%;
 }
 
 .input-with-operations .input-operation .plus-logo {
@@ -35,7 +35,7 @@
     position: absolute;
     padding: 10px;
     top: 5px;
-    right: 15px;
+    right: 10px;
 }
 
 .input-with-operations .input-operation .minus-logo {
@@ -43,5 +43,5 @@
     position: absolute;
     padding: 10px;
     top: 10px;
-    left: 5px;
+    left: 3px;
 }

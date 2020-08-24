@@ -27,6 +27,7 @@
 
 .location__coordinates{
     width: 90%;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -67,10 +68,6 @@
     color: white;
     border: 1px solid #731919;
     border-right: none;
-}
-
-.location__types li:last-of-type:hover{
-    /*border-right: 1px solid #731919;*/
 }
 
 .location__types li.active {
