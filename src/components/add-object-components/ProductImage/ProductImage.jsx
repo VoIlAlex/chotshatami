@@ -20,7 +20,7 @@ const ProductImage = () => {
         <div className="product-image">
             <HeadComponent
                 width={'97%'}
-                h2={'Изображение продукта'}
+                h2={'Изображение объекта'}
                 h2FontSize={'1.3em'}
                 p={'К списку'}
                 btnWidth={'50%'}

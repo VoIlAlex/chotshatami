@@ -6,24 +6,24 @@ import './input-with-operations.css'
 
 const InputWithOperations = props => {
     const addHandler = () => {
-        props.clickHandler({...props.state, [props.name]:props.state[props.name]+1})
+        props.clickHandler({...props.state, [props.name]: props.state[props.name] + 1})
     }
 
     const subHandler = () => {
-        if(props.state[props.name]===0) return
-        props.clickHandler({...props.state, [props.name]:props.state[props.name]-1})
+        if (props.state[props.name] === 0) return
+        props.clickHandler({...props.state, [props.name]: props.state[props.name] - 1})
     }
     return (
         <div className="input-with-operations">
             <label>{props.label}</label>
             <div className="input-operation">
-                <Minus className={'minus-logo'} onClick={() => subHandler()}/>
-                <input type="text"
-                       name={props.name}
-                       value={props.value}
-                       onChange={e => props.clickHandler({...props.state, [props.name]:e.target.value})}
+                <div className="minus" onClick={() => subHandler()}><p id="minus"><Minus /></p></div>
+                <input
+                    type="text"
+                    value={props.value}
+                    onChange={e => props.clickHandler({...props.state, [props.name]:e.target.value})}
                 />
-                <Plus className={'plus-logo'} onClick={() => addHandler()}/>
+                <div className="plus"><p id="plus" onClick={() => addHandler()}><Plus /></p></div>
             </div>
         </div>
     )
