@@ -14,18 +14,23 @@ const App = () => {
             <Router>
                 <Aside show={showAside} setShow={setShowAside}/>
                 <Switch>
-                    <Route path={'/add_object'} component={AddObjectPage}/>
+                    <Route
+                        path={'/add_object'}
+                        render={() => <AddObjectPage
+                            width={showAside ? '80%' : '100%'}
+                            margin={showAside ? '0' : '0 100px 0 0'}
+                        />}/>
                     <Route
                         path={'/all_objects'}
                         render={() => <AllObjectPage
                             width={showAside ? '80%' : '90%'}
-                            margin={showAside ? '0' : '0 0 0 -30px'}
+                            margin={showAside ? '0' : '0 100px 0 0'}
                         />}/>
                     <Route
                         path={'/categories'}
                         render={() => <CategoriesPage
                             width={showAside ? '80%' : '90%'}
-                            margin={showAside ? '0' : '0 40px 0 -30px'}
+                            margin={showAside ? '0' : '0 100px 0 0'}
                         />}/>
                     <Redirect to="/all_objects"/>
                 </Switch>

@@ -28,6 +28,7 @@ const accodance = {
 }
 
 const AddObjectPage = props => {
+    const {width, margin} = props
     const [mainCategory, setMainCategory] = useState(accodance[props.location.mainCategory] || '')
     const [additionalCategory, setAdditionalCategory] = useState(accodance[props.location.additionalCategory]|| '')
     const [settlementType, setSettlementType] = useState({
@@ -42,7 +43,10 @@ const AddObjectPage = props => {
     })
 
     return (
-        <div className={'add-object-page'}>
+        <div
+            className={'add-object-page'}
+            style={{margin, width}}
+        >
             <HeadComponent
                 h2={'Добавить объект'}
                 h2Margin={'0 0 0 30px'}
