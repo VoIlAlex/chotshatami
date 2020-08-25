@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 import Aside from "./components/aside/Aside";
@@ -8,15 +8,26 @@ import CategoriesPage from "./pages/categories/CategoriesPage";
 import './App.css';
 
 const App = () => {
+    const [showAside, setShowAside] = useState(true)
     return (
         <div className="app">
             <Router>
-                <Aside/>
+                <Aside show={showAside} setShow={setShowAside}/>
                 <Switch>
                     <Route path={'/add_object'} component={AddObjectPage}/>
-                    <Route path={'/all_objects'} component={AllObjectPage}/>
-                    <Route path={'/categories'} component={CategoriesPage}/>
-                    <Redirect to="/all_objects" />
+                    <Route
+                        path={'/all_objects'}
+                        render={() => <AllObjectPage
+                            width={showAside ? '80%' : '90%'}
+                            margin={showAside ? '0' : '0 0 0 -30px'}
+                        />}/>
+                    <Route
+                        path={'/categories'}
+                        render={() => <CategoriesPage
+                            width={showAside ? '80%' : '90%'}
+                            margin={showAside ? '0' : '0 40px 0 -30px'}
+                        />}/>
+                    <Redirect to="/all_objects"/>
                 </Switch>
             </Router>
         </div>

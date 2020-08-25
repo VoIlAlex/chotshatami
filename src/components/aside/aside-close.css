@@ -1,0 +1,49 @@
+.close-menu {
+    position: absolute;
+    z-index: 9;
+    width: 5vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    transform: translateX(-100%);
+    background-color: white;
+}
+
+/* aside animation */
+.close-slide-in-left {
+    transform: translateX(-100%);
+    transition: 0.4s ease-out;
+}
+
+.close-slide-in-right {
+    transform: translateX(0);
+    transition: 0.4s ease-out;
+}
+
+.close-menu p {
+    margin-top: 40px;
+    margin-bottom: 92px;
+}
+
+/* logo animation */
+.logo-in-left {
+    transform: translateX(-100%);
+    transition: 0.4s ease-out;
+}
+
+.logo-in-right {
+    transform: translateX(0);
+    transition: 0.4s ease-out;
+}
+
+.close-menu .menu-btn {
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.close-menu .option-btn {
+    color: black;
+    margin: 0 10px;
+}

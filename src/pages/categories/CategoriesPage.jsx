@@ -4,11 +4,15 @@ import HeadComponent from "../../components/head-component/HeadComponent";
 import CategoriesList from "./CategoriesList";
 import './categories-page.css'
 
-const CategoriesPage = () => {
+const CategoriesPage = props => {
+    const {width, margin} = props
     const sale = ['Жилая', 'Загородная', 'Коммерческая']
     const build = ['Недвижимость за рубежом', 'Новостройки']
     return (
-        <div className="categories-page">
+        <div
+            className="categories-page"
+            style={{width, margin}}
+        >
             <HeadComponent
                 h2={'Категория'}
                 h2Margin={'0 0 0 30px'}

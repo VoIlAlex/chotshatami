@@ -5,9 +5,7 @@ import './categories-item.css'
 
 const CategoriesItem = props => {
     return (
-        <div
-            className="categories-item"
-        >
+        <div className="categories-item">
             <h5><Link to={{
                 pathname: '/add_object',
                 additionalCategory: props.category,

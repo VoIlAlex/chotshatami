@@ -7,11 +7,15 @@ import ObjectTable from "../../components/all-objet-components/object-table/Obje
 import PagePagination from "../../components/all-objet-components/page-pagination/PagePagination";
 import './all-object-page.css'
 
-const AllObjectPage = ({history}) => {
+const AllObjectPage = props => {
+    const {history, width, margin} = props
     const [numberElements, setNumberElements] = useState(25)
 
     return (
-        <div className="all-object-page">
+        <div
+            className="all-object-page"
+            style={{width, margin}}
+        >
             <HeadComponent
                 /*TODO counter in h2*/
                 h2={'Всего объектов: 703'}
