@@ -1,5 +1,7 @@
 .full-menu {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 18vw;
     height: 100vh;
     display: flex;
