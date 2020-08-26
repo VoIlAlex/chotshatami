@@ -27,16 +27,6 @@
     margin-bottom: 92px;
 }
 
-/* logo animation */
-.logo-in-left {
-    transform: translateX(-100%);
-    transition: 0.4s ease-out;
-}
-
-.logo-in-right {
-    transform: translateX(0);
-    transition: 0.4s ease-out;
-}
 
 .close-menu .menu-btn {
     cursor: pointer;
