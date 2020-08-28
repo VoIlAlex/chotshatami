@@ -1,7 +1,7 @@
 .add-object-page{
-    width: 80%;
     display: flex;
     flex-direction: column;
+    transition: 0.4s ease-out;
 }
 
 .add-object-page__forms {

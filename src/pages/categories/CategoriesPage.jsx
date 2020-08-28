@@ -10,7 +10,7 @@ const CategoriesPage = props => {
     const build = ['Недвижимость за рубежом', 'Новостройки']
     return (
         <div
-            className="categories-page"
+            className="categories-page categories_slide-in-left"
             style={{width, margin}}
         >
             <HeadComponent

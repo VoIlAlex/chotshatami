@@ -1,6 +1,7 @@
 .categories-page{
     display: flex;
     flex-direction: column;
+    transition: 0.4s ease-out;
 }
 
 .categories-page__categories{
