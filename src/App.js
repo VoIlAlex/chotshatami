@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect, useLocation} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
-import Aside from "./components/aside/Aside";
 import AddObjectPage from "./pages/add-object-page/AddObjectPage";
 import AllObjectPage from "./pages/all-object-page/AllObjectPage";
 import CategoriesPage from "./pages/categories/CategoriesPage";
@@ -20,19 +19,19 @@ const App = () => {
                         path={'/add_object'}
                         render={() => <AddObjectPage
                             width={showAside ? '80%' : '100%'}
-                            margin={showAside ? '0 0 0 18vw' : '0 0 0 7vw'}
+                            margin={showAside ? '0 0 5vh 18vw' : '0 0 5vh 7vw'}
                         />}/>
                     <Route
                         path={'/all_objects'}
                         render={() => <AllObjectPage
                             width={showAside ? '80%' : '90%'}
-                            margin={showAside ? '0 0 0 18vw' : '0 0 0 7vw'}
+                            margin={showAside ? '0 0 5vh 18vw' : '0 0 5vh 7vw'}
                         />}/>
                     <Route
                         path={'/categories'}
                         render={() => <CategoriesPage
                             width={showAside ? '80%' : '90%'}
-                            margin={showAside ? '0 0 0 18vw' : '0 0 0 7vw'}
+                            margin={showAside ? '0 0 5vh 18vw' : '0 0 5vh 7vw'}
                         />}/>
                     <Route
                         path={'/login'}
