@@ -64,7 +64,7 @@ const SuburbanSpecifications = () => {
                 />
             </div>
             <FormInput
-                labelValue={'Год постройки (2001)'}
+                labelValue={'Год постройки'}
                 width={'90%'}
                 margin={'20px 0 0 '}
             />

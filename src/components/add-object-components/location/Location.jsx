@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import fetchJsonp from 'fetch-jsonp'
 
 import HeadComponent from "../../head-component/HeadComponent";
 import Select from "../../select/Select";
 import FormInput from "../../form-input/FormInput";
 import './location.css'
-
-const url = 'https://api.vk.com/method/database.getCountries?access_token=4ebc1e811e9806336bbad537e6647cea7be632c10418a2b51e8f4c226a28d22ef2d4b9434002c7c4bd53b&need_all=1&v=5.122'
 
 const types = {
     'г.': 'g', 'аг.': 'ag', 'гп.': 'gp', 'д.': 'd', 'пгт.': 'pgt', 'рп.': 'rp', 'с.': 'c', 'снп.': 'cnp'
@@ -19,55 +16,6 @@ const Location = props => {
     const [selectedRegion, setSelectedRegion] = useState(null)
     const [regions, setRegions] = useState([])
     const [cities, setCities] = useState([])
-    //yek    7561590
-    // tok 4ebc1e811e9806336bbad537e6647cea7be632c10418a2b51e8f4c226a28d22ef2d4b9434002c7c4bd53b
-    useEffect(() => {
-        const fetchCountries = async () => {
-            await fetchJsonp(url)
-                .then(res => res.json())
-                .then(res => { //TODO get api
-                    // setCountries(res.response.items)
-                    // setLoading(false)
-                })
-        }
-        fetchCountries()
-    }, [setCountries])
-
-    const fetchRegions = async id => {
-        setLoading(true)
-        await fetchJsonp(`https://api.vk.com/method/database.getRegions?access_token=4ebc1e811e9806336bbad537e6647cea7be632c10418a2b51e8f4c226a28d22ef2d4b9434002c7c4bd53b&country_id=${id}&v=5.122`)
-            .then(res => res.json())
-            .then(res => {
-                setRegions(res.response.items)
-                setLoading(false)
-            })
-    }
-
-    const fetchCities = async id => {
-        setLoading(true)
-        await fetchJsonp(`https://api.vk.com/method/database.getCities?access_token=4ebc1e811e9806336bbad537e6647cea7be632c10418a2b51e8f4c226a28d22ef2d4b9434002c7c4bd53b&country_id=${selectedCountry.id}&region_id=${id}&need_all=1&v=5.122`)
-            .then(res => res.json())
-            .then(res => {
-                setCities(res.response.items)
-                setLoading(false)
-            })
-    }
-
-    const selectedCountryHandler = country => {
-        setSelectedCountry(countries.filter(el => el.title === country.split('|')[0])[0])
-        fetchRegions(country.split('|')[1])
-    }
-
-    const selectedRegionHandler = region => {
-        setSelectedRegion(regions.filter(el => el.title === region.split('|')[0])[0])
-        fetchCities(region.split('|')[1])
-    }
-
-    const settlementTypeHandler = name => {
-        const newState = {}
-        Object.keys(props.settlementType).map(el => el === name ? newState[el] = true : newState[el] = false)
-        props.setSettlementType(newState)
-    }
 
     const type = ['г.', 'аг.', 'гп.', 'д.', 'пгт.', 'рп.', 'с.', 'снп.']
 
@@ -88,14 +36,12 @@ const Location = props => {
             <div className="location__selects">
                 <Select label={'Страна'}
                         value={'Не выбрано' || selectedCountry.title}
-                        onChange={(el) => selectedCountryHandler(el)}
                         list={countries}
                         loading={loading}
                 />
                 <Select
                     label={'Область'}
                     value={'Не выбрано' || selectedRegion.title}
-                    onChange={(el) => selectedRegionHandler(el)}
                     list={regions}
                 />
                 <Select
@@ -110,7 +56,6 @@ const Location = props => {
                 {
                     type.map((el, i) => <li
                         key={i}
-                        onClick={() => settlementTypeHandler(types[el])}
                         className={props.settlementType[types[el]]? 'active': ''}
                     >{el}</li>)
                 }

@@ -52,7 +52,7 @@ const RentCommercial = () => {
                 />
                 <div className="specifications__inf">
                     <Select label={'Подкатегория'} margin={'0'}/>
-                    <FormInput labelValue={'Год постройки (2001)'} width={'100%'} margin={'10px 0 0 0'}/>
+                    <FormInput labelValue={'Год постройки'} width={'100%'} margin={'10px 0 0 0'}/>
                 </div>
                 <div className="specifications-inputs">
                     <InputWithOperations

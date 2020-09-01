@@ -20,11 +20,11 @@ const Seller = () => {
                 reverse
             />
             <div className="seller_inputs">
-                <FormInput labelValue={'Контактный телефон (+375291234567)'} width={'95%'} margin={'15px 0 0 15px'}/>
-                <FormInput labelValue={'Контактный телефон 2 (+375291234567)'}  width={'95%'} margin={'15px 0 0 15px'}/>
-                <FormInput labelValue={'Имя агента (+375291234567)'}  width={'95%'} margin={'15px 0 0 15px'}/>
-                <FormInput labelValue={'Email продавца (+375291234567)'}  width={'95%'} margin={'15px 0 0 15px'}/>
-                <FormInput labelValue={'Цена в USD (+375291234567)'}  width={'95%'} margin={'15px 0 15px 15px'}/>
+                <FormInput labelValue={'Контактный телефон'} width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Контактный телефон 2'}  width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Имя агента'}  width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Email продавца'}  width={'95%'} margin={'15px 0 0 15px'}/>
+                <FormInput labelValue={'Цена в USD'}  width={'95%'} margin={'15px 0 15px 15px'}/>
             </div>
         </div>
     )

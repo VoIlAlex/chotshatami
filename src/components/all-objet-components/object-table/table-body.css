@@ -4,11 +4,13 @@ tbody{
 
 tbody td{
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 tbody .tbody-address{
     color: #731919;
+    text-align: left;
+    padding-left: 15px;
 }
 
 tbody .tbody-agent h4{

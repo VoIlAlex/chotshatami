@@ -81,8 +81,8 @@ const RentSpecifications = () => {
                     />
                 </div>
                 <div className="specifications__inf">
-                    <FormInput labelValue={'Год постройки (2001)'} width={'100%'}/>
-                    <FormInput margin={'20px 0 0'} labelValue={'Год капитального ремонта (2005)'} width={'100%'}/>
+                    <FormInput labelValue={'Год постройки'} width={'100%'}/>
+                    <FormInput margin={'20px 0 0'} labelValue={'Год капитального ремонта'} width={'100%'}/>
                 </div>
                 <div className="specifications-inputs">
                     <InputWithOperations
