@@ -1,19 +1,42 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux'
 
+import { filterOptions} from "../../utils/roomHandler";
 import HeadComponent from "../head-component/HeadComponent";
 import InputWithOperations from "../input-with-operations/InputWithOperation";
 import FormInput from "../form-input/FormInput";
 import Select from "../select/Select";
 import TransparentButton from "../transparent-button/TransparentButton";
+import Backdrop from "../backdrop/Backdrop";
 import '../add-object-components/specifications-residential/specifications-residential.css'
+import {ReactComponent as Loader} from "../../asserts/loader.svg";
 
-const RentSpecifications = () => {
+const RentSpecifications = props => {
+    const {state, setState, sendObject, addObjectLoading, options} = props
     const [rooms, setRooms] = useState({
-        roomNumber: 0,
-        salesRooms: 0,
-        separateRooms: 0,
-        level:0,
-        numberOfLevels:0
+        rooms: 0,
+        room_to_sell: 0,
+        separate_rooms: 0,
+        storey: 0,
+        storeys: 0
+    })
+
+    const [searchFieldOption, setSearchFieldOption] = useState({
+        balconySearch: '',
+        floorSearch: '',
+        lavatorySearch: '',
+        repairSearch: '',
+        wallsSearch: '',
+        furnitureSearch: ''
+    })
+    const {  balconySearch, floorSearch, lavatorySearch, repairSearch, wallsSearch, furnitureSearch } = searchFieldOption
+    const [showSelect, setShowSelect] = useState({
+        balconyOptions: false,
+        floorOptions: false,
+        lavatoryOptions: false,
+        repairOptions: false,
+        wallsMaterialOptions: false,
+        furnitureOptions: false
     })
 
     const [phoneCounter, setPhoneCount] = useState({
@@ -40,8 +63,17 @@ const RentSpecifications = () => {
         setFurniture(newState)
     }
 
+    const roomHandler = (name, value) => {
+        setRooms({...rooms, [name]: value})
+        setState({...state, [name]: value})
+    }
+
     return (
         <>
+            {
+                Object.values(showSelect).filter(val => val).length > 0 &&
+                <Backdrop onClick={() => setShowSelect({...Object.keys(showSelect).forEach(el => ({[el]: false}))}) }/>
+            }
             <div className="specifications">
                 <HeadComponent
                     width={'90%'}
@@ -59,71 +91,172 @@ const RentSpecifications = () => {
                     <InputWithOperations
                         label={'Кол-во комнат'}
                         state={rooms}
-                        clickHandler={setRooms}
-                        name={'roomNumber'}
-                        value={rooms.roomNumber}
+                        clickHandler={roomHandler}
+                        name={'rooms'}
+                        value={rooms.rooms}
                     />
                     <InputWithOperations
                         label={'Кол-во продаваемых комнат'}
                         state={rooms}
-                        clickHandler={setRooms}
-                        name={'salesRooms'}
-                        value={rooms.salesRooms}
+                        clickHandler={roomHandler}
+                        name={'room_to_sell'}
+                        value={rooms.room_to_sell}
+                        margin={'0 -15px 0 0'}
                     />
                 </div>
                 <div className="specifications_separate-room">
                     <InputWithOperations
                         label={'Кол-во отдельных комнат'}
                         state={rooms}
-                        clickHandler={setRooms}
-                        name={'separateRooms'}
-                        value={rooms.separateRooms}
+                        clickHandler={roomHandler}
+                        name={'separate_rooms'}
+                        value={rooms.separate_rooms}
                     />
                 </div>
                 <div className="specifications__inf">
-                    <FormInput labelValue={'Год постройки'} width={'100%'}/>
-                    <FormInput margin={'20px 0 0'} labelValue={'Год капитального ремонта'} width={'100%'}/>
+                    <FormInput labelValue={'Год постройки'} width={'100%'}
+                               value={state.building_year}
+                               onChange={e => setState({
+                                   ...state,
+                                   building_year: e.target.value
+                               })}/>
+                    <FormInput margin={'20px 0 0'} labelValue={'Год капитального ремонта'} width={'100%'}
+                               value={state.repair_year}
+                               onChange={e => setState({
+                                   ...state,
+                                   repair_year: e.target.value
+                               })}/>
                 </div>
                 <div className="specifications-inputs">
                     <InputWithOperations
                         label={'Этаж'}
                         state={rooms}
-                        clickHandler={setRooms}
-                        name={'level'}
-                        value={rooms.level}
+                        clickHandler={roomHandler}
+                        name={'storey'}
+                        value={rooms.storey}
                     />
                     <InputWithOperations
                         label={'Этажность'}
                         state={rooms}
-                        clickHandler={setRooms}
-                        name={'numberOfLevels'}
-                        value={rooms.numberOfLevels}
+                        clickHandler={roomHandler}
+                        name={'storeys'}
+                        margin={'0 -15px 0 0'}
+                        value={rooms.storeys}
                     />
                 </div>
                 <div className="specifications__inf">
-                    <FormInput labelValue={'Общая площадь'} width={'100%'}/>
-                    <FormInput margin={'20px 0 0'} labelValue={'Жилая площадь'} width={'100%'}/>
-                    <FormInput margin={'20px 0 0'} labelValue={'Площадь кухни'} width={'100%'}/>
-                    <Select label={'Полы'} margin={'20px 0 0'}/>
-                    <Select label={'Санузел'} margin={'10px 0 0'}/>
-                    <Select label={'Балкон'} margin={'10px 0 0'}/>
-                    <Select label={'Ремонт'} margin={'10px 0 0'}/>
-                    <Select label={'Материал стен'} margin={'10px 0 0'}/>
+                    <FormInput labelValue={'Общая площадь'} width={'100%'}
+                               value={state.area_total}
+                               onChange={e => setState({
+                                   ...state,
+                                   area_total: e.target.value
+                               })}/>
+                    <FormInput margin={'20px 0 0'} labelValue={'Жилая площадь'} width={'100%'}
+                               value={state.area_living}
+                               onChange={e => setState({
+                                   ...state,
+                                   area_living: e.target.value
+                               })}/>
+                    <FormInput margin={'20px 0 0'} labelValue={'Площадь кухни'} width={'100%'}
+                               value={state.area_kitchen}
+                               onChange={e => setState({
+                                   ...state,
+                                   area_kitchen: e.target.value
+                               })}/>
+                    <Select label={'Полы'}
+                            value={floorSearch}
+                            list={filterOptions(options, 'floor_type', floorSearch)}
+                            showSelect={showSelect.floorOptions}
+                            setShowSelect={bool => setShowSelect({...showSelect, floorOptions: bool })}
+                            onClick={el => {
+                                setSearchFieldOption({...searchFieldOption, floorSearch: el})
+                                setState({...state, floor_type: el})
+                            }}
+                            onChange={e => {
+                                setSearchFieldOption({...searchFieldOption, floorSearch: e.target.value})
+                                setState({...state, floor_type: e.target.value})
+                            }}
+                    />
+                    <Select label={'Санузел'}
+                            value={lavatorySearch}
+                            list={filterOptions(options,'lavatory', lavatorySearch)}
+                            showSelect={showSelect.lavatoryOptions}
+                            setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool })}
+                            onClick={el => {
+                                setSearchFieldOption({...searchFieldOption, lavatorySearch: el})
+                                setState({...state, lavatory: el})
+                            }}
+                            onChange={e => {
+                                setSearchFieldOption({...searchFieldOption, lavatorySearch: e.target.value})
+                                setState({...state, lavatory: e.target.value})
+                            }}
+                    />
+                    <Select label={'Балкон'}
+                            value={balconySearch}
+                            list={filterOptions(options,'balcony', balconySearch)}
+                            showSelect={showSelect.balconyOptions}
+                            setShowSelect={bool => setShowSelect({...showSelect, balconyOptions: bool })}
+                            onClick={el => {
+                                setSearchFieldOption({...searchFieldOption, balconySearch: el})
+                                setState({...state, balcony: el})
+                            }}
+                            onChange={e => {
+                                setSearchFieldOption({...searchFieldOption, balconySearch: e.target.value})
+                                setState({...state, balcony: e.target.value})
+                            }}
+                    />
+                    <Select label={'Ремонт'}
+                            value={repairSearch}
+                            list={filterOptions(options,'repair_state', repairSearch)}
+                            showSelect={showSelect.repairOptions}
+                            setShowSelect={bool => setShowSelect({...showSelect, repairOptions: bool })}
+                            onClick={el => {
+                                setSearchFieldOption({...searchFieldOption, repairSearch: el})
+                                setState({...state, repair_state: el})
+                            }}
+                            onChange={e => {
+                                setSearchFieldOption({...searchFieldOption, repairSearch: e.target.value})
+                                setState({...state, repair_state: e.target.value})
+                            }}
+                    />
+                    <Select label={'Материал стен'}
+                            value={wallsSearch}
+                            list={filterOptions(options,'walls_material', wallsSearch)}
+                            showSelect={showSelect.wallsMaterialOptions}
+                            setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool })}
+                            onClick={el => {
+                                setSearchFieldOption({...searchFieldOption, wallsSearch: el})
+                                setState({...state, walls_material: el})
+                            }}
+                            onChange={e => {
+                                setSearchFieldOption({...searchFieldOption, wallsSearch: e.target.value})
+                                setState({...state, walls_material: e.target.value})
+                            }}
+                    />
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
                         <li
                             className={phoneCounter.hasPhone ? 'active' : ''}
-                            onClick={()=>phoneCounterHandler('hasPhone')}
+                            onClick={() => {
+                                phoneCounterHandler('hasPhone')
+                                setState({...state, phone: 'Есть'})
+                            }}
                         >Есть
                         </li>
                         <li
                             className={phoneCounter.dontHasPhone ? 'active' : ''}
-                            onClick={()=>phoneCounterHandler('dontHasPhone')}
+                            onClick={() => {
+                                phoneCounterHandler('dontHasPhone')
+                                setState({...state, phone: 'Нет'})
+                            }}
                         >Нет
                         </li>
                         <li
                             className={phoneCounter.twoOrMorePhone ? 'active' : ''}
-                            onClick={()=>phoneCounterHandler('twoOrMorePhone')}
+                            onClick={() => {
+                                phoneCounterHandler('twoOrMorePhone')
+                                setState({...state, phone: '2 и более'})
+                            }}
                         >2 и более
                         </li>
                     </ul>
@@ -131,28 +264,51 @@ const RentSpecifications = () => {
                     <ul className={'specifications__has-phone'}>
                         <li
                             className={furniture.yes ? 'active' : ''}
-                            onClick={()=>furnitureHandler('yes')}
+                            onClick={()=> {
+                                furnitureHandler('yes')
+                                setState({...state, furniture: 'Есть'})
+                            }}
                         >Есть
                         </li>
                         <li
                             className={furniture.no ? 'active' : ''}
-                            onClick={()=>furnitureHandler('no')}
+                            onClick={()=> {
+                                furnitureHandler('no')
+                                setState({...state, furniture: 'Нет'})
+                            }}
                         >Нет
                         </li>
                         <li
                             className={furniture.partially ? 'active' : ''}
-                            onClick={()=>furnitureHandler('partially')}
+                            onClick={()=> {
+                                furnitureHandler('partially')
+                                setState({...state, furniture: 'Частично'})
+                            }}
                         >Частично
                         </li>
                     </ul>
                 </div>
             </div>
             <div className="specifications__add-object">
-                <p>К списку</p>
-                <TransparentButton width={'38%'}>Добавить объект</TransparentButton>
+                {
+                    addObjectLoading ? <Loader/> : (
+                        <>
+                            <p>К списку</p>
+                            <TransparentButton
+                                width={'38%'}
+                                onClick={stateSpecificationsResidential => sendObject(stateSpecificationsResidential)}
+                            >Добавить объект</TransparentButton>
+                        </>
+                    )
+                }
             </div>
         </>
     )
 }
 
-export default RentSpecifications
+const mapStateToProps = state => ({
+    addObjectLoading: state.object.addObjectLoading,
+    options: state.object.options
+})
+
+export default connect(mapStateToProps)(RentSpecifications)

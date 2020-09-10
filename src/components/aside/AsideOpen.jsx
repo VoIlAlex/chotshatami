@@ -1,5 +1,6 @@
 import React from 'react'
 import {NavLink} from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 import TransparentButton from "../transparent-button/TransparentButton";
 import AsideButton from "../aside-button/AsideButton";
@@ -17,7 +18,7 @@ const AsideOpen = props => {
     return (
         <aside className={`${show? 'open-slide-in-right':'open-slide-in-left'} full-menu`}>
             <p><MenuClose className={'menu-btn'} onClick={() => setShow(!show)}/><Logo/></p>
-            <TransparentButton margin={'0 0 42px 0'}>Просмотр сайта</TransparentButton>
+            <TransparentButton margin={'0 0 42px 0'}><a href="https://urielt.by/">Просмотр сайта</a></TransparentButton>
             <AsideButton selected={location == '/all_objects'}>
                 {
                     location == '/all_objects' ?

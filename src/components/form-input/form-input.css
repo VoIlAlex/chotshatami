@@ -21,10 +21,17 @@
     border-radius: 4px;
 }
 
-.form-input__description {
+.form-input__small {
     text-align: right;
-    color: #C4C4C4;
     font-family: 'Roboto';
     font-size: 12px;
     margin-top: 3px;
+}
+
+.form-input__small.description{
+    color: #C4C4C4;
+}
+
+.form-input__small.error {
+    color: #731919;
 }

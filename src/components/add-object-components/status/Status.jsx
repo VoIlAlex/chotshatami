@@ -3,9 +3,8 @@ import React, {useState} from 'react'
 import HeadComponent from "../../head-component/HeadComponent";
 import './status.css'
 
-const Status = () => {
-
-    const [status, setStatus] = useState('published')
+const Status = props => {
+    const { stateStatusCategory, setState} = props
 
     return (
         <div className="status">
@@ -23,12 +22,12 @@ const Status = () => {
             />
             <ul className={'status__buttons'}>
                 <li
-                    className={status==='published'?'selected':''}
-                    onClick={() => setStatus('published')}
+                    className={stateStatusCategory.published==='published'?'selected':''}
+                    onClick={() => setState('published')}
                 >Опубликованно</li>
                 <li
-                    className={status==='unpublished'?'selected':''}
-                    onClick={() => setStatus('unpublished')}
+                    className={stateStatusCategory.published==='unpublished'?'selected':''}
+                    onClick={() => setState('unpublished')}
                 >Не опубликованно</li>
             </ul>
         </div>

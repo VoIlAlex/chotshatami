@@ -20,7 +20,7 @@ const AsideClose= props => {
             <TransparentButton
                 margin={'0 0 42px 0'}
                 width={'60px'}
-            ><ViewSite /></TransparentButton>
+            ><a href="https://urielt.by/"><ViewSite /></a></TransparentButton>
             <AsideButton selected={location == '/all_objects'}>
                 <NavLink to={'/all_objects'}>
                 {

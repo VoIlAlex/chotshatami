@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import HeadComponent from "../../head-component/HeadComponent";
 import FormInput from "../../form-input/FormInput";
 import './main-inf.css'
 
 const MainInf = props => {
-    const {mainCategory, additionalCategory, setAdditionalCategory, setMainCategory} = props
+    const { mainCategory, additionalCategory, setAdditionalCategory, setMainCategory,stateMainCategory, setState } = props
 
     return (
         <div className="main-inf">
@@ -81,8 +81,10 @@ const MainInf = props => {
                 </div>
             </div>
             <div className="main-inf__textarea">
-                <label htmlFor="area"> Описание</label>
-                <textarea id="area"/>
+                <label htmlFor="area">Описание</label>
+                <textarea id="area"
+                          value={stateMainCategory.content}
+                          onChange={e => setState({...stateMainCategory, content:e.target.value})}/>
             </div>
             <div className="main-inf__date-inputs">
                 <FormInput
@@ -90,12 +92,16 @@ const MainInf = props => {
                     placeholder={'dd.mm.yyyy'}
                     width={'45%'}
                     labelFontSize={'0.8em'}
+                    value={stateMainCategory.dateCreated}
+                    onChange={e => setState({...stateMainCategory, dateCreated:e.target.value})}
                 />
                 <FormInput
                     labelValue={'Дата редактирования (ревизии) обьявления'}
                     placeholder={'dd.mm.yyyy'}
                     width={'50%'}
                     labelFontSize={'0.8em'}
+                    value={stateMainCategory.dateChange}
+                    onChange={e => setState({...stateMainCategory, dateChange:e.target.value})}
                 />
             </div>
         </div>

@@ -13,11 +13,14 @@ const FormInput = props => {
         >
             <label style={{fontSize:props.labelFontSize}}>{props.labelValue}</label>
             <input
-                type="text"
+                name={props.name}
+                type={props.type || 'text'}
                 placeholder={props.placeholder}
                 maxLength={props.maxlength}
+                onChange={e => props.onChange(e)}
             />
-            { props.description&&(<small className={'form-input__description'}>{props.description}</small>) }
+            { props.description && (<small className={'form-input__small description'}>{props.description}</small>) }
+            { props.error && (<small className={'form-input__small error'}>{props.error}</small>)}
         </div>
     )
 }

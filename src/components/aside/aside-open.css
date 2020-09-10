@@ -27,6 +27,11 @@
     margin-bottom: 92px;
 }
 
+.full-menu a {
+    text-decoration: none;
+    color: black;
+}
+
 /* logo animation */
 .logo-in-left {
     transform: translateX(-100%);

@@ -3,6 +3,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .select label {
@@ -13,9 +14,8 @@
     margin-bottom: 5px;
 }
 
-.select select {
-    width: 100%;
-    cursor: pointer;
+.select__input {
+    width: 95%;
     height: 40px;
     font-size: 15px;
     padding-left: 15px;
@@ -25,18 +25,50 @@
     appearance: none;
 }
 
-.select select option {
-    height: 40px;
-}
-
 .select .select-with-arrow {
+    position: relative;
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.select .input-arrow{
+.select .input-arrow {
     margin-left: -35px;
     margin-bottom: 5px;
     cursor: pointer;
+}
+
+.select__options {
+    box-sizing: border-box;
+    border: 2px solid #731919;
+    border-top: 0;
+    position: absolute;
+    z-index: 5;
+    width: 99.8%;
+    min-height: 0;
+    max-height: 100px;
+    overflow-y: scroll;
+    top: 40px;
+    background: white;
+    border-radius: 0 0 5px 5px;
+    font-family: 'Roboto';
+}
+
+.select__options::-webkit-scrollbar {
+    display: none;
+}
+
+.select__option {
+    padding-left: 20px;
+    width: 94.8%;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.select__option:hover {
+    background: #c4c4c4;
+    color: #585858;
 }

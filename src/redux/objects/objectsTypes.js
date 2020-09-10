@@ -1,0 +1,8 @@
+const actionTypes = {
+    OBJECT_ADD_START:'OBJECT_ADD_START',
+    OBJECT_ADD_SUCCESS:'OBJECT_ADD_SUCCESS',
+    OBJECT_ADD_FAILURE:'OBJECT_ADD_FAILURE',
+    LOAD_OPTIONS: 'LOAD_OPTIONS'
+}
+
+export default actionTypes
