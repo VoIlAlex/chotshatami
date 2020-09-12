@@ -31,7 +31,7 @@ export const signInStartAsync = (userCredentials, cb) => {
             credentials: 'same-origin'
         })
             .then(res => dispatch(signInSuccess(res)))
-            // .then(_ => cb())
+            .then(_ => cb())
             .catch(err => dispatch(signInFailure('Некорректные данные')))
     }
 }
