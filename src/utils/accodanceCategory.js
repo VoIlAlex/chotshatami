@@ -15,4 +15,17 @@ const accordanceCategory = (main, additional) => {
     }
 }
 
+export const reverseAccordance = number => {
+    switch (number) {
+        case 6: return 'Продажа, Жилая'
+        case 7: return 'Продажа, Загородная'
+        case 8: return 'Продажа, Коммерческая'
+        case 10: return 'Аренда, Жилая'
+        case 11: return 'Аренда, Загородная'
+        case 12: return 'Аренда, Коммерческая'
+        case 14: return 'Строительство, Недвижимость'
+        case 15: return 'Строительство, Новостройки'
+    }
+}
+
 export default accordanceCategory

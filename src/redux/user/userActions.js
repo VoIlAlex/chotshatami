@@ -22,17 +22,17 @@ const signInSuccess = msg => ({
 export const signInStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(signInStart())
-        // await axios('http://178.159.45.188/api/login/', {
-        //     data: userCredentials,
-        //     method: "post",
-        //     withCredentials: true
-        // })
-        //     .then(res => dispatch(signInSuccess(res.message)))
-        //     .then(_ => cb())
-        //     .catch(err => dispatch(signInFailure(err.message)))
-        setTimeout(()=> {
-            dispatch(signInSuccess('Неверный логин или пароль'))
-        }, 5000)
+        await fetch('http://104.248.230.108/api/login', {
+            body: JSON.stringify(userCredentials),
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        })
+            .then(res => dispatch(signInSuccess(res)))
+            // .then(_ => cb())
+            .catch(err => dispatch(signInFailure('Некорректные данные')))
     }
 }
 
@@ -58,16 +58,13 @@ const resetPasswordSuccess = msg => ({
 export const resetPasswordStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(resetPasswordStart())
-        // await axios('http://178.159.45.188/api/login/', {
-        //     data: userCredentials,
-        //     method: "post",
-        //     withCredentials: true
-        // })
-        //     .then(res => dispatch(resetPasswordSuccess(res.message)))
-        //     .then(_ => cb())
-        //     .catch(err => dispatch(resetPasswordFailure(err.message)))
-        setTimeout(()=> {
-            dispatch(resetPasswordSuccess('Некорректные данные'))
-        }, 5000)
+        await axios('http://104.248.230.108/api/reset', {
+            data: userCredentials,
+            method: "post",
+            withCredentials: true
+        })
+            .then(res => dispatch(resetPasswordSuccess(res.message)))
+            .then(_ => cb())
+            .catch(err => dispatch(resetPasswordFailure(err.message)))
     }
 }

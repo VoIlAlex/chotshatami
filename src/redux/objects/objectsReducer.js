@@ -4,6 +4,9 @@ const initialState = {
     addObjectLoading: false,
     addObjectError: null,
     addObjectSuccess: null,
+    fetchObjectsLoading: false,
+    fetchObjectsError: null,
+    fetchObjectsSuccess:[],
     options: {
         balcony: [
             'лоджия застеклена',
@@ -79,6 +82,23 @@ const initialState = {
 
 const objectReduces = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.START_FETCH_OBJECTS:
+            return {
+                ...state,
+                fetchObjectsLoading: true
+            }
+        case actionTypes.FAILURE_FETCH_OBJECTS:
+            return {
+                ...state,
+                fetchObjectsLoading: false,
+                fetchObjectsError: action.payload
+            }
+        case actionTypes.SUCCESS_FETCH_OBJECTS:
+            return {
+                ...state,
+                fetchObjectsSuccess: action.payload,
+                fetchObjectsLoading: false
+            }
         case actionTypes.OBJECT_ADD_START:
             return {
                 ...state,

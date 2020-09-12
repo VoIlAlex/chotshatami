@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { compose }  from 'redux'
+import { Link, withRouter } from 'react-router-dom'
 
 import {signInStartAsync} from "../../redux/user/userActions";
 import FormInput from "../form-input/FormInput";
@@ -24,7 +25,7 @@ const SignInForm = props => {
 
     const submitHandler = e => {
         e.preventDefault()
-        props.signInStartAsync(userCredentials)
+        props.signInStartAsync(userCredentials, () => props.history.push('/all_objects'))
     }
     return (
         <form className={'signin-form'} onSubmit={submitHandler}>
@@ -75,4 +76,7 @@ const mapDispatchToProps = dispatch => ({
     signInStartAsync: (userCredentials, cb) => dispatch(signInStartAsync(userCredentials, cb))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(SignInForm)

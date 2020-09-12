@@ -58,3 +58,11 @@ tbody .tbody-options{
 tbody .tbody-options__option{
     cursor: pointer;
 }
+
+.loader-table {
+    width: 50vw;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

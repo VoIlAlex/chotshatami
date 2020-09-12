@@ -1,5 +1,6 @@
 import axios from 'axios'
 import actionTypes from "./objectsTypes";
+import {testData} from "../../components/all-objet-components/object-table/testData";
 
 //@Route    POST
 //@Access   Private
@@ -13,7 +14,7 @@ const objectAddFailure = error => ({
     payload: error
 })
 
-const objectAddSuccess= msg => ({
+const objectAddSuccess = msg => ({
     type: actionTypes.OBJECT_ADD_SUCCESS,
     payload: msg
 })
@@ -29,7 +30,7 @@ export const objectAddStartAsync = (object, cb) => {
         //     .then(res => dispatch(signInSuccess(res.message)))
         //     .then(_ => cb())
         //     .catch(err => dispatch(signInFailure(err.message)))
-        setTimeout(()=> {
+        setTimeout(() => {
             console.log(object)
             dispatch(objectAddSuccess(object))
         }, 5000)
@@ -45,12 +46,51 @@ export const startFetchOptions = option => {
         await axios(`/api/options/${option}`, {
             method: 'get',
             withCredentials: true
-        }).then( res => dispatch({
+        }).then(res => dispatch({
             type: actionTypes.LOAD_OPTIONS,
             payload: {
-                options:res.options,
+                options: res.options,
                 option
             }
         }))
+    }
+}
+
+
+//@Route    GET :/api/products?page=<>&page_size=<>&order_by=<имя поля для сортировки, по дефолту id>
+//@Access   Private
+//@Desc     Get objects
+
+const objectsFetchStart = () => ({
+    type: actionTypes.START_FETCH_OBJECTS
+})
+
+const objectsFetchFailure = error => ({
+    type: actionTypes.FAILURE_FETCH_OBJECTS,
+    payload: error
+})
+
+const objectsFetchSuccess = objects => ({
+    type: actionTypes.SUCCESS_FETCH_OBJECTS,
+    payload: objects
+})
+
+export const fetchObjectsStartAsync = (page = 1, page_size = 25, sort_name = 'id') => {
+    return async dispatch => {
+        dispatch(objectsFetchStart())
+        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}`, {
+            method: "GET",
+            credentials: 'same-origin'
+        })
+            .then(res => {
+                console.log(res)
+                dispatch(objectsFetchSuccess(res))
+            })
+            .catch(err => dispatch(objectsFetchFailure(err.message)))
+
+        // setTimeout(()=> {
+        //     console.log(object)
+        //     dispatch(objectAddSuccess(object))
+        // }, 5000)
     }
 }
