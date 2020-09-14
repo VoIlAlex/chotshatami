@@ -23,7 +23,7 @@ export const reverseAccordance = number => {
         case 10: return 'Аренда, Жилая'
         case 11: return 'Аренда, Загородная'
         case 12: return 'Аренда, Коммерческая'
-        case 14: return 'Строительство, Недвижимость'
+        case 14: return 'Строительство, Недвижимость за рубежом'
         case 15: return 'Строительство, Новостройки'
     }
 }

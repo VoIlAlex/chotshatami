@@ -6,7 +6,6 @@ import './main-inf.css'
 
 const MainInf = props => {
     const { mainCategory, additionalCategory, setAdditionalCategory, setMainCategory,stateMainCategory, setState } = props
-
     return (
         <div className="main-inf">
             <HeadComponent
@@ -19,6 +18,7 @@ const MainInf = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'40%'}
                 optionMargin={'0'}
+                onClick={() => props.updateObject({...stateMainCategory, id: props.id}, props.token, 'basic')}
                 reverse
             />
             <div className="main-inf__category">

@@ -17,8 +17,8 @@ const ObjectTable = props => {
     }
     return (
         <table className={'object-table'}>
-            <TableHead/>
-            <TableBody objects={props.objects}/>
+            <TableHead direction={props.direction} dirHandler={props.directionHandler} sortName={props.sortName} setSortName={props.setSortName}/>
+            <TableBody page={props.page} objects={props.objects} numberElements={props.numberElements}/>
         </table>
     )
 }

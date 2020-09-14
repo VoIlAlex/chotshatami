@@ -18,6 +18,7 @@ const CEOData = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'40%'}
                 optionMargin={'0'}
+                onClick={() => props.updateObject({...stateCeoCategory, id: props.id}, props.token, 'seo')}
                 reverse
             />
             <FormInput

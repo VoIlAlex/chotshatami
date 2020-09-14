@@ -1,6 +1,7 @@
 import React from 'react'
 
 import TransparentButton from "../transparent-button/TransparentButton";
+import { withRouter } from 'react-router-dom'
 import './head-component.css'
 
 const HeadComponent = props => {
@@ -24,7 +25,7 @@ const HeadComponent = props => {
                 {
                     !props.reverse? (
                         <>
-                            <p>{props.p}</p>
+                            <p onClick={() => props.history.push('/all_objects')}>{props.p}</p>
                             <TransparentButton
                                 width={props.btnWidth}
                                 height={props.btnHeight}
@@ -37,7 +38,7 @@ const HeadComponent = props => {
                                 height={props.btnHeight}
                                 onClick={props.onClick?() => props.onClick(): ()=>{}}
                             >{props.buttonValue}</TransparentButton>
-                            <p>{props.p}</p>
+                            <p onClick={() => props.history.push('/all_objects')}>{props.p}</p>
                         </>
                     )
                 }
@@ -46,4 +47,4 @@ const HeadComponent = props => {
     )
 }
 
-export default HeadComponent
+export default withRouter(HeadComponent)

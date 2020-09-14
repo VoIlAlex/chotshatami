@@ -1,6 +1,5 @@
 import axios from 'axios'
 import actionTypes from "./objectsTypes";
-import {testData} from "../../components/all-objet-components/object-table/testData";
 
 //@Route    POST
 //@Access   Private
@@ -19,21 +18,20 @@ const objectAddSuccess = msg => ({
     payload: msg
 })
 
-export const objectAddStartAsync = (object, cb) => {
+export const objectAddStartAsync = (object, token, cb) => {
     return async dispatch => {
         dispatch(objectAddStart())
-        // await axios('http://178.159.45.188/api/login/', {
-        //     data: userCredentials,
-        //     method: "post",
-        //     withCredentials: true
-        // })
-        //     .then(res => dispatch(signInSuccess(res.message)))
-        //     .then(_ => cb())
-        //     .catch(err => dispatch(signInFailure(err.message)))
-        setTimeout(() => {
-            console.log(object)
-            dispatch(objectAddSuccess(object))
-        }, 5000)
+        await axios('http://104.248.230.108/api/product', {
+            data: object,
+            method: "post",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => dispatch(objectAddSuccess(res)))
+            .then(_ => cb())
+            .catch(err => dispatch(objectAddFailure(err.message)))
     }
 }
 
@@ -41,18 +39,23 @@ export const objectAddStartAsync = (object, cb) => {
 //@Route    GET
 //@Access   Private
 //@Desc     Get option
-export const startFetchOptions = option => {
+
+const successFetchOptions = (options, name) => ({
+    type: actionTypes.LOAD_OPTIONS,
+    payload: {
+        options, name
+    }
+})
+
+export const startFetchOptionsAsync = (token, option) => {
     return async dispatch => {
-        await axios(`/api/options/${option}`, {
-            method: 'get',
-            withCredentials: true
-        }).then(res => dispatch({
-            type: actionTypes.LOAD_OPTIONS,
-            payload: {
-                options: res.options,
-                option
-            }
-        }))
+        // await axios(`http://104.248.230.108/api/options/${option}`, {
+        //     method: 'get',
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }).then(res => dispatch(successFetchOptions(res.data.options, option)))
+        dispatch(successFetchOptions())
     }
 }
 
@@ -60,7 +63,6 @@ export const startFetchOptions = option => {
 //@Route    GET :/api/products?page=<>&page_size=<>&order_by=<имя поля для сортировки, по дефолту id>
 //@Access   Private
 //@Desc     Get objects
-
 const objectsFetchStart = () => ({
     type: actionTypes.START_FETCH_OBJECTS
 })
@@ -75,22 +77,115 @@ const objectsFetchSuccess = objects => ({
     payload: objects
 })
 
-export const fetchObjectsStartAsync = (page = 1, page_size = 25, sort_name = 'id') => {
+export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id',order_direction='DESC') => {
     return async dispatch => {
         dispatch(objectsFetchStart())
-        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}`, {
+        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
             method: "GET",
-            credentials: 'same-origin'
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
-            .then(res => {
-                console.log(res)
-                dispatch(objectsFetchSuccess(res))
-            })
+            .then(res => res.json()).then(json => dispatch(objectsFetchSuccess(json)))
             .catch(err => dispatch(objectsFetchFailure(err.message)))
+    }
+}
 
-        // setTimeout(()=> {
-        //     console.log(object)
-        //     dispatch(objectAddSuccess(object))
-        // }, 5000)
+
+//@Route    DELETE :/api/products
+//@Access   Private
+//@Desc     Delete object
+const objectDeleteStart = () => ({
+    type: actionTypes.START_DELETE_OBJECT
+})
+
+const objectDeleteFailure = error => ({
+    type: actionTypes.FAILURE_DELETE_OBJECT,
+    payload: error
+})
+
+const objectDeleteSuccess = objects => ({
+    type: actionTypes.SUCCESS_DELETE_OBJECT,
+    payload: objects
+})
+
+export const objectDeleteStartAsync = (token, id) => {
+    return async dispatch => {
+        dispatch(objectDeleteStart())
+        await fetch(`http://104.248.230.108/api/product`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        })
+            .then(res => res.json()).then(json => dispatch(objectDeleteSuccess(json)))
+            .catch(err => dispatch(objectDeleteFailure(err.message)))
+    }
+}
+
+//@Route    GET :/api/product?id=<id>
+//@Access   Private
+//@Desc     Get single object
+const objectFetchStart = () => ({
+    type: actionTypes.FETCH_ONE_OBJECT_START
+})
+
+const objectFetchFailure = error => ({
+    type: actionTypes.FETCH_ONE_OBJECT_FAILURE,
+    payload: error
+})
+
+const objectFetchSuccess = object => ({
+    type: actionTypes.FETCH_ONE_OBJECT_SUCCESS,
+    payload: object
+})
+
+export const fetchObjectStartAsync = (token, id, cb) => {
+    return async dispatch => {
+        dispatch(objectFetchStart())
+        await fetch(`http://104.248.230.108/api/product?id=${id}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(res => res.json()).then(json => dispatch(objectFetchSuccess({...json, id}))).then(_ =>cb())
+            .catch(err => dispatch(objectFetchFailure(err.message)))
+    }
+}
+
+
+//@Route    PATCH
+//@Access   Private
+//@Desc     Update object
+const objectUpdateStart = () => ({
+    type: actionTypes.OBJECT_UPDATE_START
+})
+
+const objectUpdateFailure = error => ({
+    type: actionTypes.OBJECT_UPDATE_FAILURE,
+    payload: error
+})
+
+const objectUpdateSuccess = msg => ({
+    type: actionTypes.OBJECT_UPDATE_SUCCESS,
+    payload: msg
+})
+
+export const objectUpdateStartAsync = (object, token, category) => {
+    return async dispatch => {
+        dispatch(objectUpdateStart())
+        await axios(`http://104.248.230.108/api/patch/${category}`, {
+            data: object,
+            method: "patch",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => dispatch(objectUpdateSuccess(res)))
+            .catch(err => dispatch(objectUpdateFailure(err.message)))
     }
 }

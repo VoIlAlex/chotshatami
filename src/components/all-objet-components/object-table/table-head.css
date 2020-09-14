@@ -20,3 +20,7 @@ thead .arrow-down {
     cursor: pointer;
     margin-right: 5px;
 }
+
+.head-td{
+    cursor: pointer;
+}

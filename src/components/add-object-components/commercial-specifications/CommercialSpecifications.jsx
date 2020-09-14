@@ -93,11 +93,12 @@ const CommercialSpecifications = props => {
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
                     optionMargin={'0 -15px 0 0'}
+                    onClick={() => props.updateObject({...state, id: props.id}, props.token, 'characteristics')}
                     reverse
                 />
                 <div className="specifications__inf">
                     <Select label={'Подкатегория'} margin={'0'}
-                            value={subcategorySearch}
+                            value={subcategorySearch || state.subcategory}
                             list={filterOptions(options, 'subcategory', subcategorySearch)}
                             showSelect={showSelect.subcategoryOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, subcategoryOptions: bool})}
@@ -117,14 +118,14 @@ const CommercialSpecifications = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'storey'}
-                        value={rooms.storey}
+                        value={rooms.storey || state.storey}
                     />
                     <InputWithOperations
                         label={'Этажность'}
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'storeys'}
-                        value={rooms.storeys}
+                        value={rooms.storeys || state.storeys}
                         margin={'0 -15px 0 0'}
                     />
                 </div>
@@ -136,7 +137,7 @@ const CommercialSpecifications = props => {
                                    area_total: e.target.value
                                })}/>
                     <Select label={'Санузел'} margin={'10px 0 0'}
-                            value={lavatorySearch}
+                            value={lavatorySearch || state.lavatory}
                             list={filterOptions(options, 'lavatory', lavatorySearch)}
                             showSelect={showSelect.lavatoryOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool})}
@@ -144,7 +145,7 @@ const CommercialSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'lavatorySearch', 'lavatory')}
                     />
                     <Select label={'Материал стен'} margin={'10px 0 0'}
-                            value={wallsSearch}
+                            value={wallsSearch || state.walls_material}
                             list={filterOptions(options, 'walls_material', wallsSearch)}
                             showSelect={showSelect.wallsMaterialOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool})}
@@ -152,7 +153,7 @@ const CommercialSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'wallsSearch', 'walls_material')}
                     />
                     <Select label={'Водоснабжение'} margin={'10px 0 0'}
-                            value={waterSearch}
+                            value={waterSearch || state.water}
                             list={filterOptions(options, 'water', waterSearch)}
                             showSelect={showSelect.waterOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, waterOptions: bool})}
@@ -160,7 +161,7 @@ const CommercialSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'waterSearch', 'water')}
                     />
                     <Select label={'Канализация'} margin={'10px 0 0'}
-                            value={sewerageSearch}
+                            value={sewerageSearch || state.sewerage}
                             list={filterOptions(options, 'sewerage', sewerageSearch)}
                             showSelect={showSelect.sewerageOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, sewerageOptions: bool})}
@@ -168,7 +169,7 @@ const CommercialSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'sewerageSearch', 'sewerage')}
                     />
                     <Select label={'Газ'} margin={'10px 0 0'}
-                            value={gasSearch}
+                            value={gasSearch || state.gas}
                             list={filterOptions(options, 'gas', gasSearch)}
                             showSelect={showSelect.gasOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, gasOptions: bool})}
@@ -176,7 +177,7 @@ const CommercialSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'gasSearch', 'gas')}
                     />
                     <Select label={'Отопление'} margin={'10px 0 0'}
-                            value={heatingSearch}
+                            value={heatingSearch || state.heating}
                             list={filterOptions(options, 'heating', heatingSearch)}
                             showSelect={showSelect.heatingOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, heatingOptions: bool})}
@@ -209,7 +210,7 @@ const CommercialSpecifications = props => {
                         </li>
                     </ul>
                     <Select label={'Электричество'} margin={'10px 0 0'}
-                            value={electroSearch}
+                            value={electroSearch || state.electro}
                             list={filterOptions(options, 'electro', electroSearch)}
                             showSelect={showSelect.electroOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, electroOptions: bool})}
@@ -224,7 +225,7 @@ const CommercialSpecifications = props => {
                                })}
                     />
                     <Select label={'Внутренняя отделка'} margin={'10px 0 0'}
-                            value={trimSearch}
+                            value={trimSearch || state.trim_style}
                             list={filterOptions(options, 'trim_style', trimSearch)}
                             showSelect={showSelect.trimOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, trimOptions: bool})}
@@ -256,7 +257,7 @@ const CommercialSpecifications = props => {
                                })}
                     />
                     <Select label={'Дополнительная информация'} margin={'15px 0'}
-                            value={additionalSearch}
+                            value={additionalSearch || state.additional}
                             list={filterOptions(options, 'additional', additionalSearch)}
                             showSelect={showSelect.additionalOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, additionalOptions: bool})}
@@ -272,7 +273,7 @@ const CommercialSpecifications = props => {
                             <p>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={state => sendObject(state)}
+                                onClick={() => sendObject(8)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

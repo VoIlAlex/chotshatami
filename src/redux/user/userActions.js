@@ -14,9 +14,9 @@ const signInFailure = error => ({
     payload: error
 })
 
-const signInSuccess = msg => ({
+const signInSuccess = token => ({
     type: actionTypes.SIGN_IN_SUCCESS,
-    payload: msg
+    payload: token
 })
 
 export const signInStartAsync = (userCredentials, cb) => {
@@ -27,10 +27,9 @@ export const signInStartAsync = (userCredentials, cb) => {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin'
+            }
         })
-            .then(res => dispatch(signInSuccess(res)))
+            .then(res => res.json()).then(json => dispatch(signInSuccess(json.access_token)))
             .then(_ => cb())
             .catch(err => dispatch(signInFailure('Некорректные данные')))
     }

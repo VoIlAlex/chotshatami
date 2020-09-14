@@ -8,9 +8,6 @@ import Select from "../../select/Select";
 import FormInput from "../../form-input/FormInput";
 import './location.css'
 
-const types = {
-    'г.': 'g', 'аг.': 'ag', 'гп.': 'gp', 'д.': 'd', 'пгт.': 'pgt', 'рп.': 'rp', 'с.': 'c', 'снп.': 'cnp'
-}
 const type = ['г.', 'аг.', 'гп.', 'д.', 'пгт.', 'рп.', 'с.', 'снп.']
 
 const Location = props => {
@@ -20,7 +17,7 @@ const Location = props => {
         props.startFetchRegions()
     }, [])
 
-    const [searchFieldCountry, setSearchFieldCountry] = useState('')
+    const [searchFieldCountry, setSearchFieldCountry] = useState( '')
     const [searchFieldRegion, setSearchFieldRegion] = useState('')
     const [showCountrySelect, setShowCountrySelect] = useState(false)
     const [showRegionSelect, setShowRegionSelect] = useState(false)
@@ -46,11 +43,12 @@ const Location = props => {
                     buttonValue={'Сохранить'}
                     optionWidth={'55%'}
                     optionMargin={'0'}
+                    onClick={() => props.updateObject({...stateLocationCategory, id: props.id}, props.token, 'location')}
                     reverse
                 />
                 <div className="location__selects">
                     <Select label={'Страна'}
-                            value={searchFieldCountry.name}
+                            value={searchFieldCountry.name || stateLocationCategory.state_country }
                             list={filteredCountries}
                             showSelect={showCountrySelect}
                             setShowSelect={setShowCountrySelect}
@@ -66,7 +64,7 @@ const Location = props => {
                     />
                     <Select
                         label={'Область'}
-                        value={searchFieldRegion.name}
+                        value={searchFieldRegion.name || stateLocationCategory.state_region_name}
                         list={filteredRegions}
                         showSelect={showRegionSelect}
                         setShowSelect={setShowRegionSelect}
@@ -74,13 +72,16 @@ const Location = props => {
                             setSearchFieldRegion(el)
                             setState({...stateLocationCategory, state_region_name: el.name})
                         }}
-                        onChange={e => setSearchFieldRegion(e.target.value)}
+                        onChange={e => {
+                            setSearchFieldRegion(e.target.value)
+                            setState({...stateLocationCategory, state_region_name: e.target.value})
+                        }}
                     />
                     <FormInput
                         margin={'15px 0 0'}
                         width={'100%'}
                         labelValue={'Название населенного пункта'}
-                        value={stateLocationCategory.town_name}
+                        value={stateLocationCategory.town_name || stateLocationCategory.town_name}
                         onChange={e => setState({...stateLocationCategory, town_name: e.target.value})}
                     />
                 </div>
@@ -89,11 +90,8 @@ const Location = props => {
                     {
                         type.map((el, i) => <li
                             key={i}
-                            className={props.settlementType[types[el]] ? 'active' : ''}
-                            onClick={() => {
-                                props.cityTypeHandler(types[el])
-                                setState({...stateLocationCategory, town_type: el})
-                            }}
+                            className={el===stateLocationCategory.town_type? 'active' : ''}
+                            onClick={() => setState({...stateLocationCategory, town_type: el})}
                         >{el}</li>)
                     }
                 </ul>

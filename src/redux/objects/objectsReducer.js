@@ -4,9 +4,10 @@ const initialState = {
     addObjectLoading: false,
     addObjectError: null,
     addObjectSuccess: null,
-    fetchObjectsLoading: false,
+    fetchObjectsLoading: true,
     fetchObjectsError: null,
-    fetchObjectsSuccess:[],
+    fetchObjectsSuccess: [],
+    optionsLoading: true,
     options: {
         balcony: [
             'лоджия застеклена',
@@ -21,7 +22,7 @@ const initialState = {
             'линолеум'
         ],
         lavatory: [
-                'совмещенный'
+            'совмещенный'
         ],
         repair_state: [
             'капитальный',
@@ -45,7 +46,7 @@ const initialState = {
             'есть',
             'нет'
         ],
-        sewerage:[
+        sewerage: [
             'есть',
             'нет'
         ],
@@ -77,11 +78,21 @@ const initialState = {
             'есть',
             'нет'
         ]
-    }
+    },
+    deleteObjectLoading: false,
+    deleteObjectError: null,
+    deleteObjectSuccess: [],
+    fetchObjectLoading: true,
+    fetchObjectError: null,
+    fetchObjectSuccess: null,
+    updateObjectLoading: false,
+    updateObjectError: null,
+    updateObjectSuccess: null,
 }
 
 const objectReduces = (state = initialState, action) => {
     switch (action.type) {
+        //fetch all objects
         case actionTypes.START_FETCH_OBJECTS:
             return {
                 ...state,
@@ -99,6 +110,7 @@ const objectReduces = (state = initialState, action) => {
                 fetchObjectsSuccess: action.payload,
                 fetchObjectsLoading: false
             }
+        //add object
         case actionTypes.OBJECT_ADD_START:
             return {
                 ...state,
@@ -116,10 +128,66 @@ const objectReduces = (state = initialState, action) => {
                 addObjectLoading: false,
                 addObjectSuccess: action.payload
             }
+        //load options
         case actionTypes.LOAD_OPTIONS:
             return {
                 ...state,
+                optionsLoading: false,
                 options: {...state.options, [action.payload.name]: action.payload.options}
+            }
+        //delete object
+        case actionTypes.START_DELETE_OBJECT:
+            return {
+                ...state,
+                deleteObjectLoading: true
+            }
+        case actionTypes.FAILURE_DELETE_OBJECT:
+            return {
+                ...state,
+                deleteObjectLoading: false,
+                deleteObjectError: action.payload
+            }
+        case actionTypes.SUCCESS_DELETE_OBJECT:
+            return {
+                ...state,
+                deleteObjectLoading: false,
+                deleteObjectSuccess: action.payload
+            }
+        //fetch single object
+        case actionTypes.FETCH_ONE_OBJECT_START:
+            return {
+                ...state,
+                fetchObjectLoading: true
+            }
+        case actionTypes.FETCH_ONE_OBJECT_FAILURE:
+            return {
+                ...state,
+                fetchObjectLoading: false,
+                fetchObjectError: action.payload
+            }
+        case actionTypes.FETCH_ONE_OBJECT_SUCCESS:
+            return {
+                ...state,
+                fetchObjectSuccess: action.payload,
+                fetchObjectLoading: false
+            }
+        //update object
+        case  actionTypes.OBJECT_UPDATE_START:
+            return {
+                ...state,
+                updateObjectLoading: true
+            }
+        case actionTypes.OBJECT_UPDATE_FAILURE:
+            return {
+                ...state,
+                updateObjectLoading: false,
+                updateObjectError: action.payload
+            }
+        case actionTypes.OBJECT_UPDATE_SUCCESS:
+            return {
+                ...state,
+                updateObjectSuccess: action.payload,
+                updateObjectLoading: false
             }
         default:
             return state

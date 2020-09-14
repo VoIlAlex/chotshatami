@@ -59,3 +59,14 @@
 .page-pagination__pagination ul li:last-of-type{
     border-radius: 0 4px 4px 0;
 }
+
+.selected {
+    background: #731919;
+    outline: none;
+    color: white;
+
+}
+
+.page-pagination a {
+    outline: none;
+}

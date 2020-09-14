@@ -13,6 +13,7 @@ const FormInput = props => {
         >
             <label style={{fontSize:props.labelFontSize}}>{props.labelValue}</label>
             <input
+                value={props.value}
                 name={props.name}
                 type={props.type || 'text'}
                 placeholder={props.placeholder}

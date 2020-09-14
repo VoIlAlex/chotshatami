@@ -96,11 +96,12 @@ const RentCommercial = props => {
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
                     optionMargin={'0 -15px 0 0'}
+                    onClick={() => props.updateObject({...state, id: props.id}, props.token, 'characteristics')}
                     reverse
                 />
                 <div className="specifications__inf">
                     <Select label={'Подкатегория'} margin={'0'}
-                            value={subcategorySearch}
+                            value={subcategorySearch }
                             list={filterOptions(options, 'subcategory', subcategorySearch)}
                             showSelect={showSelect.subcategoryOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, subcategoryOptions: bool})}
@@ -108,7 +109,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'subcategorySearch', 'subcategory')}
                     />
                     <FormInput labelValue={'Год постройки'} width={'100%'} margin={'10px 0 0 0'}
-                               value={state.building_year}
+                               value={state.building_year || state.building_year}
                                onChange={e => setState({
                                    ...state,
                                    building_year: e.target.value
@@ -120,14 +121,14 @@ const RentCommercial = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'storey'}
-                        value={rooms.storey}
+                        value={rooms.storey || state.storey}
                     />
                     <InputWithOperations
                         label={'Этажность'}
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'storeys'}
-                        value={rooms.storeys}
+                        value={rooms.storeys || state.storeys}
                         margin={'0 -15px 0 0'}
                     />
                 </div>
@@ -139,7 +140,7 @@ const RentCommercial = props => {
                                    area_total: e.target.value
                                })}/>
                     <Select label={'Санузел'} margin={'10px 0 0'}
-                            value={lavatorySearch}
+                            value={lavatorySearch || state.lavatory}
                             list={filterOptions(options, 'lavatory', lavatorySearch)}
                             showSelect={showSelect.lavatoryOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool})}
@@ -147,7 +148,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'lavatorySearch', 'lavatory')}
                     />
                     <Select label={'Материал стен'} margin={'10px 0 0'}
-                            value={wallsSearch}
+                            value={wallsSearch || state.walls_material}
                             list={filterOptions(options, 'walls_material', wallsSearch)}
                             showSelect={showSelect.wallsMaterialOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool})}
@@ -155,7 +156,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'wallsSearch', 'walls_material')}
                     />
                     <Select label={'Водоснабжение'} margin={'10px 0 0'}
-                            value={waterSearch}
+                            value={waterSearch || state.water}
                             list={filterOptions(options, 'water', waterSearch)}
                             showSelect={showSelect.waterOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, waterOptions: bool})}
@@ -163,7 +164,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'waterSearch', 'water')}
                     />
                     <Select label={'Канализация'} margin={'10px 0 0'}
-                            value={sewerageSearch}
+                            value={sewerageSearch || state.sewer}
                             list={filterOptions(options, 'sewerage', sewerageSearch)}
                             showSelect={showSelect.sewerageOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, sewerageOptions: bool})}
@@ -171,7 +172,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'sewerageSearch', 'sewerage')}
                     />
                     <Select label={'Газ'} margin={'10px 0 0'}
-                            value={gasSearch}
+                            value={gasSearch || state.gas}
                             list={filterOptions(options, 'gas', gasSearch)}
                             showSelect={showSelect.gasOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, gasOptions: bool})}
@@ -179,7 +180,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'gasSearch', 'gas')}
                     />
                     <Select label={'Отопление'} margin={'10px 0 0'}
-                            value={heatingSearch}
+                            value={heatingSearch || state.heating}
                             list={filterOptions(options, 'heating', heatingSearch)}
                             showSelect={showSelect.heatingOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, heatingOptions: bool})}
@@ -212,7 +213,7 @@ const RentCommercial = props => {
                         </li>
                     </ul>
                     <Select label={'Электричество'} margin={'10px 0 0'}
-                            value={electroSearch}
+                            value={electroSearch || state.electro}
                             list={filterOptions(options, 'electro', electroSearch)}
                             showSelect={showSelect.electroOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, electroOptions: bool})}
@@ -227,7 +228,7 @@ const RentCommercial = props => {
                                })}
                     />
                     <Select label={'Внутренняя отделка'} margin={'10px 0 0'}
-                            value={trimSearch}
+                            value={trimSearch || state.trim_style}
                             list={filterOptions(options, 'trim_style', trimSearch)}
                             showSelect={showSelect.trimOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, trimOptions: bool})}
@@ -235,7 +236,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'trimSearch', 'trim_style')}
                     />
                     <Select label={'Направление от города'} margin={'10px 0 0'}
-                            value={directionSearch}
+                            value={directionSearch || state.direction_name}
                             list={filterOptions(options, 'direction_name', directionSearch)}
                             showSelect={showSelect.directionOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, directionOptions: bool})}
@@ -243,7 +244,7 @@ const RentCommercial = props => {
                             onChange={e => setSelect(e.target.value, 'directionSearch', 'direction_name')}
                     />
                     <FormInput labelValue={'Расстояние от МКАД'} width={'100%'} margin={'10px 0 0 0'}
-                               value={state.town_distance}
+                               value={state.town_distance }
                                onChange={e => setState({
                                    ...state,
                                    town_distance: e.target.value
@@ -274,7 +275,7 @@ const RentCommercial = props => {
                                })}
                     />
                     <Select label={'Дополнительная информация'} margin={'15px 0'}
-                            value={additionalSearch}
+                            value={additionalSearch || state.additional}
                             list={filterOptions(options, 'additional', additionalSearch)}
                             showSelect={showSelect.additionalOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, additionalOptions: bool})}
@@ -290,7 +291,7 @@ const RentCommercial = props => {
                             <p>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={state => sendObject(state)}
+                                onClick={() => sendObject(12)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

@@ -72,6 +72,7 @@ const SpecificationsResidential = props => {
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
                     optionMargin={'0'}
+                    onClick={() => props.updateObject({...stateSpecificationsResidential, id: props.id}, props.token, 'characteristics')}
                     reverse
                 />
                 <div className="specifications-inputs">
@@ -80,14 +81,14 @@ const SpecificationsResidential = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'rooms'}
-                        value={rooms.rooms}
+                        value={rooms.rooms || stateSpecificationsResidential.rooms}
                     />
                     <InputWithOperations
                         label={'Кол-во продаваемых комнат'}
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'room_to_sell'}
-                        value={rooms.room_to_sell}
+                        value={rooms.room_to_sell || stateSpecificationsResidential.room_to_sell}
                         margin={'0 -15px 0 0'}
                     />
                 </div>
@@ -97,7 +98,7 @@ const SpecificationsResidential = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'separate_rooms'}
-                        value={rooms.separate_rooms}
+                        value={rooms.separate_rooms || stateSpecificationsResidential.separate_rooms}
                     />
                 </div>
                 <div className="specifications__inf">
@@ -120,7 +121,7 @@ const SpecificationsResidential = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'storey'}
-                        value={rooms.storey}
+                        value={rooms.storey || stateSpecificationsResidential.storey}
                     />
                     <InputWithOperations
                         label={'Этажность'}
@@ -128,7 +129,7 @@ const SpecificationsResidential = props => {
                         clickHandler={roomHandler}
                         name={'storeys'}
                         margin={'0 -15px 0 0'}
-                        value={rooms.storeys}
+                        value={rooms.storeys || stateSpecificationsResidential.storeys}
                     />
                 </div>
                 <div className="specifications__inf">
@@ -151,7 +152,7 @@ const SpecificationsResidential = props => {
                                    area_kitchen: e.target.value
                                })}/>
                     <Select label={'Полы'}
-                            value={floorSearch}
+                            value={floorSearch || stateSpecificationsResidential.floor_type}
                             list={filterOptions(options, 'floor_type', floorSearch)}
                             showSelect={showSelect.floorOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, floorOptions: bool })}
@@ -165,7 +166,7 @@ const SpecificationsResidential = props => {
                             }}
                     />
                     <Select label={'Санузел'}
-                            value={lavatorySearch}
+                            value={lavatorySearch || stateSpecificationsResidential.lavatory}
                             list={filterOptions(options,'lavatory', lavatorySearch)}
                             showSelect={showSelect.lavatoryOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool })}
@@ -179,7 +180,7 @@ const SpecificationsResidential = props => {
                             }}
                     />
                     <Select label={'Балкон'}
-                            value={balconySearch}
+                            value={balconySearch || stateSpecificationsResidential.balcony}
                             list={filterOptions(options,'balcony', balconySearch)}
                             showSelect={showSelect.balconyOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, balconyOptions: bool })}
@@ -193,7 +194,7 @@ const SpecificationsResidential = props => {
                             }}
                     />
                     <Select label={'Ремонт'}
-                            value={repairSearch}
+                            value={repairSearch || stateSpecificationsResidential.repair_state}
                             list={filterOptions(options,'repair_state', repairSearch)}
                             showSelect={showSelect.repairOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, repairOptions: bool })}
@@ -207,7 +208,7 @@ const SpecificationsResidential = props => {
                             }}
                     />
                     <Select label={'Материал стен'}
-                            value={wallsSearch}
+                            value={wallsSearch || stateSpecificationsResidential.walls_material}
                             list={filterOptions(options,'walls_material', wallsSearch)}
                             showSelect={showSelect.wallsMaterialOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool })}
@@ -248,7 +249,7 @@ const SpecificationsResidential = props => {
                         </li>
                     </ul>
                     <Select label={'Плита'}
-                            value={plateSearch}
+                            value={plateSearch || stateSpecificationsResidential.plate}
                             list={filterOptions(options,'plate', plateSearch)}
                             showSelect={showSelect.plateOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, plateOptions: bool })}
@@ -270,7 +271,7 @@ const SpecificationsResidential = props => {
                             <p>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={stateSpecificationsResidential => sendObject(stateSpecificationsResidential)}
+                                onClick={() =>props.abroad? sendObject(14):sendObject(6)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

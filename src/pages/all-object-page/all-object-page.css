@@ -1,5 +1,11 @@
 .all-object-page{
     display: flex;
     flex-direction: column;
-    transition: 0.4s ease-out;
+}
+
+.all-object__loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -1,23 +1,25 @@
 import React from 'react'
+import ReactPaginate from 'react-paginate';
 
 import './page-pagination.css'
 
 const PagePagination = props => {
     return (
         <div className="page-pagination">
-            <p>Показано 1 по {props.numberElements} из 705 записей</p>
+            <p>Показано с {props.page===0? 1: props.page * props.numberElements} по { (props.page + 1) * props.numberElements > props.count? props.count: (props.page + 1) * props.numberElements} из {props.count}
+            </p>
             <div className="page-pagination__pagination">
-                <p>&#8592; &nbsp;Предыдущая</p>
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>...</li>
-                    <li className={'selected'}>14</li>
-                    <li>15</li>
-                </ul>
-                <p>Следующая &nbsp;	&#8594; </p>
+                <ReactPaginate
+                    forcePage={props.page}
+                    pageCount={props.pages}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={3}
+                    activeClassName={'selected'}
+                    onPageChange={data => props.setPage(data.selected)}
+                    breakLabel={'..'}
+                    previousLabel={'Предыдущая'}
+                    nextLabel={'Следующая'}
+                />
             </div>
         </div>
     )

@@ -106,6 +106,7 @@ const SuburbanSpecifications = props => {
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
                     optionMargin={'0 -15px 0 0'}
+                    onClick={() => props.updateObject({...state, id: props.id}, props.token, 'characteristics')}
                     reverse
                 />
                 <div className="suburban-specifications__rooms">
@@ -114,7 +115,7 @@ const SuburbanSpecifications = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'rooms'}
-                        value={rooms.rooms}
+                        value={rooms.rooms || state.rooms}
                     />
                 </div>
                 <FormInput labelValue={'Год постройки'} width={'90%'}
@@ -130,7 +131,7 @@ const SuburbanSpecifications = props => {
                         state={rooms}
                         clickHandler={roomHandler}
                         name={'storey'}
-                        value={rooms.storey}
+                        value={rooms.storey || state.storey}
                     />
                     <InputWithOperations
                         label={'Этажность'}
@@ -138,7 +139,7 @@ const SuburbanSpecifications = props => {
                         clickHandler={roomHandler}
                         name={'storeys'}
                         margin={'0 -15px 0 0'}
-                        value={rooms.storeys}
+                        value={rooms.storeys || state.storeys}
                     />
                 </div>
                 <div className="specifications__inf">
@@ -167,7 +168,7 @@ const SuburbanSpecifications = props => {
                                    area_kitchen: e.target.value
                                })}/>
                     <Select label={'Полы'}
-                            value={floorSearch}
+                            value={floorSearch || state.floor_type}
                             list={filterOptions(options, 'floor_type', floorSearch)}
                             showSelect={showSelect.floorOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, floorOptions: bool})}
@@ -175,7 +176,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'floorSearch', 'floor_type')}
                     />
                     <Select label={'Санузел'}
-                            value={lavatorySearch}
+                            value={lavatorySearch || state.lavatory}
                             list={filterOptions(options, 'lavatory', lavatorySearch)}
                             showSelect={showSelect.lavatoryOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool})}
@@ -183,7 +184,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'lavatorySearch', 'lavatory')}
                     />
                     <Select label={'Балкон'}
-                            value={balconySearch}
+                            value={balconySearch || state.balcony}
                             list={filterOptions(options, 'balcony', balconySearch)}
                             showSelect={showSelect.balconyOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, balconyOptions: bool})}
@@ -191,7 +192,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'balconySearch', 'balcony')}
                     />
                     <Select label={'Материал крыши'}
-                            value={roofSearch}
+                            value={roofSearch || state.walls_material}
                             list={filterOptions(options, 'walls_material', roofSearch)}
                             showSelect={showSelect.roofOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, roofOptions: bool})}
@@ -199,7 +200,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'roofSearch', 'roof_material')}
                     />
                     <Select label={'Материал стен'}
-                            value={wallsSearch}
+                            value={wallsSearch || state.walls_material}
                             list={filterOptions(options, 'walls_material', wallsSearch)}
                             showSelect={showSelect.wallsMaterialOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool})}
@@ -246,7 +247,7 @@ const SuburbanSpecifications = props => {
                         >3</li>
                     </ul>
                     <Select label={'Водоснабжение'} margin={'20px 0 0'}
-                            value={waterSearch}
+                            value={waterSearch || state.water}
                             list={filterOptions(options, 'water', waterSearch)}
                             showSelect={showSelect.waterOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, waterOptions: bool})}
@@ -254,7 +255,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'waterSearch', 'water')}
                     />
                     <Select label={'Канализация'}
-                            value={sewerageSearch}
+                            value={sewerageSearch || state.sewer}
                             list={filterOptions(options, 'sewerage', sewerageSearch)}
                             showSelect={showSelect.sewerageOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, sewerageOptions: bool})}
@@ -262,7 +263,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'sewerageSearch', 'sewerage')}
                     />
                     <Select label={'Газ'}
-                            value={gasSearch}
+                            value={gasSearch || state.gas}
                             list={filterOptions(options, 'gas', gasSearch)}
                             showSelect={showSelect.gasOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, gasOptions: bool})}
@@ -270,7 +271,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'gasSearch', 'gas')}
                     />
                     <Select label={'Отопление'}
-                            value={heatingSearch}
+                            value={heatingSearch || state.heating}
                             list={filterOptions(options, 'heating', heatingSearch)}
                             showSelect={showSelect.heatingOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, heatingOptions: bool})}
@@ -305,7 +306,7 @@ const SuburbanSpecifications = props => {
                         </li>
                     </ul>
                     <Select label={'Электричество'}
-                            value={electroSearch}
+                            value={electroSearch || state.electro}
                             list={filterOptions(options, 'electro', electroSearch)}
                             showSelect={showSelect.electroOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, electroOptions: bool})}
@@ -313,7 +314,7 @@ const SuburbanSpecifications = props => {
                             onChange={e => setSelect(e.target.value, 'electroSearch', 'electro')}
                     />
                     <Select label={'Направление от города'}
-                            value={directionSearch}
+                            value={directionSearch || state.direction_name}
                             list={filterOptions(options, 'direction_name', directionSearch)}
                             showSelect={showSelect.directionOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, directionOptions: bool})}
@@ -334,7 +335,7 @@ const SuburbanSpecifications = props => {
                                })}
                     />
                     <Select label={'Плита'} margin={'15px 0 10px 0'}
-                            value={plateSearch}
+                            value={plateSearch || state.plate}
                             list={filterOptions(options,'plate', plateSearch)}
                             showSelect={showSelect.plateOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, plateOptions: bool })}
@@ -350,7 +351,7 @@ const SuburbanSpecifications = props => {
                             <p>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={state => sendObject(state)}
+                                onClick={() =>props.newBuilding? sendObject(15): sendObject(7)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

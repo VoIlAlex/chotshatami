@@ -5,30 +5,33 @@ tbody{
 tbody td{
     text-align: center;
     font-size: 14px;
+    min-height: 50px;
 }
 
 tbody .tbody-address{
     color: #731919;
     text-align: left;
+    max-width: 200px;
     padding-left: 15px;
+    font-size: 13.5px;
 }
 
 tbody .tbody-agent h4{
     margin: 5px 0 0 7px;
     padding: 0;
-    font-size: 14px;
+    font-size: 13.5px;
     text-align: left;
 }
 
 tbody .tbody-agent p{
     margin: 5px 0 5px 7px;
-    font-size: 14px;
+    font-size: 13.5px;
     text-align: left;
 }
 
 tbody .tbody-category{
     width: 190px;
-    font-size: 14px;
+    font-size: 13.5px;
     display: flex;
     align-items: center;
 }
@@ -65,4 +68,8 @@ tbody .tbody-options__option{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.tbody-date {
+    font-size: 13.5px;
 }

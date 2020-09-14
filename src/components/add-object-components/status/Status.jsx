@@ -18,16 +18,17 @@ const Status = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'50%'}
                 optionMargin={'0'}
+                onClick={() => props.updateObject({...stateStatusCategory, id: props.id}, props.token, 'state')}
                 reverse
             />
             <ul className={'status__buttons'}>
                 <li
-                    className={stateStatusCategory.published==='published'?'selected':''}
-                    onClick={() => setState('published')}
+                    className={stateStatusCategory.published===1?'selected':''}
+                    onClick={() => setState({published:1})}
                 >Опубликованно</li>
                 <li
-                    className={stateStatusCategory.published==='unpublished'?'selected':''}
-                    onClick={() => setState('unpublished')}
+                    className={stateStatusCategory.published===0?'selected':''}
+                    onClick={() => setState({published:0})}
                 >Не опубликованно</li>
             </ul>
         </div>

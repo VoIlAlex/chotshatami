@@ -155,3 +155,19 @@ export const sellerState = {
     email: '',
     price: ''
 }
+
+export const mainCategoryState = {
+    content: '',
+    dateCreated: '',
+    dateChange: ''
+}
+
+export const ceoCategoryState = {
+    pagetitle: '',
+    description: '',
+    key_words: ''
+}
+
+export const statusCategoryState = {
+    published: 0
+}
