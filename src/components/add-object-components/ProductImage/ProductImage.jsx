@@ -31,7 +31,7 @@ const ProductImage = props => {
     }
 
     const deleteHandler = url => {
-        setSelectedFile(selectedFile.filter(el => el !== url))
+        setImgToDisplay(imgToDisplay.filter(el => el !== url))
     }
 
     return (

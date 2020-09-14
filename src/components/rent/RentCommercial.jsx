@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { withRouter} from 'react-router-dom'
 
 import HeadComponent from "../head-component/HeadComponent";
 import Select from "../select/Select";
@@ -288,7 +290,7 @@ const RentCommercial = props => {
                 {
                     addObjectLoading ? <Loader/> : (
                         <>
-                            <p>К списку</p>
+                            <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
                                 onClick={() => sendObject(12)}
@@ -306,4 +308,8 @@ const mapStateToProps = state => ({
     options: state.object.options
 })
 
-export default connect(mapStateToProps)(RentCommercial)
+export default compose(
+    connect(mapStateToProps),
+    withRouter
+)
+(RentCommercial)

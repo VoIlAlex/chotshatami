@@ -50,13 +50,13 @@ const successFetchOptions = (options, name) => ({
 export const startFetchOptionsAsync = (token, option) => {
     return async dispatch => {
         // TODO
-        // await axios(`https://104.248.230.108/api/options/${option}`, {
-        //     method: 'get',
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }).then(res => dispatch(successFetchOptions(res.data.options, option)))
-        dispatch(successFetchOptions())
+        await axios(`http://104.248.230.108/api/options/${option}`, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => dispatch(successFetchOptions(res.data.options, option)))
+        // dispatch(successFetchOptions())
     }
 }
 

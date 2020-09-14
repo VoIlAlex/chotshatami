@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
+import { compose } from 'redux'
+import { withRouter} from 'react-router-dom'
 
 import { filterOptions } from "../../../utils/roomHandler";
 import Select from "../../select/Select";
@@ -268,7 +270,7 @@ const SpecificationsResidential = props => {
                 {
                     addObjectLoading ? <Loader/> : (
                         <>
-                            <p>К списку</p>
+                            <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
                                 onClick={() =>props.abroad? sendObject(14):sendObject(6)}
@@ -286,4 +288,8 @@ const mapStateToProps = state => ({
     options: state.object.options
 })
 
-export default connect(mapStateToProps)(SpecificationsResidential)
+export default compose(
+    connect(mapStateToProps),
+    withRouter
+)
+(SpecificationsResidential)

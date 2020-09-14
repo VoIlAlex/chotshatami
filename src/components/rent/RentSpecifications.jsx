@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 import { filterOptions} from "../../utils/roomHandler";
 import HeadComponent from "../head-component/HeadComponent";
@@ -294,7 +296,7 @@ const RentSpecifications = props => {
                 {
                     addObjectLoading ? <Loader/> : (
                         <>
-                            <p>К списку</p>
+                            <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
                                 onClick={() => sendObject(10)}
@@ -312,4 +314,7 @@ const mapStateToProps = state => ({
     options: state.object.options
 })
 
-export default connect(mapStateToProps)(RentSpecifications)
+export default compose(
+    connect(mapStateToProps),
+    withRouter
+)(RentSpecifications)

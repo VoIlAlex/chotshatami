@@ -204,7 +204,7 @@ const AddObjectPage = props => {
                         <ProductImage
                             id={id? id: null}
                             token={props.token}
-                            images={props.updateObjectState.product_files?props.updateObjectState.product_files: []}
+                            images={props.updateObjectState? props.updateObjectState.product_files:[]}
                         />
                         <CEOData
                             stateCeoCategory={stateCeoCategory}

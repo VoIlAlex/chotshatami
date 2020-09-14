@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
+import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 import HeadComponent from "../head-component/HeadComponent";
 import InputWithOperations from "../input-with-operations/InputWithOperation";
@@ -375,7 +377,7 @@ const RentSubUrban = props => {
                 {
                     addObjectLoading ? <Loader/> : (
                         <>
-                            <p>К списку</p>
+                            <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
                                 onClick={() => sendObject(11)}
@@ -393,4 +395,7 @@ const mapStateToProps = state => ({
     options: state.object.options
 })
 
-export default connect(mapStateToProps)(RentSubUrban)
+export default compose(
+    connect(mapStateToProps),
+    withRouter
+)(RentSubUrban)
