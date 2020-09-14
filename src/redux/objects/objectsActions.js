@@ -21,7 +21,7 @@ const objectAddSuccess = msg => ({
 export const objectAddStartAsync = (object, token, cb) => {
     return async dispatch => {
         dispatch(objectAddStart())
-        await axios('https://104.248.230.108/api/product', {
+        await axios('http://104.248.230.108/api/product', {
             data: object,
             method: "post",
             headers: {
@@ -81,7 +81,7 @@ const objectsFetchSuccess = objects => ({
 export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id',order_direction='DESC') => {
     return async dispatch => {
         dispatch(objectsFetchStart())
-        await fetch(`https://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
+        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -113,7 +113,7 @@ const objectDeleteSuccess = objects => ({
 export const objectDeleteStartAsync = (token, id) => {
     return async dispatch => {
         dispatch(objectDeleteStart())
-        await fetch(`https://104.248.230.108/api/product`, {
+        await fetch(`http://104.248.230.108/api/product`, {
             method: "DELETE",
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -146,7 +146,7 @@ const objectFetchSuccess = object => ({
 export const fetchObjectStartAsync = (token, id, cb) => {
     return async dispatch => {
         dispatch(objectFetchStart())
-        await fetch(`https://104.248.230.108/api/product?id=${id}`, {
+        await fetch(`http://104.248.230.108/api/product?id=${id}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -178,7 +178,7 @@ const objectUpdateSuccess = msg => ({
 export const objectUpdateStartAsync = (object, token, category) => {
     return async dispatch => {
         dispatch(objectUpdateStart())
-        await axios(`https://104.248.230.108/api/patch/${category}`, {
+        await axios(`http://104.248.230.108/api/patch/${category}`, {
             data: object,
             method: "patch",
             headers: {
