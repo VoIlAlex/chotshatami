@@ -10,6 +10,7 @@ import {ReactComponent as NoViewLogo} from '../../../asserts/no-view.svg'
 import {ReactComponent as EditLogo} from '../../../asserts/edit.svg'
 import {ReactComponent as DeleteLogo} from '../../../asserts/delete.svg'
 import {ReactComponent as ViewLogo} from '../../../asserts/view.svg'
+import GlobalHook from "../../global-loader/GlobalHook";
 import './table-body.css'
 
 function timestampToDate(ts) {
@@ -19,45 +20,48 @@ function timestampToDate(ts) {
 }
 
 const TableBody = props => {
-    const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync} = props
+    const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading} = props
     return (
-        <tbody>
-        {
-            objects.map((el, i) => (
-                <tr key={i}>
-                    <td>{ props.page * props.numberElements + i +1}</td>
-                    <td className={'tbody-address'}>{el.state_region_name} / {el.town_name} / {el.street_name} д.{el.house_number}</td>
-                    <td>
-                        <div className="tbody-agent">
-                            <h4>{el.contact_name}</h4>
-                            <p>{el.contact_phone_1}</p>
-                        </div>
-                    </td>
-                    <td className={'tbody-category'}>
-                        <div className={
-                            `${reverseAccordance(el.parent) === 'Продажа, Жилая' ?
-                                'tbody-category__blue' : 'tbody-category__red'} tbody-category_status`
-                        }/>
-                        <p>{reverseAccordance(el.parent)}</p>
-                    </td>
-                    <td>{el.id}</td>
-                    <td className={'tbody-date'}>{timestampToDate(el.createdon)}</td>
-                    <td className="tbody-options">
-                        <EditLogo className={'tbody-options__option'}
-                                  onClick={() => fetchObjectStartAsync(token, el.id, () => {
-                                      props.history.push('/add_object')
-                                  })}
-                        />
-                        <NoViewLogo className={'tbody-options__option'}/>
-                        <DeleteLogo onClick={() => objectDeleteStartAsync(token, el.id)}
-                                    className={'tbody-options__option'}/>
-                        <ShareLogo className={'tbody-options__option'}/>
+        <>
+            {loading && <GlobalHook value={'Удаление...'}/>}
+            <tbody>
+            {
+                objects.map((el, i) => (
+                    <tr key={i}>
+                        <td>{props.page * props.numberElements + i + 1}</td>
+                        <td className={'tbody-address'}>{el.state_region_name} / {el.town_name} / {el.street_name} д.{el.house_number}</td>
+                        <td>
+                            <div className="tbody-agent">
+                                <h4>{el.contact_name}</h4>
+                                <p>{el.contact_phone_1}</p>
+                            </div>
+                        </td>
+                        <td className={'tbody-category'}>
+                            <div className={
+                                `${reverseAccordance(el.parent) === 'Продажа, Жилая' ?
+                                    'tbody-category__blue' : 'tbody-category__red'} tbody-category_status`
+                            }/>
+                            <p>{reverseAccordance(el.parent)}</p>
+                        </td>
+                        <td>{el.id}</td>
+                        <td className={'tbody-date'}>{timestampToDate(el.createdon)}</td>
+                        <td className="tbody-options">
+                            <EditLogo className={'tbody-options__option'}
+                                      onClick={() => fetchObjectStartAsync(token, el.id, () => {
+                                          props.history.push('/add_object')
+                                      })}
+                            />
+                            <NoViewLogo className={'tbody-options__option'}/>
+                            <DeleteLogo onClick={() => objectDeleteStartAsync(token, el.id)}
+                                        className={'tbody-options__option'}/>
+                            <ShareLogo className={'tbody-options__option'}/>
 
-                    </td>
-                </tr>
-            ))
-        }
-        </tbody>
+                        </td>
+                    </tr>
+                ))
+            }
+            </tbody>
+        </>
     )
 }
 

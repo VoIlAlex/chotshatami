@@ -105,9 +105,9 @@ const objectDeleteFailure = error => ({
     payload: error
 })
 
-const objectDeleteSuccess = objects => ({
+const objectDeleteSuccess = id => ({
     type: actionTypes.SUCCESS_DELETE_OBJECT,
-    payload: objects
+    payload: id
 })
 
 export const objectDeleteStartAsync = (token, id) => {
@@ -121,7 +121,7 @@ export const objectDeleteStartAsync = (token, id) => {
             },
             body: JSON.stringify({ id })
         })
-            .then(res => res.json()).then(json => dispatch(objectDeleteSuccess(json)))
+            .then(res => res.json()).then(json => dispatch(objectDeleteSuccess(id)))
             .catch(err => dispatch(objectDeleteFailure(err.message)))
     }
 }

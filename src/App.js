@@ -16,7 +16,7 @@ const App = props => {
         <div className="app">
             <Router>
                 {
-                    !props.user ? <Switch>
+                    !localStorage.getItem('access_token') ? <Switch>
                         <Route
                             path={'/login'}
                             component={SignInPage}

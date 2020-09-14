@@ -188,7 +188,7 @@ const AddObjectPage = props => {
     return (
         <>
             {props.addObjectLoading && <div className="add-object-page__center"><Loader/></div>}
-            {props.updateObjectLoading && <GlobalHook />}
+            {props.updateObjectLoading && <GlobalHook value={'Обновление...'}/>}
             <div className={'add-object-page'} style={{margin, width}}>
                 <HeadComponent
                     h2={'Добавить объект'}
