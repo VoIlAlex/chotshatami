@@ -25,7 +25,7 @@ export const objectAddStartAsync = (object, token, cb) => {
             data: object,
             method: "post",
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'application/json'
             }
         })
@@ -53,7 +53,7 @@ export const startFetchOptionsAsync = (token, option) => {
         await axios(`http://104.248.230.108/api/options/${option}`, {
             method: 'get',
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }
         }).then(res => dispatch(successFetchOptions(res.data.options, option)))
         // dispatch(successFetchOptions())
@@ -84,7 +84,7 @@ export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_nam
         await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
             method: "GET",
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
         })
             .then(res => res.json()).then(json => dispatch(objectsFetchSuccess(json)))
@@ -116,7 +116,7 @@ export const objectDeleteStartAsync = (token, id) => {
         await fetch(`http://104.248.230.108/api/product`, {
             method: "DELETE",
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id })
@@ -149,7 +149,7 @@ export const fetchObjectStartAsync = (token, id, cb) => {
         await fetch(`http://104.248.230.108/api/product?id=${id}`, {
             method: "GET",
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
         })
             .then(res => res.json()).then(json => dispatch(objectFetchSuccess({...json, id}))).then(_ =>cb())
@@ -182,7 +182,7 @@ export const objectUpdateStartAsync = (object, token, category) => {
             data: object,
             method: "patch",
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'application/json'
             }
         })

@@ -29,7 +29,11 @@ export const signInStartAsync = (userCredentials, cb) => {
               'Content-Type': 'application/json'
             }
         })
-            .then(res => res.json()).then(json => dispatch(signInSuccess(json.access_token)))
+            .then(res => res.json())
+            .then(json => {
+                localStorage.setItem('access_token', json.access_token)
+                dispatch(signInSuccess(json.access_token))
+            })
             .then(_ => cb())
             .catch(err => dispatch(signInFailure('Некорректные данные')))
     }

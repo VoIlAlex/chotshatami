@@ -23,7 +23,7 @@ const ProductImage = props => {
             axios('http://104.248.230.108/api/product/images ', {
                 method: 'post',
                 headers: {
-                    Authorization: `Bearer ${props.token}`
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
                 },
                 data: formData
             })
