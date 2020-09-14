@@ -190,3 +190,10 @@ export const objectUpdateStartAsync = (object, token, category) => {
             .catch(err => dispatch(objectUpdateFailure(err.message)))
     }
 }
+
+//clear update object
+export const clearUpdateObject = () => dispatch => {
+    dispatch({
+        type: actionTypes.CLEAR_UPDATE_OBJECT
+    })
+}

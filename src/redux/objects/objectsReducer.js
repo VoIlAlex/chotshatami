@@ -189,6 +189,11 @@ const objectReduces = (state = initialState, action) => {
                 updateObjectSuccess: action.payload,
                 updateObjectLoading: false
             }
+        case actionTypes.CLEAR_UPDATE_OBJECT:
+            return {
+                ...state,
+                fetchObjectSuccess: null
+            }
         default:
             return state
     }

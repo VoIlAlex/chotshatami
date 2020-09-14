@@ -8,10 +8,11 @@ const CategoriesList = props => {
         <div className="categories-list">
             <p>{props.categoryName}</p>
             {
-                props.categories.map((category, i) => <CategoriesItem
-                    key={i}
-                    category={category}
-                    categoryName={props.categoryName}
+                props.categories.map((category, i) =>
+                    <CategoriesItem
+                        key={i}
+                        category={category}
+                        categoryName={props.categoryName}
                     />)
             }
         </div>

@@ -1,10 +1,15 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 
+import { clearUpdateObject } from "../../redux/objects/objectsActions";
 import HeadComponent from "../../components/head-component/HeadComponent";
 import CategoriesList from "./CategoriesList";
 import './categories-page.css'
 
 const CategoriesPage = props => {
+    props.clearUpdateObject()
     const {width, margin} = props
     const sale = ['Жилая', 'Загородная', 'Коммерческая']
     const build = ['Недвижимость за рубежом', 'Новостройки']
@@ -36,4 +41,11 @@ const CategoriesPage = props => {
     )
 }
 
-export default CategoriesPage
+const mapDispatchToProps = dispatch => ({
+    clearUpdateObject: () => dispatch(clearUpdateObject())
+})
+
+export default compose(
+    withRouter,
+    connect(null, mapDispatchToProps)
+)(CategoriesPage)

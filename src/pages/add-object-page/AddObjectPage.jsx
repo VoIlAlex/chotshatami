@@ -45,7 +45,7 @@ const accodance = {
 const AddObjectPage = props => {
     useEffect(() => {
         options.map(el => props.startFetchOptionsAsync(props.token, el))
-    }, [])
+    }, [props.updateObjectState])
     const {width, margin} = props
     let main, add, id;
     if (props.updateObjectState) {
@@ -63,102 +63,113 @@ const AddObjectPage = props => {
     }
 
     const [stateMainCategory, setStateMainCategory] = useState(() => {
+        let clone = { ...mainCategoryState }
         if (props.updateObjectState === null) {
-            return mainCategoryState
+            return {...mainCategoryState}
         }
-        Object.keys(mainCategoryState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? mainCategoryState[key] = props.updateObjectState[key] : '')
-        return mainCategoryState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
 
     const [stateCeoCategory, setStateCeoCategory] = useState(() => {
+        let clone = { ...ceoCategoryState }
         if (props.updateObjectState === null) {
-            return ceoCategoryState
+            return {...ceoCategoryState}
         }
-        Object.keys(ceoCategoryState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? ceoCategoryState[key] = props.updateObjectState[key] : '')
-        return ceoCategoryState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
 
     const [stateStatusCategory, setStateStatusCategory] = useState(() => {
+        let clone = {...statusCategoryState}
         if (props.updateObjectState === null) {
-            return statusCategoryState
+            return {...statusCategoryState}
         }
-        Object.keys(statusCategoryState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? statusCategoryState[key] = props.updateObjectState[key] : '')
-        return statusCategoryState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
 
     const [stateSellerCategory, setStateSellerCategory] = useState(() => {
+        let clone = { ...sellerState }
         if (props.updateObjectState === null) {
-            return sellerState
+            return { ...sellerState }
         }
-        Object.keys(sellerState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? sellerState[key] = props.updateObjectState[key] : '')
-        return sellerState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     //location state
     const [stateLocationCategory, setStateLocationCategory] = useState(() => {
+        let clone = {...locationState}
         if (props.updateObjectState === null) {
-            return locationState
+            return {...locationState}
         }
-        Object.keys(locationState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? locationState[key] = props.updateObjectState[key] : '')
-        return locationState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     // Продажа Жилая
     const [stateSpecificationsResidential, setStateSpecificationsResidential] = useState(() => {
+        let clone = {...specificationResidentialState}
         if (props.updateObjectState === null) {
-            return specificationResidentialState
+            return {...specificationResidentialState}
         }
-        Object.keys(specificationResidentialState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? specificationResidentialState[key] = props.updateObjectState[key] : '')
-        return specificationResidentialState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     //Продажа загородная
     const [stateSpecificationsSuburban, setStateSpecificationsSuburban] = useState(() => {
+        let clone = {...specificationsSuburbanState}
         if (props.updateObjectState === null) {
-            return specificationsSuburbanState
+            return {...specificationsSuburbanState}
         }
-        Object.keys(specificationsSuburbanState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? specificationsSuburbanState[key] = props.updateObjectState[key] : '')
-        return specificationsSuburbanState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     //Продажа коммерческая
     const [stateSpecificationsCommercial, setStateSpecificationsCommercial] = useState(() => {
+        let clone = {...specficationsCommercialState}
         if (props.updateObjectState === null) {
             return specficationsCommercialState
         }
-        Object.keys(specficationsCommercialState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? specficationsCommercialState[key] = props.updateObjectState[key] : '')
-        return specficationsCommercialState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     //Аренда жилая
     const [stateSpecificationsRent, setStateSpecificationsRent] = useState(() => {
+        let clone = {...rentSpecificationState}
         if (props.updateObjectState === null) {
             return rentSpecificationState
         }
-        Object.keys(rentSpecificationState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? rentSpecificationState[key] = props.updateObjectState[key] : '')
-        return rentSpecificationState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     //Аренда загородная
     const [stateSuburbanRent, setStateSuburbanRent] = useState(() => {
+        let clone = { ...rentSuburbanState }
         if (props.updateObjectState === null) {
             return rentSuburbanState
         }
-        Object.keys(rentSuburbanState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? rentSuburbanState[key] = props.updateObjectState[key] : '')
-        return rentSuburbanState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
     //Аренда коммерческая
     const [stateCommercialRent, setStateCommercialRent] = useState(() => {
+        let clone = { ...rentCommercialState }
         if (props.updateObjectState === null) {
             return rentCommercialState
         }
-        Object.keys(rentCommercialState)
-            .map(key => props.updateObjectState.hasOwnProperty(key) ? rentCommercialState[key] = props.updateObjectState[key] : '')
-        return rentCommercialState
+        Object.keys(clone)
+            .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
+        return clone
     })
 
     const sendObject = parent => {

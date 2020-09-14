@@ -33,7 +33,10 @@ const AsideOpen = props => {
                         <AddCircleWhite className={'option-btn'}/> :
                         <AddCircleBlack className={'option-btn'}/>
                 }
-                <NavLink to={'/categories'}>Добавить объект</NavLink>
+                <NavLink to={{
+                    pathname:'/categories',
+                    new: true
+                }}>Добавить объект</NavLink>
             </AsideButton>
             <AsideButton><Options className={'option-btn'}/>Настройки</AsideButton>
         </aside>
