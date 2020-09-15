@@ -24,7 +24,7 @@ const TableBody = props => {
     return (
         <>
             {loading && <GlobalHook value={'Удаление...'}/>}
-            {objectLoading && <GlobalHook value={'Загрузка обьекта...'}/>}
+            {objectLoading && <GlobalHook value={'Загрузка объекта...'}/>}
             <tbody>
             {
                 objects.map((el, i) => (
