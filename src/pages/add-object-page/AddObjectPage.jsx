@@ -43,6 +43,7 @@ const accodance = {
 }
 
 const AddObjectPage = props => {
+
     useEffect(() => {
         options.map(el => props.startFetchOptionsAsync(props.token, el))
     }, [props.updateObjectState])

@@ -23,7 +23,7 @@ const InputWithOperations = props => {
                 <input
                     type="text"
                     value={props.value}
-                    onChange={e => props.clickHandler({...props.state, [props.name]:e.target.value})}
+                    onChange={e => props.clickHandler( [props.name],Number(e.target.value))}
                 />
                 <div className="plus"><p id="plus" onClick={() => addHandler()}><Plus /></p></div>
             </div>

@@ -56,7 +56,6 @@ export const startFetchOptionsAsync = (token, option) => {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }
         }).then(res => dispatch(successFetchOptions(res.data.options, option)))
-        // dispatch(successFetchOptions())
     }
 }
 

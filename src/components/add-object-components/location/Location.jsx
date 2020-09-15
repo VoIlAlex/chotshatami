@@ -22,9 +22,7 @@ const Location = props => {
     const [showCountrySelect, setShowCountrySelect] = useState(false)
     const [showRegionSelect, setShowRegionSelect] = useState(false)
     const [filteredRegions, setFilteredRegions] = useState()
-    const [coordinateX, setCoordinateX] = useState('')
-    const [coordinateY, setCoordinateY] = useState('')
-    const filteredCountries = props.countries.filter(country => country.name.includes(searchFieldCountry))
+    const filteredCountries = props.countries.filter(country => country.name.toLowerCase().includes(searchFieldCountry))
     const filterRegion = el => {
         setFilteredRegions(props.regions.filter(region => el.iso === region.codes.iso.split('-')[0]))
     }
@@ -122,16 +120,16 @@ const Location = props => {
                         width={'50%'}
                         labelFontSize={'0.85em'}
                         labelValue={'Расположение, координата X'}
-                        value={coordinateX}
-                        onChange={e => setCoordinateX(e)}
+                        value={stateLocationCategory.coordinateX}
+                        onChange={e => setState({...stateLocationCategory, coordinateX: e.target.value})}
                     />
                     <FormInput
                         margin={'15px 0 0'}
                         width={'49%'}
                         labelFontSize={'0.85em'}
                         labelValue={'Расположение, координата Y'}
-                        value={coordinateY}
-                        onChange={e => setCoordinateY(e)}
+                        value={stateLocationCategory.coordinateY}
+                        onChange={e => setState({...stateLocationCategory, coordinateY: e.target.value})}
                     />
                 </div>
             </div>

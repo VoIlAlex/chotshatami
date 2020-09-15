@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useRef} from 'react'
 
 import {ReactComponent as InputArrow} from '../../asserts/input-arrow.svg'
 import './select.css'
 
 const Select = props => {
+    const ref = useRef(null);
+
     return (
         <div className="select" style={{margin: props.margin}}>
             <label>{props.label}</label>
             <div className={'select-with-arrow'}>
                 <input type="text"
+                       ref={ref}
                        value={props.value}
                        className={'select__input'}
                        onChange={e => {
@@ -35,7 +38,10 @@ const Select = props => {
                         }
                     </div>
                 }
-                <InputArrow className={'input-arrow'}/>
+                <InputArrow onClick={() => {
+                    props.setShowSelect(!props.showSelect)
+                    ref.current.focus()
+                } } className={'input-arrow'}/>
             </div>
         </div>
     )
