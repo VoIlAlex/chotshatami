@@ -28,8 +28,8 @@ import CommercialSpecifications
     from "../../components/add-object-components/commercial-specifications/CommercialSpecifications";
 import RentCommercial from "../../components/rent/RentCommercial";
 import {ReactComponent as Loader} from "../../asserts/loader.svg";
-import './add-object-page.css'
 import GlobalHook from "../../components/global-loader/GlobalHook";
+import './add-object-page.css'
 
 const accodance = {
     'Продажа': 'sale',

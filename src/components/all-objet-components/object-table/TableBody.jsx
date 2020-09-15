@@ -20,10 +20,11 @@ function timestampToDate(ts) {
 }
 
 const TableBody = props => {
-    const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading} = props
+    const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading, objectLoading} = props
     return (
         <>
             {loading && <GlobalHook value={'Удаление...'}/>}
+            {objectLoading && <GlobalHook value={'Загрузка обьекта...'}/>}
             <tbody>
             {
                 objects.map((el, i) => (
@@ -67,7 +68,8 @@ const TableBody = props => {
 
 const mapStateToProps = state => ({
     loading: state.object.deleteObjectLoading,
-    token: state.user.loginSuccess
+    token: state.user.loginSuccess,
+    objectLoading: state.object.fetchObjectLoading
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -82,7 +82,7 @@ const initialState = {
     deleteObjectLoading: false,
     deleteObjectError: null,
     deleteObjectSuccess: [],
-    fetchObjectLoading: true,
+    fetchObjectLoading: false,
     fetchObjectError: null,
     fetchObjectSuccess: null,
     updateObjectLoading: false,

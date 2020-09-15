@@ -10,8 +10,8 @@ import FormInput from "../form-input/FormInput";
 import Select from "../select/Select";
 import TransparentButton from "../transparent-button/TransparentButton";
 import Backdrop from "../backdrop/Backdrop";
-import '../add-object-components/specifications-residential/specifications-residential.css'
 import {ReactComponent as Loader} from "../../asserts/loader.svg";
+import '../add-object-components/specifications-residential/specifications-residential.css'
 
 const RentSpecifications = props => {
     const {state, setState, sendObject, addObjectLoading, options} = props
@@ -31,7 +31,7 @@ const RentSpecifications = props => {
         wallsSearch: '',
         furnitureSearch: ''
     })
-    const {  balconySearch, floorSearch, lavatorySearch, repairSearch, wallsSearch, furnitureSearch } = searchFieldOption
+    const {  balconySearch, floorSearch, lavatorySearch, repairSearch, wallsSearch } = searchFieldOption
     const [showSelect, setShowSelect] = useState({
         balconyOptions: false,
         floorOptions: false,

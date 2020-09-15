@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {ReactComponent as Loader} from "../../asserts/loader.svg";
 
 import './global-hook.css'
 

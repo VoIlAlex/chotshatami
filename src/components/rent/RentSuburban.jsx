@@ -8,10 +8,10 @@ import InputWithOperations from "../input-with-operations/InputWithOperation";
 import FormInput from "../form-input/FormInput";
 import Select from "../select/Select";
 import TransparentButton from "../transparent-button/TransparentButton";
-import '../add-object-components/suburban-specifications/suburban-specifications.css'
 import Backdrop from "../backdrop/Backdrop";
 import {filterOptions} from "../../utils/roomHandler";
 import {ReactComponent as Loader} from "../../asserts/loader.svg";
+import '../add-object-components/suburban-specifications/suburban-specifications.css'
 
 const RentSubUrban = props => {
     const {state, setState, sendObject, options, addObjectLoading} = props
@@ -58,7 +58,7 @@ const RentSubUrban = props => {
     })
 
     const {
-        balconySearch, floorSearch, lavatorySearch, wallsSearch, plateSearch, sewerageSearch,
+        balconySearch, floorSearch, lavatorySearch, wallsSearch, sewerageSearch,
         roofSearch, waterSearch, gasSearch, heatingSearch, electroSearch, directionSearch
     } = searchFieldOption
 

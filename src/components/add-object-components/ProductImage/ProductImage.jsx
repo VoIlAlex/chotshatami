@@ -9,6 +9,7 @@ import './product-image.css'
 const ProductImage = props => {
     const [selectedFile, setSelectedFile] = useState([])
     const [imgToDisplay, setImgToDisplay] = useState([])
+    const [serverImg, setServerImg] = useState(props.images)
 
     const onFileChanged = event => {
         setSelectedFile([...selectedFile, event.target.files[0]])
@@ -30,8 +31,20 @@ const ProductImage = props => {
         }
     }
 
-    const deleteHandler = url => {
-        setImgToDisplay(imgToDisplay.filter(el => el !== url))
+    const deleteHandler = (id, param) => {
+        if(param === 2){
+            setImgToDisplay(imgToDisplay.filter(el => el !== id))
+        }
+        else if(param===1) {
+            setServerImg(serverImg.filter(el => el.id !== id))
+            axios('http://104.248.230.108/api/product/images ', {
+                method: 'delete',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                },
+                data: {file_id: id}
+            })
+        }
     }
 
     return (
@@ -61,7 +74,7 @@ const ProductImage = props => {
             </div>
             <form onSubmit={e => e.preventDefault()}>
                 {
-                    props.images.map((el, i) => {
+                    serverImg.map((el, i) => {
                         return (
                             <div
                                 className="product-image__image-block" key={i}>
@@ -71,7 +84,7 @@ const ProductImage = props => {
                                             <TransparentButton
                                                 width={'40%'}
                                                 height={'45px'}
-                                                onClick={() => deleteHandler(el)}
+                                                onClick={() => deleteHandler(el.id, 1)}
                                             >Удалить</TransparentButton>
                                         </div>
                                         <img src={el.url} alt=""/>
@@ -103,7 +116,7 @@ const ProductImage = props => {
                                             <TransparentButton
                                                 width={'40%'}
                                                 height={'45px'}
-                                                onClick={() => deleteHandler(el)}
+                                                onClick={() => deleteHandler(el, 2)}
                                             >Удалить</TransparentButton>
                                         </div>
                                         <img src={el} alt=""/>
