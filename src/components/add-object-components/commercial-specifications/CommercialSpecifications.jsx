@@ -16,7 +16,6 @@ import './commercial-specifications.css'
 const CommercialSpecifications = props => {
     const {state, setState, sendObject, options, addObjectLoading} = props
     const [rooms, setRooms] = useState({ storey: 0, storeys: 0 })
-
     const [phoneCounter, setPhoneCount] = useState({
         hasPhone: false,
         dontHasPhone: false,
@@ -106,6 +105,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, subcategoryOptions: bool})}
                             onClick={el => setSelect(el, 'subcategorySearch', 'subcategory')}
                             onChange={e => setSelect(e.target.value, 'subcategorySearch', 'subcategory')}
+                            onEnter={e => setSelect(e, 'subcategorySearch', 'subcategory')}
                     />
                     <FormInput labelValue={'Год постройки'} width={'100%'} margin={'10px 0 0 0'}
                                value={state.building_year}
@@ -145,6 +145,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool})}
                             onClick={el => setSelect(el, 'lavatorySearch', 'lavatory')}
                             onChange={e => setSelect(e.target.value, 'lavatorySearch', 'lavatory')}
+                            onEnter={e => setSelect(e, 'lavatorySearch', 'lavatory')}
                     />
                     <Select label={'Материал стен'} margin={'10px 0 0'}
                             value={wallsSearch || state.walls_material}
@@ -153,6 +154,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool})}
                             onClick={el => setSelect(el, 'wallsSearch', 'walls_material')}
                             onChange={e => setSelect(e.target.value, 'wallsSearch', 'walls_material')}
+                            onEnter={e => setSelect(e, 'wallsSearch', 'walls_material')}
                     />
                     <Select label={'Водоснабжение'} margin={'10px 0 0'}
                             value={waterSearch || state.water}
@@ -161,6 +163,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, waterOptions: bool})}
                             onClick={el => setSelect(el, 'waterSearch', 'water')}
                             onChange={e => setSelect(e.target.value, 'waterSearch', 'water')}
+                            onEnter={e => setSelect(e, 'waterSearch', 'water')}
                     />
                     <Select label={'Канализация'} margin={'10px 0 0'}
                             value={sewerageSearch || state.sewerage}
@@ -169,6 +172,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, sewerageOptions: bool})}
                             onClick={el => setSelect(el, 'sewerageSearch', 'sewerage')}
                             onChange={e => setSelect(e.target.value, 'sewerageSearch', 'sewerage')}
+                            onEnter={e => setSelect(e, 'sewerageSearch', 'sewerage')}
                     />
                     <Select label={'Газ'} margin={'10px 0 0'}
                             value={gasSearch || state.gas}
@@ -177,6 +181,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, gasOptions: bool})}
                             onClick={el => setSelect(el, 'gasSearch', 'gas')}
                             onChange={e => setSelect(e.target.value, 'gasSearch', 'gas')}
+                            onEnter={e => setSelect(e, 'gasSearch', 'gas')}
                     />
                     <Select label={'Отопление'} margin={'10px 0 0'}
                             value={heatingSearch || state.heating}
@@ -185,6 +190,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, heatingOptions: bool})}
                             onClick={el => setSelect(el, 'heatingSearch', 'heating')}
                             onChange={e => setSelect(e.target.value, 'heatingSearch', 'heating')}
+                            onEnter={e => setSelect(e, 'heatingSearch', 'heating')}
                     />
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
@@ -218,6 +224,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, electroOptions: bool})}
                             onClick={el => setSelect(el, 'electroSearch', 'electro')}
                             onChange={e => setSelect(e.target.value, 'electroSearch', 'electro')}
+                            onEnter={e => setSelect(e, 'electroSearch', 'electro')}
                     />
                     <FormInput labelValue={'Количество соток'} width={'100%'} margin={'10px 0 0 0'}
                                value={state.area}
@@ -233,6 +240,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, trimOptions: bool})}
                             onClick={el => setSelect(el, 'trimSearch', 'trim_style')}
                             onChange={e => setSelect(e.target.value, 'trimSearch', 'trim_style')}
+                            onEnter={e => setSelect(e, 'trimSearch', 'trim_style')}
                     />
                     <p>Юр. адресс</p>
                     <ul className={'specifications__has-phone'}>
@@ -265,6 +273,7 @@ const CommercialSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, additionalOptions: bool})}
                             onClick={el => setSelect(el, 'additionalSearch', 'additional')}
                             onChange={e => setSelect(e.target.value, 'additionalSearch', 'additional')}
+                            onEnter={e => setSelect(e, 'additionalSearch', 'additional')}
                     />
                 </div>
             </div>

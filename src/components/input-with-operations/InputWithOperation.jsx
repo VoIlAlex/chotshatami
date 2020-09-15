@@ -19,13 +19,13 @@ const InputWithOperations = props => {
         >
             <label>{props.label}</label>
             <div className="input-operation">
-                <div className="minus" onClick={() => subHandler()}><p id="minus"><Minus /></p></div>
+                <div className="minus" onClick={() => subHandler()}><Minus /></div>
                 <input
                     type="text"
                     value={props.value}
                     onChange={e => props.clickHandler( [props.name],Number(e.target.value))}
                 />
-                <div className="plus"><p id="plus" onClick={() => addHandler()}><Plus /></p></div>
+                <div className="plus" onClick={() => addHandler()}><Plus /></div>
             </div>
         </div>
     )

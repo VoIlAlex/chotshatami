@@ -176,6 +176,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, floorOptions: bool})}
                             onClick={el => setSelect(el, 'floorSearch', 'floor_type')}
                             onChange={e => setSelect(e.target.value, 'floorSearch', 'floor_type')}
+                            onEnter={e => setSelect(e, 'floorSearch', 'floor_type')}
                     />
                     <Select label={'Санузел'}
                             value={lavatorySearch || state.lavatory}
@@ -184,6 +185,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, lavatoryOptions: bool})}
                             onClick={el => setSelect(el, 'lavatorySearch', 'lavatory')}
                             onChange={e => setSelect(e.target.value, 'lavatorySearch', 'lavatory')}
+                            onEnter={e => setSelect(e, 'lavatorySearch', 'lavatory')}
                     />
                     <Select label={'Балкон'}
                             value={balconySearch || state.balcony}
@@ -192,14 +194,16 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, balconyOptions: bool})}
                             onClick={el => setSelect(el, 'balconySearch', 'balcony')}
                             onChange={e => setSelect(e.target.value, 'balconySearch', 'balcony')}
+                            onEnter={e => setSelect(e, 'balconySearch', 'balcony')}
                     />
                     <Select label={'Материал крыши'}
-                            value={roofSearch || state.walls_material}
-                            list={filterOptions(options, 'walls_material', roofSearch)}
+                            value={roofSearch || state.roof_material}
+                            list={filterOptions(options, 'roof_material', roofSearch)}
                             showSelect={showSelect.roofOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, roofOptions: bool})}
                             onClick={el => setSelect(el, 'roofSearch', 'roof_material')}
                             onChange={e => setSelect(e.target.value, 'roofSearch', 'roof_material')}
+                            onEnter={e => setSelect(e, 'roofSearch', 'roof_material')}
                     />
                     <Select label={'Материал стен'}
                             value={wallsSearch || state.walls_material}
@@ -208,6 +212,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, wallsMaterialOptions: bool})}
                             onClick={el => setSelect(el, 'wallsSearch', 'walls_material')}
                             onChange={e => setSelect(e.target.value, 'wallsSearch', 'walls_material')}
+                            onEnter={e => setSelect(e, 'wallsSearch', 'walls_material')}
                     />
                     <FormInput margin={'15px 0 0'} labelValue={'Готовность в %'} width={'100%'}
                                value={state.building_percent}
@@ -255,6 +260,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, waterOptions: bool})}
                             onClick={el => setSelect(el, 'waterSearch', 'water')}
                             onChange={e => setSelect(e.target.value, 'waterSearch', 'water')}
+                            onEnter={e => setSelect(e, 'waterSearch', 'water')}
                     />
                     <Select label={'Канализация'}
                             value={sewerageSearch || state.sewer}
@@ -263,6 +269,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, sewerageOptions: bool})}
                             onClick={el => setSelect(el, 'sewerageSearch', 'sewerage')}
                             onChange={e => setSelect(e.target.value, 'sewerageSearch', 'sewerage')}
+                            onEnter={e => setSelect(e, 'sewerageSearch', 'sewerage')}
                     />
                     <Select label={'Газ'}
                             value={gasSearch || state.gas}
@@ -271,6 +278,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, gasOptions: bool})}
                             onClick={el => setSelect(el, 'gasSearch', 'gas')}
                             onChange={e => setSelect(e.target.value, 'gasSearch', 'gas')}
+                            onEnter={e => setSelect(e, 'gasSearch', 'gas')}
                     />
                     <Select label={'Отопление'}
                             value={heatingSearch || state.heating}
@@ -279,6 +287,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, heatingOptions: bool})}
                             onClick={el => setSelect(el, 'heatingSearch', 'heating')}
                             onChange={e => setSelect(e.target.value, 'heatingSearch', 'heating')}
+                            onEnter={e => setSelect(e, 'heatingSearch', 'heating')}
                     />
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
@@ -314,6 +323,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, electroOptions: bool})}
                             onClick={el => setSelect(el, 'electroSearch', 'electro')}
                             onChange={e => setSelect(e.target.value, 'electroSearch', 'electro')}
+                            onEnter={e => setSelect(e, 'electroSearch', 'electro')}
                     />
                     <Select label={'Направление от города'}
                             value={directionSearch || state.direction_name}
@@ -321,7 +331,9 @@ const SuburbanSpecifications = props => {
                             showSelect={showSelect.directionOptions}
                             setShowSelect={bool => setShowSelect({...showSelect, directionOptions: bool})}
                             onClick={el => setSelect(el, 'directionSearch', 'direction_name')}
-                            onChange={e => setSelect(e.target.value, 'directionSearch', 'direction_name')}/>
+                            onChange={e => setSelect(e.target.value, 'directionSearch', 'direction_name')}
+                            onEnter={e => setSelect(e, 'directionSearch', 'direction_name')}
+                    />
                     <FormInput margin={'15px 0 0'} labelValue={'Расстояние от МКАД'} width={'100%'}
                                value={state.town_distance}
                                onChange={e => setState({
@@ -343,6 +355,7 @@ const SuburbanSpecifications = props => {
                             setShowSelect={bool => setShowSelect({...showSelect, plateOptions: bool })}
                             onClick={el => setSelect(el, 'plateSearch', 'plate')}
                             onChange={e => setSelect(e.target.value, 'plateSearch', 'plate')}
+                            onEnter={e => setSelect(e, 'plateSearch', 'plate')}
                     />
                 </div>
             </div>

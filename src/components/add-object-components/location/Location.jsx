@@ -59,6 +59,12 @@ const Location = props => {
                                 setSearchFieldCountry(e.target.value)
                                 setState({...stateLocationCategory, state_country: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldCountry(e)
+                                setState({...stateLocationCategory, state_country: e})
+                                filterRegion(e)
+                            }}
+                            name
                     />
                     <Select
                         label={'Область'}
@@ -74,6 +80,11 @@ const Location = props => {
                             setSearchFieldRegion(e.target.value)
                             setState({...stateLocationCategory, state_region_name: e.target.value})
                         }}
+                        onEnter={e => {
+                            setSearchFieldRegion(e.name)
+                            setState({...stateLocationCategory, state_region_name: e.name})
+                        }}
+                        name
                     />
                     <FormInput
                         margin={'15px 0 0'}

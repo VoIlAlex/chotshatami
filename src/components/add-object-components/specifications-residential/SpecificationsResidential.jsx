@@ -166,6 +166,10 @@ const SpecificationsResidential = props => {
                                 setSearchFieldOption({...searchFieldOption, floorSearch: e.target.value})
                                 setState({...stateSpecificationsResidential, floor_type: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, floorSearch: e})
+                                setState({...stateSpecificationsResidential, floor_type: e})
+                            }}
                     />
                     <Select label={'Санузел'}
                             value={lavatorySearch || stateSpecificationsResidential.lavatory}
@@ -179,6 +183,10 @@ const SpecificationsResidential = props => {
                             onChange={e => {
                                 setSearchFieldOption({...searchFieldOption, lavatorySearch: e.target.value})
                                 setState({...stateSpecificationsResidential, lavatory: e.target.value})
+                            }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, lavatorySearch: e})
+                                setState({...stateSpecificationsResidential, lavatory: e})
                             }}
                     />
                     <Select label={'Балкон'}
@@ -194,6 +202,10 @@ const SpecificationsResidential = props => {
                                 setSearchFieldOption({...searchFieldOption, balconySearch: e.target.value})
                                 setState({...stateSpecificationsResidential, balcony: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, balconySearch: e})
+                                setState({...stateSpecificationsResidential, balcony: e})
+                            }}
                     />
                     <Select label={'Ремонт'}
                             value={repairSearch || stateSpecificationsResidential.repair_state}
@@ -208,6 +220,10 @@ const SpecificationsResidential = props => {
                                 setSearchFieldOption({...searchFieldOption, repairSearch: e.target.value})
                                 setState({...stateSpecificationsResidential, repair_state: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, repairSearch: e})
+                                setState({...stateSpecificationsResidential, repair_state: e})
+                            }}
                     />
                     <Select label={'Материал стен'}
                             value={wallsSearch || stateSpecificationsResidential.walls_material}
@@ -221,6 +237,10 @@ const SpecificationsResidential = props => {
                             onChange={e => {
                                 setSearchFieldOption({...searchFieldOption, wallsSearch: e.target.value})
                                 setState({...stateSpecificationsResidential, walls_material: e.target.value})
+                            }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, wallsSearch: e})
+                                setState({...stateSpecificationsResidential, walls_material: e})
                             }}
                     />
                     <p>Домашний телефон</p>
@@ -262,6 +282,10 @@ const SpecificationsResidential = props => {
                             onChange={e => {
                                 setSearchFieldOption({...searchFieldOption, plateSearch: e.target.value})
                                 setState({...stateSpecificationsResidential, plate: e.target.value})
+                            }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, plateSearch: e})
+                                setState({...stateSpecificationsResidential, plate: e})
                             }}
                     />
                 </div>

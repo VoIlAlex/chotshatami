@@ -179,6 +179,10 @@ const RentSpecifications = props => {
                                 setSearchFieldOption({...searchFieldOption, floorSearch: e.target.value})
                                 setState({...state, floor_type: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, floorSearch: e})
+                                setState({...state, floor_type: e})
+                            }}
                     />
                     <Select label={'Санузел'}
                             value={lavatorySearch || state.lavatory}
@@ -192,6 +196,10 @@ const RentSpecifications = props => {
                             onChange={e => {
                                 setSearchFieldOption({...searchFieldOption, lavatorySearch: e.target.value})
                                 setState({...state, lavatory: e.target.value})
+                            }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, lavatorySearch: e})
+                                setState({...state, lavatory: e})
                             }}
                     />
                     <Select label={'Балкон'}
@@ -207,6 +215,10 @@ const RentSpecifications = props => {
                                 setSearchFieldOption({...searchFieldOption, balconySearch: e.target.value})
                                 setState({...state, balcony: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, balconySearch: e})
+                                setState({...state, balcony: e})
+                            }}
                     />
                     <Select label={'Ремонт'}
                             value={repairSearch || state.repair_state}
@@ -221,6 +233,10 @@ const RentSpecifications = props => {
                                 setSearchFieldOption({...searchFieldOption, repairSearch: e.target.value})
                                 setState({...state, repair_state: e.target.value})
                             }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, repairSearch: e})
+                                setState({...state, repair_state: e})
+                            }}
                     />
                     <Select label={'Материал стен'}
                             value={wallsSearch || state.walls_material}
@@ -234,6 +250,10 @@ const RentSpecifications = props => {
                             onChange={e => {
                                 setSearchFieldOption({...searchFieldOption, wallsSearch: e.target.value})
                                 setState({...state, walls_material: e.target.value})
+                            }}
+                            onEnter={e => {
+                                setSearchFieldOption({...searchFieldOption, wallsSearch: e})
+                                setState({...state, walls_material: e})
                             }}
                     />
                     <p>Домашний телефон</p>

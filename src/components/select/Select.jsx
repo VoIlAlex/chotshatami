@@ -1,11 +1,22 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 
 import {ReactComponent as InputArrow} from '../../asserts/input-arrow.svg'
 import './select.css'
 
 const Select = props => {
     const ref = useRef(null);
+    const [active, setActive] = useState(0)
 
+    const handleKeyDown = e => {
+        if (e.keyCode === 38 && active > 0) {
+            setActive( active => active - 1)
+        } else if (e.keyCode === 40 && active < props.list.length - 1) {
+            setActive( active =>  active + 1)
+        } else if(e.key==='Enter') {
+            props.onEnter(props.list[active])
+            props.setShowSelect(false)
+        }
+    }
     return (
         <div className="select" style={{margin: props.margin}}>
             <label>{props.label}</label>
@@ -13,6 +24,7 @@ const Select = props => {
                 <input type="text"
                        ref={ref}
                        value={props.value}
+                       onKeyDown={ handleKeyDown }
                        className={'select__input'}
                        onChange={e => {
                            props.onChange(e)
@@ -21,12 +33,12 @@ const Select = props => {
 
                 />
                 {
-                    props.showSelect && <div className="select__options">
+                    props.showSelect && <div className="select__options" >
                         {
                             props.list && props.list.map((el, i) => (
                                 <div
                                     key={i}
-                                    className="select__option"
+                                    className={`${active===i?'hover':''} select__option`}
                                     onClick={() => {
                                         props.onClick(el)
                                         props.setShowSelect(false)
