@@ -25,11 +25,9 @@ const Select = props => {
                        ref={ref}
                        value={props.value}
                        onKeyDown={ handleKeyDown }
+                       onFocus={() => props.setShowSelect(true)}
                        className={'select__input'}
-                       onChange={e => {
-                           props.onChange(e)
-                           props.setShowSelect(true)
-                       }}
+                       onChange={e => props.onChange(e)}
 
                 />
                 {
@@ -44,7 +42,7 @@ const Select = props => {
                                         props.setShowSelect(false)
                                     }}
                                 >
-                                    <p>{el.name? el.name: el}</p>
+                                    <p>{el}</p>
                                 </div>
                             ))
                         }

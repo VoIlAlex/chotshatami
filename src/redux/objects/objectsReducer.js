@@ -93,17 +93,20 @@ const initialState = {
 const objectReduces = (state = initialState, action) => {
     switch (action.type) {
         //fetch all objects
+        case actionTypes.FETCH_PRODUCTS_BY_STRING:
         case actionTypes.START_FETCH_OBJECTS:
             return {
                 ...state,
                 fetchObjectsLoading: true
             }
+        case actionTypes.FETCH_PRODUCTS_BY_STRING_FAILURE:
         case actionTypes.FAILURE_FETCH_OBJECTS:
             return {
                 ...state,
                 fetchObjectsLoading: false,
                 fetchObjectsError: action.payload
             }
+        case actionTypes.FETCH_PRODUCTS_BY_STRING_SUCCESS:
         case actionTypes.SUCCESS_FETCH_OBJECTS:
             return {
                 ...state,

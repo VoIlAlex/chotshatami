@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {connect} from 'react-redux'
+import React, { useState } from 'react'
 
-import { startFetchCountries, startFetchRegions } from "../../../redux/location/locationActions";
 import Backdrop from "../../backdrop/Backdrop";
 import HeadComponent from "../../head-component/HeadComponent";
 import Select from "../../select/Select";
@@ -9,27 +7,19 @@ import FormInput from "../../form-input/FormInput";
 import './location.css'
 
 const type = ['г.', 'аг.', 'гп.', 'д.', 'пгт.', 'рп.', 'с.', 'снп.']
+const regionsList = ['Брестская область', 'Витебская область', 'Гомельская область', 'Гродненская область', 'Минская область', 'Могилевская область']
 
 const Location = props => {
     const { setState, stateLocationCategory } = props
-    useEffect(() => {
-        props.startFetchCountries()
-        props.startFetchRegions()
-    }, [])
-
     const [searchFieldCountry, setSearchFieldCountry] = useState( '')
     const [searchFieldRegion, setSearchFieldRegion] = useState('')
     const [showCountrySelect, setShowCountrySelect] = useState(false)
     const [showRegionSelect, setShowRegionSelect] = useState(false)
-    const [filteredRegions, setFilteredRegions] = useState()
-    const filteredCountries = props.countries.filter(country => country.name.toLowerCase().includes(searchFieldCountry))
-    const filterRegion = el => {
-        setFilteredRegions(props.regions.filter(region => el.iso === region.codes.iso.split('-')[0]))
-    }
-
+    const filterRegions = regionsList.filter(region => region.toLowerCase().includes(searchFieldRegion.toLowerCase()))
     return (
         <>
             { showCountrySelect && <Backdrop onClick={setShowCountrySelect}/> }
+            { showRegionSelect && <Backdrop onClick={setShowRegionSelect}/> }
             <div className="location">
                 <HeadComponent
                     width={'90%'}
@@ -46,14 +36,13 @@ const Location = props => {
                 />
                 <div className="location__selects">
                     <Select label={'Страна'}
-                            value={searchFieldCountry.name || stateLocationCategory.state_country }
-                            list={filteredCountries}
+                            value={searchFieldCountry || stateLocationCategory.state_country }
+                            list={['Беларусь']}
                             showSelect={showCountrySelect}
                             setShowSelect={setShowCountrySelect}
                             onClick={el => {
                                 setSearchFieldCountry(el)
-                                setState({...stateLocationCategory, state_country: el.name})
-                                filterRegion(el)
+                                setState({...stateLocationCategory, state_country: el})
                             }}
                             onChange={e => {
                                 setSearchFieldCountry(e.target.value)
@@ -62,29 +51,26 @@ const Location = props => {
                             onEnter={e => {
                                 setSearchFieldCountry(e)
                                 setState({...stateLocationCategory, state_country: e})
-                                filterRegion(e)
                             }}
-                            name
                     />
                     <Select
                         label={'Область'}
-                        value={searchFieldRegion.name || stateLocationCategory.state_region_name}
-                        list={filteredRegions}
+                        value={searchFieldRegion || stateLocationCategory.state_region_name}
+                        list={filterRegions}
                         showSelect={showRegionSelect}
                         setShowSelect={setShowRegionSelect}
                         onClick={el => {
                             setSearchFieldRegion(el)
-                            setState({...stateLocationCategory, state_region_name: el.name})
+                            setState({...stateLocationCategory, state_region_name: el})
                         }}
                         onChange={e => {
                             setSearchFieldRegion(e.target.value)
                             setState({...stateLocationCategory, state_region_name: e.target.value})
                         }}
                         onEnter={e => {
-                            setSearchFieldRegion(e.name)
-                            setState({...stateLocationCategory, state_region_name: e.name})
+                            setSearchFieldRegion(e)
+                            setState({...stateLocationCategory, state_region_name: e})
                         }}
-                        name
                     />
                     <FormInput
                         margin={'15px 0 0'}
@@ -148,14 +134,4 @@ const Location = props => {
     )
 }
 
-const mapStateToProps = state => ({
-    countries: state.location.countries,
-    regions: state.location.regions
-})
-
-const mapDispatchToProps = dispatch => ({
-    startFetchCountries: () => dispatch(startFetchCountries()),
-    startFetchRegions: () => dispatch(startFetchRegions())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Location)
+export default Location

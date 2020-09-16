@@ -366,7 +366,7 @@ const SuburbanSpecifications = props => {
                             <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={() =>props.newBuilding? sendObject(15): sendObject(7)}
+                                onClick={() => props.newBuilding ? sendObject(15): sendObject(7)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

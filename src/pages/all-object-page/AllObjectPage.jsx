@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 
-import {fetchObjectsStartAsync} from "../../redux/objects/objectsActions";
+import {fetchObjectsStartAsync, fetchObjectsByStringStartAsync} from "../../redux/objects/objectsActions";
 import {ReactComponent as Loader} from "../../asserts/loader.svg";
 import HeadComponent from "../../components/head-component/HeadComponent";
 import PaginationBlock from "../../components/all-objet-components/pagination-block/PaginationBlock";
@@ -12,7 +12,7 @@ import PagePagination from "../../components/all-objet-components/page-paginatio
 import './all-object-page.css'
 
 const AllObjectPage = props => {
-    const {history, width, margin, objects, fetchObjectsLoading, fetchObjectsStartAsync} = props
+    const {history, width, margin, objects, fetchObjectsLoading, fetchObjectsStartAsync, fetchObjectsByStringStartAsync} = props
     const [page, setPage] = useState(objects.page-1)
     const [numberElements, setNumberElements] = useState(objects.per_page)
     const [sortName, setSortName] = useState('id')
@@ -45,9 +45,13 @@ const AllObjectPage = props => {
                 btnWidth={'55%'}
                 btnHeight={'50px'}
                 buttonValue={'Добавить объект'}
-                onClick={() => history.push('/add_object')}
+                onClick={() => history.push('/categories')}
             />
-            <PaginationBlock numberElements={objects.per_page} setNumberElements={setNumberElements}/>
+            <PaginationBlock numberElements={objects.per_page}
+                             setNumberElements={setNumberElements}
+                             setPage={setPage}
+                             fetchObjectsByStringStartAsync={fetchObjectsByStringStartAsync}
+            />
             <ObjectTable  sortName={sortName} setSortName={setSortName}
                           objects={objects.items} loading={fetchObjectsLoading}
                           direction={direction} directionHandler={directionHandler}
@@ -68,7 +72,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchObjectsStartAsync: (token, page, page_size, sort_name, dir) => dispatch(fetchObjectsStartAsync(token, page, page_size, sort_name, dir))
+    fetchObjectsStartAsync: (token, page, page_size, sort_name, dir) => dispatch(fetchObjectsStartAsync(token, page, page_size, sort_name, dir)),
+    fetchObjectsByStringStartAsync: (string, cb) => dispatch(fetchObjectsByStringStartAsync(string, cb))
 })
 
 export default compose(

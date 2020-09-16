@@ -196,3 +196,35 @@ export const clearUpdateObject = () => dispatch => {
         type: actionTypes.CLEAR_UPDATE_OBJECT
     })
 }
+
+
+//@Route    GET :/api/product?string=<string>
+//@Access   Private
+//@Desc     get objects
+const objectsFetchByStringStart = () => ({
+    type: actionTypes.FETCH_PRODUCTS_BY_STRING
+})
+
+const objectsFetchByStringFailure = error => ({
+    type: actionTypes.FETCH_PRODUCTS_BY_STRING_FAILURE,
+    payload: error
+})
+
+const objectsFetchByStringSuccess = objects => ({
+    type: actionTypes.FETCH_PRODUCTS_BY_STRING_SUCCESS,
+    payload: objects
+})
+
+export const fetchObjectsByStringStartAsync = (string, cb) => {
+    return async dispatch => {
+        dispatch(objectsFetchByStringStart())
+        await fetch(`http://104.248.230.108/api/products?search=${string}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+            .then(res => res.json()).then(json => dispatch(objectsFetchByStringSuccess(json))).then(_ =>cb())
+            .catch(err => dispatch(objectsFetchByStringFailure(err.message)))
+    }
+}

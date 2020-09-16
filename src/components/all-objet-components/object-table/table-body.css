@@ -20,6 +20,10 @@ tbody .tbody-address{
     font-size: 13.5px;
 }
 
+tbody .tbody-address:hover {
+    cursor: pointer;
+}
+
 tbody .tbody-agent h4{
     margin: 5px 0 0 7px;
     padding: 0;
@@ -55,12 +59,40 @@ tbody .tbody-category_status{
     margin-left: 7px;
 }
 
-tbody .tbody-category .tbody-category__red{
+tbody .tbody-category__red{
     background: #EF5350;
 }
 
-tbody .tbody-category .tbody-category__blue{
+tbody .tbody-category__blue{
     background: #26C6DA;
+}
+
+tbody .tbody-category__pink{
+    background: #EF5350;
+}
+
+tbody .tbody-category__yellow {
+    background: #FFCA28;
+}
+
+tbody .tbody-category__white {
+    background: #E7F7FB;
+}
+
+tbody .tbody-category__grey {
+    background: #343A40;
+}
+
+tbody .tbody-category__green {
+    background: #197348;
+}
+
+tbody .tbody-category__dark-blue {
+    background: #101477;
+}
+
+tbody .tbody-category__red {
+    background: #731919;
 }
 
 tbody .tbody-options{
@@ -83,4 +115,6 @@ tbody .tbody-options__option{
 
 .tbody-date {
     font-size: 13.5px;
+    text-align: left;
+    padding-left: 16px;
 }

@@ -47,13 +47,16 @@ const AddObjectPage = props => {
     useEffect(() => {
         options.map(el => props.startFetchOptionsAsync(props.token, el))
     }, [props.updateObjectState])
+
     const {width, margin} = props
     let main, add, id;
+
     if (props.updateObjectState) {
         main = reverseAccordance(props.updateObjectState.parent).split(', ')[0]
         add = reverseAccordance(props.updateObjectState.parent).split(', ')[1]
         id = props.updateObjectState.id
     }
+
     const [mainCategory, setMainCategory] = useState(accodance[props.location.mainCategory] || accodance[main] || '')
     const [additionalCategory, setAdditionalCategory] = useState(accodance[props.location.additionalCategory] || accodance[add] || '')
     const [settlementType, setSettlementType] = useState(props.updateObjectState === null ? '' : props.updateObjectState.town_type)

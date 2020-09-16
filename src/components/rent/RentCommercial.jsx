@@ -102,15 +102,6 @@ const RentCommercial = props => {
                     reverse
                 />
                 <div className="specifications__inf">
-                    <Select label={'Подкатегория'} margin={'0'}
-                            value={subcategorySearch }
-                            list={filterOptions(options, 'subcategory', subcategorySearch)}
-                            showSelect={showSelect.subcategoryOptions}
-                            setShowSelect={bool => setShowSelect({...showSelect, subcategoryOptions: bool})}
-                            onClick={el => setSelect(el, 'subcategorySearch', 'subcategory')}
-                            onChange={e => setSelect(e.target.value, 'subcategorySearch', 'subcategory')}
-                            onEnter={e => setSelect(e, 'subcategorySearch', 'subcategory')}
-                    />
                     <FormInput labelValue={'Год постройки'} width={'100%'} margin={'10px 0 0 0'}
                                value={state.building_year || state.building_year}
                                onChange={e => setState({

@@ -2,7 +2,7 @@ import React from 'react'
 
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
-import {ReactComponent as Loader} from "../../../asserts/loader.svg";
+import { ReactComponent as Loader } from "../../../asserts/loader.svg";
 import './object-table.css'
 
 const ObjectTable = props => {

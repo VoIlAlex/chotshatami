@@ -1,7 +1,9 @@
 import React from 'react'
 
 import {ReactComponent as ArrowDown} from '../../../asserts/down.svg'
+import {ReactComponent as ArrowDownDark} from '../../../asserts/down-dark.svg'
 import {ReactComponent as ArrowUp} from '../../../asserts/up.svg'
+import {ReactComponent as ArrowUpDark} from '../../../asserts/up-dark.svg'
 import './table-head.css'
 
 const accordance = {
@@ -12,8 +14,11 @@ const accordance = {
     'Добавлено':'createdon'
 }
 
+const columns = ['№', 'Объект', 'Агент', 'Категория', 'ID', 'Добавлено', 'Действия']
+
 const TableHead = props => {
-    const columns = ['№', 'Объект', 'Агент', 'Категория', 'ID', 'Добавлено', 'Действия']
+    const {direction, sortName} = props
+    console.log(props.sortName)
     return (
         <thead>
         <tr>
@@ -27,11 +32,23 @@ const TableHead = props => {
                             props.setSortName(accordance[column])
                             props.dirHandler(props.direction)
                         }}>
-                            <p>
-                                <ArrowDown className={'arrow-up'}/>
-                                <ArrowUp className={'arrow-down'}/>
-                                {column}
-                            </p>
+                            {
+                                sortName === accordance[column]? direction==='ASC'?
+                                    <p>
+                                        <ArrowDown className={'arrow-up'}/>
+                                        <ArrowUpDark className={'arrow-down'}/>
+                                        {column}
+                                    </p>:
+                                    <p>
+                                        <ArrowDownDark className={'arrow-up'}/>
+                                        <ArrowUp className={'arrow-down'}/>
+                                        {column}
+                                    </p>: <p>
+                                    <ArrowDown className={'arrow-up'}/>
+                                    <ArrowUp className={'arrow-down'}/>
+                                    {column}
+                                </p>
+                            }
                         </td>
                     )
                 }

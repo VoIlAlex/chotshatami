@@ -5,7 +5,7 @@ import FormInput from "../../form-input/FormInput";
 import './CEO-data.css'
 
 const CEOData = props => {
-    const { stateCeoCategory, setState} = props
+    const { stateCeoCategory, setState } = props
     return (
         <div className="ceo-data">
             <HeadComponent

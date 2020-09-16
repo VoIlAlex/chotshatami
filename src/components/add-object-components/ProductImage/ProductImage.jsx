@@ -87,7 +87,7 @@ const ProductImage = props => {
                                                 onClick={() => deleteHandler(el.id, 1)}
                                             >Удалить</TransparentButton>
                                         </div>
-                                        <img src={el.url} alt=""/>
+                                        <img src={`https://urielt.by/${el.url}`} alt=""/>
                                     </div>
                                 </div>
                                 <div className="option-block">

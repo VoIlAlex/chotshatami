@@ -30,7 +30,11 @@ const TableBody = props => {
                 objects.map((el, i) => (
                     <tr key={i} className={'tbody-tr'}>
                         <td>{props.page * props.numberElements + i + 1}</td>
-                        <td className={'tbody-address'}>{el.state_region_name} / {el.town_name} / {el.street_name} д.{el.house_number}</td>
+                        <td className={'tbody-address'}
+                            onClick={() => fetchObjectStartAsync(token, el.id, () => {
+                                props.history.push('/add_object')
+                            })}
+                        >{el.state_region_name} / {el.town_name} / {el.street_name} д.{el.house_number}</td>
                         <td>
                             <div className="tbody-agent">
                                 <h4>{el.contact_name}</h4>
@@ -38,25 +42,35 @@ const TableBody = props => {
                             </div>
                         </td>
                         <td className={'tbody-category'}>
-                            <div className={
-                                `${reverseAccordance(el.parent) === 'Продажа, Жилая' ?
-                                    'tbody-category__blue' : 'tbody-category__red'} tbody-category_status`
-                            }/>
-                            <p>{reverseAccordance(el.parent)}</p>
+                            {reverseAccordance(el.parent) === 'Продажа, Жилая' && <div className={'tbody-category__blue tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Продажа, Загородная' && <div className={'tbody-category__pink tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Продажа, Коммерческая' && <div className={'tbody-category__yellow tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Аренда, Жилая' && <div className={'tbody-category__white tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Аренда, Загородная' && <div className={'tbody-category__grey tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Аренда, Коммерческая' && <div className={'tbody-category__green tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Строительство, Новостройки' && <div className={'tbody-category__dark-blue tbody-category_status'}/>}
+                            {reverseAccordance(el.parent) === 'Строительство, Недвижимость за рубежом' && <div className={'tbody-category__red tbody-category_status'}/>}
+                            <p>{reverseAccordance(el.parent)==='Строительство, Недвижимость за рубежом'?'Строительство, За рубежом':  reverseAccordance(el.parent)}</p>
                         </td>
                         <td>{el.id}</td>
                         <td className={'tbody-date'}>{timestampToDate(el.createdon)}</td>
                         <td className="tbody-options">
-                            <EditLogo className={'tbody-options__option'}
+                            <p title={'Редактировать'}><EditLogo className={'tbody-options__option'}
                                       onClick={() => fetchObjectStartAsync(token, el.id, () => {
                                           props.history.push('/add_object')
                                       })}
-                            />
-                            <NoViewLogo className={'tbody-options__option'}/>
-                            <DeleteLogo onClick={() => objectDeleteStartAsync(token, el.id)}
-                                        className={'tbody-options__option'}/>
-                            <ShareLogo className={'tbody-options__option'}/>
-
+                            /></p>
+                            {
+                                el.published? <p title={'Скрыть'}><NoViewLogo className={'tbody-options__option'}/></p>
+                                : <p title={'Опубликовать'}><ViewLogo className={'tbody-options__option'}/></p>
+                            }
+                            <p title={'Удалить'}><DeleteLogo onClick={() => objectDeleteStartAsync(token, el.id)}
+                                        className={'tbody-options__option'}
+                            /></p>
+                            <p title={'Смотреть на сайте'}>
+                                <ShareLogo className={'tbody-options__option'}
+                                            onClick={() => {window.open(`http://urielt.by/${el.uri}`)}}
+                            /></p>
                         </td>
                     </tr>
                 ))
