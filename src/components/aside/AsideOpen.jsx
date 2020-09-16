@@ -18,7 +18,7 @@ const AsideOpen = props => {
     return (
         <aside className={`${show? 'open-slide-in-right':'open-slide-in-left'} full-menu`}>
             <p><MenuClose className={'menu-btn'} onClick={() => setShow(!show)}/><Logo/></p>
-            <TransparentButton margin={'0 0 42px 0'}><a href="https://urielt.by/">Просмотр сайта</a></TransparentButton>
+            <TransparentButton margin={'0 0 42px 0'}onClick={() => {window.open('https://urielt.by/')}}>Просмотр сайта</TransparentButton>
             <AsideButton selected={location == '/all_objects'}>
                 {
                     location == '/all_objects' ?

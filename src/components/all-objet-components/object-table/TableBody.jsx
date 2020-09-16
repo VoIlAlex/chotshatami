@@ -28,7 +28,7 @@ const TableBody = props => {
             <tbody>
             {
                 objects.map((el, i) => (
-                    <tr key={i}>
+                    <tr key={i} className={'tbody-tr'}>
                         <td>{props.page * props.numberElements + i + 1}</td>
                         <td className={'tbody-address'}>{el.state_region_name} / {el.town_name} / {el.street_name} д.{el.house_number}</td>
                         <td>
