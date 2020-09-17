@@ -18,3 +18,17 @@ tr {
     justify-content: center;
     align-items: center;
 }
+
+.not-found {
+
+    width: 90%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.not-found p {
+    width: 100%;
+    font-family: Roboto;
+    font-size: 20px;
+}

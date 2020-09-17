@@ -30,6 +30,7 @@ const HeadComponent = props => {
                                 width={props.btnWidth}
                                 height={props.btnHeight}
                                 onClick={props.onClick?() => props.onClick(): ()=>{}}
+                                disabled={props.disabled}
                             >{props.buttonValue}</TransparentButton>
                         </>):(
                         <>
@@ -37,6 +38,7 @@ const HeadComponent = props => {
                                 width={props.btnWidth}
                                 height={props.btnHeight}
                                 onClick={props.onClick?() => props.onClick(): ()=>{}}
+                                disabled={props.disabled}
                             >{props.buttonValue}</TransparentButton>
                             <p onClick={() => props.history.push('/all_objects')}>{props.p}</p>
                         </>

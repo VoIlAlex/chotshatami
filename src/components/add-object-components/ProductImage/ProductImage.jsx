@@ -59,6 +59,7 @@ const ProductImage = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'40%'}
                 optionMargin={'0'}
+                disabled={props.disabled}
                 onClick={() => fileSubmit()}
                 reverse
             />

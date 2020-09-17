@@ -174,10 +174,16 @@ const objectUpdateSuccess = msg => ({
     payload: msg
 })
 
-export const objectUpdateStartAsync = (object, token, category) => {
+export const objectUpdateStartAsync = (object, token, category, cb = () => {}) => {
+    let url
+    if(category ==='product'){
+        url = `http://104.248.230.108/api/${category}`
+    } else {
+        url = `http://104.248.230.108/api/patch/${category}`
+    }
     return async dispatch => {
         dispatch(objectUpdateStart())
-        await axios(`http://104.248.230.108/api/patch/${category}`, {
+        await axios(url, {
             data: object,
             method: "patch",
             headers: {
@@ -186,6 +192,7 @@ export const objectUpdateStartAsync = (object, token, category) => {
             }
         })
             .then(res => dispatch(objectUpdateSuccess(res)))
+            .then(_ => cb())
             .catch(err => dispatch(objectUpdateFailure(err.message)))
     }
 }

@@ -18,7 +18,8 @@ const Status = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'50%'}
                 optionMargin={'0'}
-                onClick={() => props.updateObject({...stateStatusCategory, id: props.id}, props.token, 'state')}
+                disabled={props.disabled}
+                onClick={() => props.updateObject({...stateStatusCategory, id: props.id}, props.token, 'status')}
                 reverse
             />
             <ul className={'status__buttons'}>

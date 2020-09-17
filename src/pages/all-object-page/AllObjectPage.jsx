@@ -17,6 +17,7 @@ const AllObjectPage = props => {
     const [numberElements, setNumberElements] = useState(objects.per_page)
     const [sortName, setSortName] = useState('id')
     const [direction, setDirection] = useState('ASC')
+    const [searchStr, setSearchStr] = useState('')
 
     useEffect(() => {
         fetchObjectsStartAsync(props.token, page, numberElements, sortName, direction)
@@ -51,11 +52,14 @@ const AllObjectPage = props => {
                              setNumberElements={setNumberElements}
                              setPage={setPage}
                              fetchObjectsByStringStartAsync={fetchObjectsByStringStartAsync}
+                             searchStr={searchStr}
+                             setSearchStr={setSearchStr}
             />
             <ObjectTable  sortName={sortName} setSortName={setSortName}
                           objects={objects.items} loading={fetchObjectsLoading}
                           direction={direction} directionHandler={directionHandler}
                           page={objects.page} numberElements={objects.per_page}
+                          searchStr={searchStr}
             />
             <PagePagination numberElements={objects.per_page} length={objects.items.length}
                             setPage={setPage} pages={objects.pages} page={objects.page}

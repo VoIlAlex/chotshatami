@@ -5,7 +5,7 @@ import FormInput from "../../form-input/FormInput";
 import './main-inf.css'
 
 const MainInf = props => {
-    const { mainCategory, additionalCategory, setAdditionalCategory, setMainCategory,stateMainCategory, setState } = props
+    const { mainCategory, additionalCategory, setAdditionalCategory, setMainCategory, stateMainCategory, setState } = props
     return (
         <div className="main-inf">
             <HeadComponent
@@ -18,6 +18,7 @@ const MainInf = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'40%'}
                 optionMargin={'0'}
+                disabled={props.disabled}
                 onClick={() => props.updateObject({...stateMainCategory, id: props.id}, props.token, 'basic')}
                 reverse
             />

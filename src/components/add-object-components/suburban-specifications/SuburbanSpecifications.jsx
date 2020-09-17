@@ -107,6 +107,7 @@ const SuburbanSpecifications = props => {
                     btnHeight={'40px'}
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
+                    disabled={props.disabled}
                     optionMargin={'0 -15px 0 0'}
                     onClick={() => props.updateObject({...state, id: props.id}, props.token, 'characteristics')}
                     reverse
@@ -366,7 +367,8 @@ const SuburbanSpecifications = props => {
                             <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={() => props.newBuilding ? sendObject(15): sendObject(7)}
+                                onClick={() => props.newBuilding ? sendObject(15, state):
+                                    sendObject(7, state)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

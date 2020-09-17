@@ -43,7 +43,7 @@ const accodance = {
 }
 
 const AddObjectPage = props => {
-
+    let disabled = !props.location.state
     useEffect(() => {
         options.map(el => props.startFetchOptionsAsync(props.token, el))
     }, [props.updateObjectState])
@@ -67,7 +67,7 @@ const AddObjectPage = props => {
     }
 
     const [stateMainCategory, setStateMainCategory] = useState(() => {
-        let clone = { ...mainCategoryState }
+        let clone = {...mainCategoryState}
         if (props.updateObjectState === null) {
             return {...mainCategoryState}
         }
@@ -77,7 +77,7 @@ const AddObjectPage = props => {
     })
 
     const [stateCeoCategory, setStateCeoCategory] = useState(() => {
-        let clone = { ...ceoCategoryState }
+        let clone = {...ceoCategoryState}
         if (props.updateObjectState === null) {
             return {...ceoCategoryState}
         }
@@ -97,9 +97,9 @@ const AddObjectPage = props => {
     })
 
     const [stateSellerCategory, setStateSellerCategory] = useState(() => {
-        let clone = { ...sellerState }
+        let clone = {...sellerState}
         if (props.updateObjectState === null) {
-            return { ...sellerState }
+            return {...sellerState}
         }
         Object.keys(clone)
             .map(key => props.updateObjectState.hasOwnProperty(key) ? clone[key] = props.updateObjectState[key] : '')
@@ -157,7 +157,7 @@ const AddObjectPage = props => {
     })
     //Аренда загородная
     const [stateSuburbanRent, setStateSuburbanRent] = useState(() => {
-        let clone = { ...rentSuburbanState }
+        let clone = {...rentSuburbanState}
         if (props.updateObjectState === null) {
             return rentSuburbanState
         }
@@ -167,7 +167,7 @@ const AddObjectPage = props => {
     })
     //Аренда коммерческая
     const [stateCommercialRent, setStateCommercialRent] = useState(() => {
-        let clone = { ...rentCommercialState }
+        let clone = {...rentCommercialState}
         if (props.updateObjectState === null) {
             return rentCommercialState
         }
@@ -176,10 +176,33 @@ const AddObjectPage = props => {
         return clone
     })
 
-    const sendObject = parent => {
+    const defineState = param => {
+        switch (param) {
+            case 6:
+                return stateSpecificationsResidential
+            case 7:
+                return stateSpecificationsSuburban
+            case 8:
+                return stateSpecificationsCommercial
+            case 10:
+                return stateSpecificationsRent
+            case 11:
+                return stateSuburbanRent
+            case 12:
+                return stateCommercialRent
+            case 14:
+                return stateSpecificationsResidential
+            case 15:
+                return stateSpecificationsSuburban
+            default:
+                return stateSpecificationsResidential
+        }
+    }
+
+    const sendObject = (parent, state) => {
         props.objectAddStartAsync({
             ...stateMainCategory, ...stateCeoCategory, ...stateStatusCategory, parent: parent,
-            ...stateSellerCategory, ...stateLocationCategory, ...stateSpecificationsResidential
+            ...stateSellerCategory, ...stateLocationCategory, ...state
         }, props.token)
     }
 
@@ -202,6 +225,13 @@ const AddObjectPage = props => {
                     btnWidth={'50%'}
                     btnHeight={'50px'}
                     buttonValue={'Сохранить'}
+                    onClick={() => props.objectUpdateStartAsync(
+                        {
+                            ...stateMainCategory, ...stateCeoCategory, ...stateStatusCategory, id,
+                            ...stateSellerCategory, ...stateLocationCategory, ...defineState(props.updateObjectState.parent)
+                        },
+                        props.token, 'product')}
+                    disabled={disabled}
                 />
                 <div className="add-object-page__forms">
                     <div className="add-object-page__forms-left">
@@ -214,19 +244,22 @@ const AddObjectPage = props => {
                             setAdditionalCategory={setAdditionalCategory}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />
                         <ProductImage
-                            id={id? id: null}
+                            id={id ? id : null}
                             token={props.token}
-                            images={props.updateObjectState? props.updateObjectState.product_files:[]}
+                            disabled={disabled}
+                            images={props.updateObjectState ? props.updateObjectState.product_files : []}
                         />
                         <CEOData
                             stateCeoCategory={stateCeoCategory}
                             setState={setStateCeoCategory}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />
                     </div>
                     <div className="add-object-page__forms-right">
@@ -235,14 +268,16 @@ const AddObjectPage = props => {
                             setState={setStateStatusCategory}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />
                         <Seller
                             stateSellerCategory={stateSellerCategory}
                             setState={setStateSellerCategory}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />
                         <Location
                             stateLocationCategory={stateLocationCategory}
@@ -251,7 +286,8 @@ const AddObjectPage = props => {
                             cityTypeHandler={cityTypeHandler}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />
 
                         {/*Продажа*/}
@@ -262,7 +298,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />}
                         {mainCategory === 'sale' && additionalCategory === 'suburban' &&
                         <SuburbanSpecifications
@@ -271,7 +308,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />}
                         {mainCategory === 'sale' && additionalCategory === 'commercial' &&
                         <CommercialSpecifications
@@ -280,7 +318,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />}
 
                         {/*Аренда*/}
@@ -291,7 +330,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />}
                         {mainCategory === 'rent' && additionalCategory === 'suburban' &&
                         <RentSubUrban
@@ -300,7 +340,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />}
                         {mainCategory === 'rent' && additionalCategory === 'commercial' &&
                         <RentCommercial
@@ -309,7 +350,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            disabled={disabled}
+                            id={id ? id : null}
                         />}
 
                         {/*Строительство*/}
@@ -320,7 +362,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            id={id ? id : null}
+                            disabled={disabled}
                             newBuilding
                         />}
                         {mainCategory === 'building' && additionalCategory === 'abroad' &&
@@ -330,7 +373,8 @@ const AddObjectPage = props => {
                             sendObject={sendObject}
                             updateObject={props.objectUpdateStartAsync}
                             token={props.token}
-                            id={id? id: null}
+                            id={id ? id : null}
+                            disabled={disabled}
                             abroad
                         />}
                     </div>

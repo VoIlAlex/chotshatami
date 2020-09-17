@@ -93,6 +93,7 @@ const CommercialSpecifications = props => {
                     btnHeight={'40px'}
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
+                    disabled={props.disabled}
                     optionMargin={'0 -15px 0 0'}
                     onClick={() => props.updateObject({...state, id: props.id}, props.token, 'characteristics')}
                     reverse
@@ -275,7 +276,7 @@ const CommercialSpecifications = props => {
                             <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={() => sendObject(8)}
+                                onClick={() => sendObject(8, state)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

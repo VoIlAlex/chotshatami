@@ -74,6 +74,7 @@ const SpecificationsResidential = props => {
                     buttonValue={'Сохранить'}
                     optionWidth={'50%'}
                     optionMargin={'0'}
+                    disabled={props.disabled}
                     onClick={() => props.updateObject({...stateSpecificationsResidential, id: props.id}, props.token, 'characteristics')}
                     reverse
                 />
@@ -297,7 +298,8 @@ const SpecificationsResidential = props => {
                             <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={() =>props.abroad? sendObject(14):sendObject(6)}
+                                onClick={() =>props.abroad? sendObject(14,stateSpecificationsResidential):
+                                    sendObject(6, stateSpecificationsResidential)}
                             >Добавить объект</TransparentButton>
                         </>
                     )

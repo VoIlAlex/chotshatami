@@ -18,6 +18,7 @@ const Seller = props => {
                 buttonValue={'Сохранить'}
                 optionWidth={'50%'}
                 optionMargin={'0'}
+                disabled={props.disabled}
                 onClick={() => props.updateObject({...stateSellerCategory, id: props.id}, props.token, 'seller')}
                 reverse
             />

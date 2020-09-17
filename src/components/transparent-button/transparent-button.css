@@ -18,3 +18,14 @@
 .transparent-button:hover{
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
+
+.transparent-button.disabled {
+    cursor: default;
+    border: 3px solid #c4c4c4;
+    color: #c4c4c4;
+    box-shadow: none;
+}
+
+.transparent-button.disabled:hover {
+    box-shadow: none;
+}

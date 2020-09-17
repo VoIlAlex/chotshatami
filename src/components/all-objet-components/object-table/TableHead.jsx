@@ -18,7 +18,6 @@ const columns = ['№', 'Объект', 'Агент', 'Категория', 'ID'
 
 const TableHead = props => {
     const {direction, sortName} = props
-    console.log(props.sortName)
     return (
         <thead>
         <tr>

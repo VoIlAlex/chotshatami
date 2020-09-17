@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {compose} from 'redux'
 
-import {objectDeleteStartAsync, fetchObjectStartAsync} from "../../../redux/objects/objectsActions";
+import {objectDeleteStartAsync, fetchObjectStartAsync, objectUpdateStartAsync, fetchObjectsStartAsync } from "../../../redux/objects/objectsActions";
 import {reverseAccordance} from "../../../utils/accodanceCategory";
 import {ReactComponent as ShareLogo} from '../../../asserts/share.svg'
 import {ReactComponent as NoViewLogo} from '../../../asserts/no-view.svg'
@@ -20,14 +20,21 @@ function timestampToDate(ts) {
 }
 
 const TableBody = props => {
-    const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading, objectLoading} = props
+    const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading, objectLoading,
+        objectUpdateStartAsync, updateObjectLoading } = props
+    const [tableElements, setTableElements] = useState(objects)
+    const changeView = id => {
+       console.log(setTableElements(tableElements.map(object => object.id === id? ({...object, ['published']: !object.published}): object)))
+    }
+
     return (
         <>
             {loading && <GlobalHook value={'Удаление...'}/>}
             {objectLoading && <GlobalHook value={'Загрузка объекта...'}/>}
+            {updateObjectLoading && <GlobalHook value={'Обновление...'}/>}
             <tbody>
             {
-                objects.map((el, i) => (
+                tableElements.map((el, i) => (
                     <tr key={i} className={'tbody-tr'}>
                         <td>{props.page * props.numberElements + i + 1}</td>
                         <td className={'tbody-address'}
@@ -57,12 +64,24 @@ const TableBody = props => {
                         <td className="tbody-options">
                             <p title={'Редактировать'}><EditLogo className={'tbody-options__option'}
                                       onClick={() => fetchObjectStartAsync(token, el.id, () => {
-                                          props.history.push('/add_object')
+                                          props.history.push({pathname:'/add_object', state: {update: true}})
                                       })}
                             /></p>
                             {
-                                el.published? <p title={'Скрыть'}><NoViewLogo className={'tbody-options__option'}/></p>
-                                : <p title={'Опубликовать'}><ViewLogo className={'tbody-options__option'}/></p>
+                                el.published? <p title={'Скрыть'}>
+                                        <NoViewLogo className={'tbody-options__option'}
+                                                    onClick={() => objectUpdateStartAsync({
+                                                        id: el.id,
+                                                        published: false
+                                                    }, token, 'status', () => changeView(el.id))}
+                                        /></p>
+                                : <p title={'Опубликовать'}>
+                                        <ViewLogo className={'tbody-options__option'}
+                                                  onClick={() => objectUpdateStartAsync({
+                                                      id: el.id,
+                                                      published: true
+                                                  }, token, 'status', () => changeView(el.id))}
+                                        /></p>
                             }
                             <p title={'Удалить'}><DeleteLogo onClick={() => objectDeleteStartAsync(token, el.id)}
                                         className={'tbody-options__option'}
@@ -83,12 +102,15 @@ const TableBody = props => {
 const mapStateToProps = state => ({
     loading: state.object.deleteObjectLoading,
     token: state.user.loginSuccess,
-    objectLoading: state.object.fetchObjectLoading
+    objectLoading: state.object.fetchObjectLoading,
+    updateObjectLoading: state.object.updateObjectLoading
 })
 
 const mapDispatchToProps = dispatch => ({
     objectDeleteStartAsync: (token, id) => dispatch(objectDeleteStartAsync(token, id)),
-    fetchObjectStartAsync: (token, id, cb) => dispatch(fetchObjectStartAsync(token, id, cb))
+    fetchObjectStartAsync: (token, id, cb) => dispatch(fetchObjectStartAsync(token, id, cb)),
+    objectUpdateStartAsync: (object, token, category, cb) => dispatch(objectUpdateStartAsync(object, token, category, cb)),
+    fetchObjectsStartAsync:() => dispatch(fetchObjectsStartAsync)
 })
 
 export default compose(

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import './pagination-block.css'
 
 const PaginationBlock = props => {
-    const {numberElements, setNumberElements, fetchObjectsByStringStartAsync, setPage} = props
+    const {numberElements, setNumberElements, fetchObjectsByStringStartAsync, setPage, searchStr, setSearchStr} = props
     const [pageNumber, setPageNumber] = useState({
         25: true,
         50: false,
@@ -11,8 +11,6 @@ const PaginationBlock = props => {
         250: false,
         500: false
     })
-
-    const [searchStr, setSearchStr] = useState('')
 
     const pageHandler = value => {
         const newState = {}

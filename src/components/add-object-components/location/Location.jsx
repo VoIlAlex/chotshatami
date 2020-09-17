@@ -30,6 +30,7 @@ const Location = props => {
                     btnHeight={'40px'}
                     buttonValue={'Сохранить'}
                     optionWidth={'55%'}
+                    disabled={props.disabled}
                     optionMargin={'0'}
                     onClick={() => props.updateObject({...stateLocationCategory, id: props.id}, props.token, 'location')}
                     reverse
