@@ -18,7 +18,7 @@ const AllObjectPage = props => {
     const [sortName, setSortName] = useState('id')
     const [direction, setDirection] = useState('ASC')
     const [searchStr, setSearchStr] = useState('')
-    console.log(page)
+
     useEffect(() => {
         fetchObjectsStartAsync(props.token, page, numberElements, sortName, direction)
     }, [fetchObjectsStartAsync, page, numberElements, sortName, direction])

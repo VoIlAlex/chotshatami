@@ -225,7 +225,7 @@ const SuburbanSpecifications = props => {
                     <p>Кол-во уровней</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={levels['0'] ? 'active' : ''}
+                            className={levels['0'] || state.building_levels =='0' ? 'active' : ''}
                             onClick={() => {
                                 levelsHandler('0')
                                 setState({...state, building_levels: '0'})
@@ -233,21 +233,21 @@ const SuburbanSpecifications = props => {
                         >0
                         </li><li
                             style={{borderRight: 'none'}}
-                            className={levels['1'] ? 'active' : ''}
+                            className={levels['1'] || state.building_levels=='1' ? 'active' : ''}
                             onClick={() => {
                                 levelsHandler('1')
                                 setState({...state, building_levels: '1'})
                             }}
                         >1</li>
                         <li
-                            className={levels['2'] ? 'active' : ''}
+                            className={levels['2'] || state.building_levels=='2' ? 'active' : ''}
                             onClick={() => {
                                 levelsHandler('2')
                                 setState({...state, building_levels: '2'})
                             }}
                         >2</li>
                         <li
-                            className={levels['3'] ? 'active' : ''}
+                            className={levels['3'] || state.building_levels=='3' ? 'active' : ''}
                             onClick={() => {
                                 levelsHandler('3')
                                 setState({...state, building_levels: '3'})
@@ -293,7 +293,7 @@ const SuburbanSpecifications = props => {
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={phoneCounter.hasPhone ? 'active' : ''}
+                            className={phoneCounter.hasPhone==='Есть'  || state.phone ==='Есть'? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('hasPhone')
                                 setState({...state, phone: 'Есть'})
@@ -301,7 +301,7 @@ const SuburbanSpecifications = props => {
                         >Есть
                         </li>
                         <li
-                            className={phoneCounter.dontHasPhone ? 'active' : ''}
+                            className={phoneCounter.dontHasPhone==='Нет' || state.phone ==='Нет' ? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('dontHasPhone')
                                 setState({...state, phone: 'Нету'})
@@ -309,7 +309,7 @@ const SuburbanSpecifications = props => {
                         >Нет
                         </li>
                         <li
-                            className={phoneCounter.twoOrMorePhone ? 'active' : ''}
+                            className={phoneCounter.twoOrMorePhone || state.phone ==='2 и более' ? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('twoOrMorePhone')
                                 setState({...state, phone: 'Два и более'})

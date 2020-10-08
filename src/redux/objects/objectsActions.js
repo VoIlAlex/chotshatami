@@ -101,7 +101,6 @@ const objectsFetchSuccess = objects => ({
 })
 
 export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id',order_direction='DESC') => {
-    console.log(page)
     return async dispatch => {
         dispatch(objectsFetchStart())
         await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
@@ -149,7 +148,7 @@ export const objectDeleteStartAsync = (token, id) => {
     }
 }
 
-//@Route    GET :/api/product?id=<id>
+//@Route    GET /api/product?id=<id>
 //@Access   Private
 //@Desc     Get single object
 const objectFetchStart = () => ({
@@ -223,6 +222,7 @@ export const objectUpdateStartAsync = (object, token, category, cb = () => {}) =
                     dispatch(removeSuccess())
                 }, 1500)
             })
+            .then(_ => cb())
             .catch(err => dispatch(objectUpdateFailure(err.message)))
     }
 }

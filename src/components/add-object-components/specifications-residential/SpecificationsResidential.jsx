@@ -247,7 +247,7 @@ const SpecificationsResidential = props => {
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={phoneCounter.hasPhone ? 'active' : ''}
+                            className={phoneCounter.hasPhone==='Есть'  || stateSpecificationsResidential.phone ==='Есть'? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('hasPhone')
                                 setState({...stateSpecificationsResidential, phone: 'Есть'})
@@ -255,7 +255,7 @@ const SpecificationsResidential = props => {
                         >Есть
                         </li>
                         <li
-                            className={phoneCounter.dontHasPhone ? 'active' : ''}
+                            className={phoneCounter.dontHasPhone==='Нет' || stateSpecificationsResidential.phone ==='Нет' ? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('dontHasPhone')
                                 setState({...stateSpecificationsResidential, phone: 'Нет'})
@@ -263,7 +263,7 @@ const SpecificationsResidential = props => {
                         >Нет
                         </li>
                         <li
-                            className={phoneCounter.twoOrMorePhone ? 'active' : ''}
+                            className={phoneCounter.twoOrMorePhone || stateSpecificationsResidential.phone ==='2 и более' ? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('twoOrMorePhone')
                                 setState({...stateSpecificationsResidential, phone: '2 и более'})

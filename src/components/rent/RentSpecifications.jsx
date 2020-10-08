@@ -260,7 +260,7 @@ const RentSpecifications = props => {
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={phoneCounter.hasPhone ? 'active' : ''}
+                            className={phoneCounter.hasPhone==='Есть'  || state.phone ==='Есть'? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('hasPhone')
                                 setState({...state, phone: 'Есть'})
@@ -268,7 +268,7 @@ const RentSpecifications = props => {
                         >Есть
                         </li>
                         <li
-                            className={phoneCounter.dontHasPhone ? 'active' : ''}
+                            className={phoneCounter.dontHasPhone==='Нет' || state.phone ==='Нет' ? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('dontHasPhone')
                                 setState({...state, phone: 'Нет'})
@@ -276,7 +276,7 @@ const RentSpecifications = props => {
                         >Нет
                         </li>
                         <li
-                            className={phoneCounter.twoOrMorePhone ? 'active' : ''}
+                            className={phoneCounter.twoOrMorePhone || state.phone ==='2 и более' ? 'active' : ''}
                             onClick={() => {
                                 phoneCounterHandler('twoOrMorePhone')
                                 setState({...state, phone: '2 и более'})
@@ -287,7 +287,7 @@ const RentSpecifications = props => {
                     <p>Мебель</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={furniture.yes ? 'active' : ''}
+                            className={furniture.yes || state.furniture==='Есть' ? 'active' : ''}
                             onClick={()=> {
                                 furnitureHandler('yes')
                                 setState({...state, furniture: 'Есть'})
@@ -295,7 +295,7 @@ const RentSpecifications = props => {
                         >Есть
                         </li>
                         <li
-                            className={furniture.no ? 'active' : ''}
+                            className={furniture.no  || state.furniture==='Нет' ? 'active' : ''}
                             onClick={()=> {
                                 furnitureHandler('no')
                                 setState({...state, furniture: 'Нет'})
@@ -303,7 +303,7 @@ const RentSpecifications = props => {
                         >Нет
                         </li>
                         <li
-                            className={furniture.partially ? 'active' : ''}
+                            className={furniture.partially  || state.furniture==='Частично' ? 'active' : ''}
                             onClick={()=> {
                                 furnitureHandler('partially')
                                 setState({...state, furniture: 'Частично'})

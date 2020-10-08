@@ -187,21 +187,21 @@ const CommercialSpecifications = props => {
                     <p>Домашний телефон</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={phoneCounter.hasPhone ? 'active' : ''}
+                            className={phoneCounter.hasPhone==='Есть'  || state.phone ==='Есть'? 'active' : ''}
                             onClick={()=> {
                                 phoneCounterHandler('hasPhone')
                                 setState({...state, phone: 'Есть'})
                             }}
                         >Есть</li>
                         <li
-                            className={phoneCounter.dontHasPhone ? 'active' : ''}
+                            className={phoneCounter.dontHasPhone==='Нет' || state.phone ==='Нет' ? 'active' : ''}
                             onClick={()=> {
                                 phoneCounterHandler('dontHasPhone')
-                                setState({...state, phone: 'Нету'})
+                                setState({...state, phone: 'Нет'})
                             }}
                         >Нет</li>
                         <li
-                            className={phoneCounter.twoOrMorePhone ? 'active' : ''}
+                            className={phoneCounter.twoOrMorePhone || state.phone ==='2 и более' ? 'active' : ''}
                             onClick={()=> {
                                 phoneCounterHandler('twoOrMorePhone')
                                 setState({...state, phone: 'Два и более'})
@@ -237,14 +237,14 @@ const CommercialSpecifications = props => {
                     <p>Юр. адресс</p>
                     <ul className={'specifications__has-phone'}>
                         <li
-                            className={urFace.yes ? 'active' : ''}
+                            className={urFace.yes || state.jur_addr=='Есть' ? 'active' : ''}
                             onClick={() => {
                                 urFaceHandler('yes')
                                 setState({...state, jur_addr: 'Есть'})
                             }}
                         >Есть</li>
                         <li
-                            className={urFace.no ? 'active' : ''}
+                            className={urFace.no || state.jur_addr=='Нет' ? 'active' : ''}
                             onClick={() => {
                                 urFaceHandler('no')
                                 setState({...state, jur_addr: 'Нет'})
