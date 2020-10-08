@@ -13,15 +13,16 @@ import './all-object-page.css'
 
 const AllObjectPage = props => {
     const {history, width, margin, objects, fetchObjectsLoading, fetchObjectsStartAsync, fetchObjectsByStringStartAsync} = props
-    const [page, setPage] = useState(objects.page-1)
+    const [page, setPage] = useState( 0)
     const [numberElements, setNumberElements] = useState(objects.per_page)
     const [sortName, setSortName] = useState('id')
     const [direction, setDirection] = useState('ASC')
     const [searchStr, setSearchStr] = useState('')
-
+    console.log(page)
     useEffect(() => {
         fetchObjectsStartAsync(props.token, page, numberElements, sortName, direction)
     }, [fetchObjectsStartAsync, page, numberElements, sortName, direction])
+
 
     const directionHandler = dir => {
         if(dir==='ASC'){

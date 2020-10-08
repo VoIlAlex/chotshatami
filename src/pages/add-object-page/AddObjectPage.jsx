@@ -10,7 +10,12 @@ import {
 } from '../../utils/states'
 import {options} from "../../utils/optionsArray";
 import {reverseAccordance} from "../../utils/accodanceCategory";
-import {objectAddStartAsync, startFetchOptionsAsync, objectUpdateStartAsync} from "../../redux/objects/objectsActions";
+import {
+    objectAddStartAsync,
+    startFetchOptionsAsync,
+    objectUpdateStartAsync,
+    successOptions
+} from "../../redux/objects/objectsActions";
 import HeadComponent from "../../components/head-component/HeadComponent";
 import MainInf from "../../components/add-object-components/main-inf/MainInf";
 import ProductImage from "../../components/add-object-components/ProductImage/ProductImage";
@@ -20,6 +25,7 @@ import Seller from "../../components/add-object-components/seller/Seller";
 import RentSubUrban from "../../components/rent/RentSuburban";
 import RentSpecifications from "../../components/rent/RentSpecifications";
 import Location from "../../components/add-object-components/location/Location";
+import SuccessfulAdded from "../../components/successfull/SuccessfullAdded.componen";
 import SpecificationsResidential
     from "../../components/add-object-components/specifications-residential/SpecificationsResidential";
 import SuburbanSpecifications
@@ -212,6 +218,10 @@ const AddObjectPage = props => {
         </div>
     }
 
+    if(props.success){
+        return <SuccessfulAdded value={'Успешно'} />
+    }
+
     return (
         <>
             {props.addObjectLoading && <div className="add-object-page__center"><Loader/></div>}
@@ -387,6 +397,7 @@ const AddObjectPage = props => {
 const mapStateToProps = state => ({
     options: state.object.options,
     token: state.user.loginSuccess,
+    success: state.object.success,
     addObjectLoading: state.object.addObjectLoading,
     optionsLoading: state.object.optionsLoading,
     updateObjectLoading: state.object.updateObjectLoading,
@@ -396,7 +407,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     objectAddStartAsync: (object, token) => dispatch(objectAddStartAsync(object, token)),
     startFetchOptionsAsync: (token, option) => dispatch(startFetchOptionsAsync(token, option)),
-    objectUpdateStartAsync: (object, token, category) => dispatch(objectUpdateStartAsync(object, token, category))
+    objectUpdateStartAsync: (object, token, category) => dispatch(objectUpdateStartAsync(object, token, category)),
+    successOptions: () => dispatch(successOptions())
 })
 
 export default compose(

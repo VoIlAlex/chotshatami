@@ -80,6 +80,16 @@ const Location = props => {
                         value={stateLocationCategory.town_name || stateLocationCategory.town_name}
                         onChange={e => setState({...stateLocationCategory, town_name: e.target.value})}
                     />
+                    {
+                        stateLocationCategory.town_name === 'Минск' &&
+                        <FormInput
+                            margin={'15px 0 0'}
+                            width={'100%'}
+                            labelValue={'Название станции метро'}
+                            value={stateLocationCategory.metro || stateLocationCategory.metro}
+                            onChange={e => setState({...stateLocationCategory, metro: e.target.value})}
+                        />
+                    }
                 </div>
                 <p className={'location__type'}>Тип населенного пункта</p>
                 <ul className={'location__types'}>

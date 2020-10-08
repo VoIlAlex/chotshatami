@@ -1,6 +1,5 @@
 import React from 'react'
-import {NavLink} from "react-router-dom";
-import { Link } from 'react-router-dom'
+import {NavLink, useHistory} from "react-router-dom";
 
 import TransparentButton from "../transparent-button/TransparentButton";
 import AsideButton from "../aside-button/AsideButton";
@@ -14,11 +13,16 @@ import {ReactComponent as Options} from '../../asserts/options.svg'
 import './aside-open.css'
 
 const AsideOpen = props => {
+    const history = useHistory()
     const {location, show, setShow} = props
     return (
-        <aside className={`${show? 'open-slide-in-right':'open-slide-in-left'} full-menu`}>
-            <p><MenuClose className={'menu-btn'} onClick={() => setShow(!show)}/><Logo/></p>
-            <TransparentButton margin={'0 0 42px 0'}onClick={() => {window.open('https://urielt.by/')}}>Просмотр сайта</TransparentButton>
+        <aside className={`${show ? 'open-slide-in-right' : 'open-slide-in-left'} full-menu`}>
+            <p><MenuClose className={'menu-btn'} onClick={() => setShow(!show)}/>
+                <Logo className={'logo-aside'} onClick={() => history.push('/all_objects')}/>
+            </p>
+            <TransparentButton margin={'0 0 42px 0'} onClick={() => {
+                window.open('https://urielt.by/')
+            }}>Просмотр сайта</TransparentButton>
             <AsideButton selected={location == '/all_objects'}>
                 {
                     location == '/all_objects' ?
@@ -34,7 +38,7 @@ const AsideOpen = props => {
                         <AddCircleBlack className={'option-btn'}/>
                 }
                 <NavLink to={{
-                    pathname:'/categories',
+                    pathname: '/categories',
                     new: true
                 }}>Добавить объект</NavLink>
             </AsideButton>

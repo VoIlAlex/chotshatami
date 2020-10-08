@@ -298,7 +298,7 @@ const SpecificationsResidential = props => {
                             <p onClick={() => props.history.push('/all_objects')}>К списку</p>
                             <TransparentButton
                                 width={'38%'}
-                                onClick={() =>props.abroad? sendObject(14,stateSpecificationsResidential):
+                                onClick={() => props.abroad? sendObject(14,stateSpecificationsResidential):
                                     sendObject(6, stateSpecificationsResidential)}
                             >Добавить объект</TransparentButton>
                         </>

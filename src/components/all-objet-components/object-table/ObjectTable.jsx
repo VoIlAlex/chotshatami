@@ -23,7 +23,7 @@ const ObjectTable = props => {
                 props.objects.length ?
                     <TableBody page={props.page} objects={props.objects} numberElements={props.numberElements}/> :
                     <div className="not-found">
-                        <p>По запросу {props.searchStr} ничего не найдено</p>
+                        <p>Ничего не найдено</p>
                     </div>
             }
         </table>

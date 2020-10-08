@@ -11,6 +11,10 @@
     transform: translateX(0);
 }
 
+.logo-aside {
+    cursor: pointer;
+}
+
 /* aside animation */
 .open-slide-in-left {
     transform: translateX(-100%);

@@ -1,6 +1,7 @@
 import actionTypes from "./objectsTypes";
 
 const initialState = {
+    success: false,
     addObjectLoading: false,
     addObjectError: null,
     addObjectSuccess: null,
@@ -198,6 +199,16 @@ const objectReduces = (state = initialState, action) => {
             return {
                 ...state,
                 fetchObjectSuccess: null
+            }
+        case actionTypes.SHOW_SUCCESS:
+            return {
+                ...state,
+                success: true
+            }
+        case actionTypes.REMOVE_SUCCESS:
+            return {
+                ...state,
+                success: false
             }
         default:
             return state

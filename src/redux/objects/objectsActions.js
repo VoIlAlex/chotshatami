@@ -1,6 +1,23 @@
 import axios from 'axios'
 import actionTypes from "./objectsTypes";
 
+
+const showSuccess = () => ({
+    type: actionTypes.SHOW_SUCCESS
+})
+
+const removeSuccess = () => ({
+    type: actionTypes.REMOVE_SUCCESS
+})
+
+export const successOptions = () => {
+    showSuccess()
+    setInterval(() => {
+        removeSuccess()
+    }, 1000)
+}
+
+
 //@Route    POST
 //@Access   Private
 //@Desc     Add object
@@ -30,7 +47,13 @@ export const objectAddStartAsync = (object, token, cb) => {
             }
         })
             .then(res => dispatch(objectAddSuccess(res)))
-            .then(_ => cb())
+            .then(res => {
+                dispatch(showSuccess())
+
+                setInterval(() => {
+                    dispatch(removeSuccess())
+                }, 1500)
+            })
             .catch(err => dispatch(objectAddFailure(err.message)))
     }
 }
@@ -78,6 +101,7 @@ const objectsFetchSuccess = objects => ({
 })
 
 export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id',order_direction='DESC') => {
+    console.log(page)
     return async dispatch => {
         dispatch(objectsFetchStart())
         await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
