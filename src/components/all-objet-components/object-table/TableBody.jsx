@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {connect} from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {compose} from 'redux'
 
@@ -22,9 +22,10 @@ function timestampToDate(ts) {
 const TableBody = props => {
     const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading, objectLoading,
         objectUpdateStartAsync, updateObjectLoading } = props
+    const {items} = useSelector(state => state.object.fetchObjectsSuccess)
     const [tableElements, setTableElements] = useState(objects)
     const changeView = id => {
-       console.log(setTableElements(tableElements.map(object => object.id === id? ({...object, ['published']: !object.published}): object)))
+       setTableElements(tableElements.map(object => object.id === id? ({...object, ['published']: !object.published}): object))
     }
 
     return (
@@ -34,7 +35,7 @@ const TableBody = props => {
             {updateObjectLoading && <GlobalHook value={'Обновление...'}/>}
             <tbody>
             {
-                tableElements.map((el, i) => (
+                items.map((el, i) => (
                     <tr key={i} className={'tbody-tr'}>
                         <td>{props.page * props.numberElements + i + 1}</td>
                         <td className={'tbody-address'}

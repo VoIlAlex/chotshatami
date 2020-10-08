@@ -23,7 +23,6 @@ const AllObjectPage = props => {
         fetchObjectsStartAsync(props.token, page, numberElements, sortName, direction)
     }, [fetchObjectsStartAsync, page, numberElements, sortName, direction])
 
-
     const directionHandler = dir => {
         if(dir==='ASC'){
             setDirection('DESC')

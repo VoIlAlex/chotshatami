@@ -155,8 +155,7 @@ const objectReduces = (state = initialState, action) => {
             return {
                 ...state,
                 deleteObjectLoading: false,
-                fetchObjectsSuccess: {...state.fetchObjectsSuccess, items: state.fetchObjectsSuccess.items.filter(el => el.id !== action.payload)
-    }
+                fetchObjectsSuccess: {...state.fetchObjectsSuccess, items: state.fetchObjectsSuccess.items.filter(el => el.id !== action.payload)}
             }
         //fetch single object
         case actionTypes.FETCH_ONE_OBJECT_START:
