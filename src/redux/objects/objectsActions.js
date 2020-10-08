@@ -216,7 +216,13 @@ export const objectUpdateStartAsync = (object, token, category, cb = () => {}) =
             }
         })
             .then(res => dispatch(objectUpdateSuccess(res)))
-            .then(_ => cb())
+            .then(res => {
+                dispatch(showSuccess())
+
+                setInterval(() => {
+                    dispatch(removeSuccess())
+                }, 1500)
+            })
             .catch(err => dispatch(objectUpdateFailure(err.message)))
     }
 }
