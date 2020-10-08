@@ -132,7 +132,7 @@ const objectDeleteSuccess = id => ({
     payload: id
 })
 
-export const objectDeleteStartAsync = (token, id) => {
+export const objectDeleteStartAsync = (token, id, cb) => {
     return async dispatch => {
         dispatch(objectDeleteStart())
         await fetch(`http://104.248.230.108/api/product`, {
@@ -144,7 +144,12 @@ export const objectDeleteStartAsync = (token, id) => {
             body: JSON.stringify({ id })
         })
             .then(res => res.json()).then(json => dispatch(objectDeleteSuccess(id)))
+            .then(_ => cb())
             .catch(err => dispatch(objectDeleteFailure(err.message)))
+        // setTimeout(() => {
+        //     dispatch(objectDeleteSuccess(id))
+        //     cb()
+        // }, 2000)
     }
 }
 

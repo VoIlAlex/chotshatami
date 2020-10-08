@@ -36,7 +36,9 @@ const Seller = props => {
                            value={stateSellerCategory.email} onChange={e=>setState({...stateSellerCategory, email:e.target.value})}
                 />
                 <FormInput labelValue={'Цена в USD'}  width={'95%'} margin={'15px 0 15px 15px'}
-                           value={stateSellerCategory.price} onChange={e=>setState({...stateSellerCategory, price:e.target.value})}
+                           value={stateSellerCategory.price}
+                           onChange={e=>setState({...stateSellerCategory, price:e.target.value})}
+                           required={true}
                 />
             </div>
         </div>

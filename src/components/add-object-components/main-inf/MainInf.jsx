@@ -85,7 +85,9 @@ const MainInf = props => {
                 <label htmlFor="area">Описание</label>
                 <textarea id="area"
                           value={stateMainCategory.content}
-                          onChange={e => setState({...stateMainCategory, content:e.target.value})}/>
+                          onChange={e => setState({...stateMainCategory, content:e.target.value})}
+                          required={true}
+                />
             </div>
             <div className="main-inf__date-inputs">
                 <FormInput

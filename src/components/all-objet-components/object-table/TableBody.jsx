@@ -23,9 +23,14 @@ const TableBody = props => {
     const {objectDeleteStartAsync, objects, token, fetchObjectStartAsync, loading, objectLoading,
         objectUpdateStartAsync, updateObjectLoading } = props
     const {items} = useSelector(state => state.object.fetchObjectsSuccess)
-    const [tableElements, setTableElements] = useState(objects)
+    const [tableElements, setTableElements] = useState(items)
+
     const changeView = id => {
        setTableElements(tableElements.map(object => object.id === id? ({...object, ['published']: !object.published}): object))
+    }
+
+    const deleteOrder = id => {
+        setTableElements(tableElements.filter(object => object.id !== id))
     }
 
     return (
@@ -35,7 +40,7 @@ const TableBody = props => {
             {updateObjectLoading && <GlobalHook value={'Обновление...'}/>}
             <tbody>
             {
-                items.map((el, i) => (
+                tableElements.map((el, i) => (
                     <tr key={i} className={'tbody-tr'}>
                         <td>{props.page * props.numberElements + i + 1}</td>
                         <td className={'tbody-address'}
@@ -84,7 +89,12 @@ const TableBody = props => {
                                                   }, token, 'status', () => changeView(el.id))}
                                         /></p>
                             }
-                            <p title={'Удалить'}><DeleteLogo onClick={() => objectDeleteStartAsync(token, el.id)}
+                            <p title={'Удалить'}>
+                                <DeleteLogo onClick={() => objectDeleteStartAsync(
+                                    token,
+                                    el.id,
+                                    () => deleteOrder(el.id)
+                                )}
                                         className={'tbody-options__option'}
                             /></p>
                             <p title={'Смотреть на сайте'}>
@@ -108,7 +118,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    objectDeleteStartAsync: (token, id) => dispatch(objectDeleteStartAsync(token, id)),
+    objectDeleteStartAsync: (token, id, cb) => dispatch(objectDeleteStartAsync(token, id, cb)),
     fetchObjectStartAsync: (token, id, cb) => dispatch(fetchObjectStartAsync(token, id, cb)),
     objectUpdateStartAsync: (object, token, category, cb) => dispatch(objectUpdateStartAsync(object, token, category, cb)),
     fetchObjectsStartAsync:() => dispatch(fetchObjectsStartAsync)

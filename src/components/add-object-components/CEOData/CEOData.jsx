@@ -29,6 +29,7 @@ const CEOData = props => {
                 maxlength={'80'}
                 value={stateCeoCategory.pagetitle}
                 onChange={e => setState({...stateCeoCategory, pagetitle:e.target.value})}
+                required={true}
             />
             <FormInput
                 labelValue={'Ключевые слова (meta keywords)'}
