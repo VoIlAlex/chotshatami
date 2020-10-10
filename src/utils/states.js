@@ -169,5 +169,5 @@ export const ceoCategoryState = {
 }
 
 export const statusCategoryState = {
-    published: 0
+    published: 1
 }

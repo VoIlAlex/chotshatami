@@ -30,6 +30,7 @@ const CEOData = props => {
                 value={stateCeoCategory.pagetitle}
                 onChange={e => setState({...stateCeoCategory, pagetitle:e.target.value})}
                 required={true}
+                error={props.error}
             />
             <FormInput
                 labelValue={'Ключевые слова (meta keywords)'}

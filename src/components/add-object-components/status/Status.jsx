@@ -26,11 +26,11 @@ const Status = props => {
                 <li
                     className={stateStatusCategory.published===1?'selected':''}
                     onClick={() => setState({published:1})}
-                >Опубликованно</li>
+                >Опубликовано</li>
                 <li
                     className={stateStatusCategory.published===0?'selected':''}
                     onClick={() => setState({published:0})}
-                >Не опубликованно</li>
+                >Не опубликовано</li>
             </ul>
         </div>
     )

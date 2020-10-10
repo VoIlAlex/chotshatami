@@ -15,11 +15,11 @@ const FormInput = props => {
             <input
                 value={props.value}
                 name={props.name}
+                className={props.error? 'input_error': ''}
                 type={props.type || 'text'}
                 placeholder={props.placeholder}
                 maxLength={props.maxlength}
                 onChange={e => props.onChange(e)}
-                required={!!props.required}
             />
             { props.description && (<small className={'form-input__small description'}>{props.description}</small>) }
             { props.error && (<small className={'form-input__small error'}>{props.error}</small>)}

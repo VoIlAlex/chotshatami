@@ -84,6 +84,7 @@ const MainInf = props => {
             <div className="main-inf__textarea">
                 <label htmlFor="area">Описание</label>
                 <textarea id="area"
+                          className={props.error?'textarea_error': ''}
                           value={stateMainCategory.content}
                           onChange={e => setState({...stateMainCategory, content:e.target.value})}
                           required={true}

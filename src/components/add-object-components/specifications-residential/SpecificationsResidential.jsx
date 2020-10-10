@@ -293,16 +293,22 @@ const SpecificationsResidential = props => {
             </div>
             <div className="specifications__add-object">
                 {
-                    addObjectLoading ? <Loader/> : (
-                        <>
-                            <p onClick={() => props.history.push('/all_objects')}>К списку</p>
-                            <TransparentButton
-                                width={'38%'}
-                                onClick={() => props.abroad? sendObject(14,stateSpecificationsResidential):
-                                    sendObject(6, stateSpecificationsResidential)}
-                            >Добавить объект</TransparentButton>
-                        </>
-                    )
+                    props.error?
+                        <TransparentButton
+                            width={'38%'}
+                            disabled
+                        >Добавить объект</TransparentButton>
+                        :
+                        addObjectLoading ? <Loader/> : (
+                            <>
+                                <p onClick={() => props.history.push('/all_objects')}>К списку</p>
+                                <TransparentButton
+                                    width={'38%'}
+                                    onClick={() => props.abroad? sendObject(14,stateSpecificationsResidential):
+                                        sendObject(6, stateSpecificationsResidential)}
+                                >Добавить объект</TransparentButton>
+                            </>
+                        )
                 }
             </div>
         </>

@@ -66,6 +66,8 @@ const AddObjectPage = props => {
     const [mainCategory, setMainCategory] = useState(accodance[props.location.mainCategory] || accodance[main] || '')
     const [additionalCategory, setAdditionalCategory] = useState(accodance[props.location.additionalCategory] || accodance[add] || '')
     const [settlementType, setSettlementType] = useState(props.updateObjectState === null ? '' : props.updateObjectState.town_type)
+    const [error, setError] = useState(false)
+
     const cityTypeHandler = name => {
         const newState = {}
         Object.keys(settlementType).map(el => el === name ? newState[el] = true : newState[el] = false)
@@ -206,10 +208,19 @@ const AddObjectPage = props => {
     }
 
     const sendObject = (parent, state) => {
-        props.objectAddStartAsync({
-            ...stateMainCategory, ...stateCeoCategory, ...stateStatusCategory, parent: parent,
-            ...stateSellerCategory, ...stateLocationCategory, ...state
-        }, props.token)
+        if (stateMainCategory.content === '' ||
+            stateCeoCategory.pagetitle === '' ||
+            stateSellerCategory.price === ''
+        ) {
+            setError(true)
+        } else {
+            props.objectAddStartAsync({
+                ...stateMainCategory, ...stateCeoCategory, ...stateStatusCategory, parent: parent,
+                ...stateSellerCategory, ...stateLocationCategory, ...state
+            }, props.token)
+            setError(false)
+        }
+
     }
 
     if (props.optionsLoading) {
@@ -218,8 +229,8 @@ const AddObjectPage = props => {
         </div>
     }
 
-    if(props.success){
-        return <SuccessfulAdded value={'Успешно'} />
+    if (props.success) {
+        return <SuccessfulAdded value={'Успешно'}/>
     }
 
     return (
@@ -256,6 +267,7 @@ const AddObjectPage = props => {
                             token={props.token}
                             disabled={disabled}
                             id={id ? id : null}
+                            error={error}
                         />
                         <ProductImage
                             id={id ? id : null}
@@ -270,6 +282,7 @@ const AddObjectPage = props => {
                             token={props.token}
                             disabled={disabled}
                             id={id ? id : null}
+                            error={error}
                         />
                     </div>
                     <div className="add-object-page__forms-right">
@@ -288,6 +301,7 @@ const AddObjectPage = props => {
                             token={props.token}
                             disabled={disabled}
                             id={id ? id : null}
+                            error={error}
                         />
                         <Location
                             stateLocationCategory={stateLocationCategory}

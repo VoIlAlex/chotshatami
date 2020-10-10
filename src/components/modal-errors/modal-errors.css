@@ -1,0 +1,22 @@
+.modal-errors {
+    background: rgba(255, 255, 255,  1);
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 20px;
+    right: 400px
+}
+
+.modal-errors div {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-errors h3 {
+    font-family: 'Roboto';
+}
+
+.modal-errors p {
+    margin: 10px 0 10px 5px;
+}
