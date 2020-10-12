@@ -203,6 +203,11 @@ const objectUpdateSuccess = msg => ({
 })
 
 export const objectUpdateStartAsync = (object, token, category, cb = () => {}) => {
+    object.rooms = String(object.rooms)
+    object.room_to_sell = String(object.room_to_sell)
+    object.separate_rooms = String(object.separate_rooms)
+    object.storey = String(object.storey)
+    object.storeys = String(object.storeys)
     let url
     if(category ==='product'){
         url = `http://104.248.230.108/api/${category}`
