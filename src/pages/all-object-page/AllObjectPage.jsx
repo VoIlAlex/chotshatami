@@ -13,20 +13,20 @@ import './all-object-page.css'
 
 const AllObjectPage = props => {
     const {history, width, margin, objects, fetchObjectsLoading, fetchObjectsStartAsync, fetchObjectsByStringStartAsync} = props
-    const [page, setPage] = useState( 0)
+    const [page, setPage] = useState(0)
     const [numberElements, setNumberElements] = useState(objects.per_page)
     const [sortName, setSortName] = useState('id')
     const [direction, setDirection] = useState('ASC')
     const [searchStr, setSearchStr] = useState('')
 
     useEffect(() => {
-        fetchObjectsStartAsync(props.token, page, numberElements, sortName, direction)
+        fetchObjectsStartAsync(props.token, page, numberElements, sortName, direction, searchStr)
     }, [fetchObjectsStartAsync, page, numberElements, sortName, direction])
 
     const directionHandler = dir => {
-        if(dir==='ASC'){
+        if (dir === 'ASC') {
             setDirection('DESC')
-        }else if(dir==='DESC'){
+        } else if (dir === 'DESC') {
             setDirection('ASC')
         }
     }
@@ -53,13 +53,16 @@ const AllObjectPage = props => {
                              setPage={setPage}
                              fetchObjectsByStringStartAsync={fetchObjectsByStringStartAsync}
                              searchStr={searchStr}
+                             page={objects.page}
+                             sortName={sortName}
+                             dir={direction}
                              setSearchStr={setSearchStr}
             />
-            <ObjectTable  sortName={sortName} setSortName={setSortName}
-                          objects={objects.items} loading={fetchObjectsLoading}
-                          direction={direction} directionHandler={directionHandler}
-                          page={objects.page} numberElements={objects.per_page}
-                          searchStr={searchStr}
+            <ObjectTable sortName={sortName} setSortName={setSortName}
+                         objects={objects.items} loading={fetchObjectsLoading}
+                         direction={direction} directionHandler={directionHandler}
+                         page={objects.page} numberElements={objects.per_page}
+                         searchStr={searchStr}
             />
             <PagePagination numberElements={objects.per_page} length={objects.items.length}
                             setPage={setPage} pages={objects.pages} page={objects.page}
@@ -76,8 +79,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchObjectsStartAsync: (token, page, page_size, sort_name, dir) => dispatch(fetchObjectsStartAsync(token, page, page_size, sort_name, dir)),
-    fetchObjectsByStringStartAsync: (string, cb) => dispatch(fetchObjectsByStringStartAsync(string, cb))
+    fetchObjectsStartAsync: (token, page, page_size, sort_name, dir, searchStr) =>
+        dispatch(fetchObjectsStartAsync(token, page, page_size, sort_name, dir, searchStr)),
+    fetchObjectsByStringStartAsync: (string, page, page_size, sort_name, dir, cb) =>
+        dispatch(fetchObjectsByStringStartAsync(string, page, page_size, sort_name, dir, cb))
 })
 
 export default compose(

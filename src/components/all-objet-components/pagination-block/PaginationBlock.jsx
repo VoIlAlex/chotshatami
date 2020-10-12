@@ -3,7 +3,8 @@ import React, {useState} from 'react'
 import './pagination-block.css'
 
 const PaginationBlock = props => {
-    const {numberElements, setNumberElements, fetchObjectsByStringStartAsync, setPage, searchStr, setSearchStr} = props
+    const {numberElements, setNumberElements, fetchObjectsByStringStartAsync, setPage,
+        searchStr, setSearchStr, page, page_size, sortName, dir } = props
     const [pageNumber, setPageNumber] = useState({
         25: true,
         50: false,
@@ -22,7 +23,7 @@ const PaginationBlock = props => {
 
     const handleSearch = e => {
         if(e.key==='Enter'){
-            fetchObjectsByStringStartAsync(searchStr)
+            fetchObjectsByStringStartAsync(searchStr, page, numberElements, sortName, dir)
         }
     }
 

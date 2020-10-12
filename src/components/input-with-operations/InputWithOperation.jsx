@@ -22,7 +22,7 @@ const InputWithOperations = props => {
                 <div className="minus" onClick={() => subHandler()}><Minus /></div>
                 <input
                     type="text"
-                    value={props.value}
+                    value={props.value==null? 0 : props.value}
                     onChange={e => props.clickHandler( [props.name],Number(e.target.value))}
                 />
                 <div className="plus" onClick={() => addHandler()}><Plus /></div>

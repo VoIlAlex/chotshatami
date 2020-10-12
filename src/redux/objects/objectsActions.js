@@ -100,10 +100,11 @@ const objectsFetchSuccess = objects => ({
     payload: objects
 })
 
-export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id',order_direction='DESC') => {
+export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id', order_direction = 'DESC', search='') => {
     return async dispatch => {
         dispatch(objectsFetchStart())
-        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&order_by=${sort_name}&order_direction=${order_direction}`, {
+        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&
+            order_by=${sort_name}&order_direction=${order_direction}&search=${search}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -141,7 +142,7 @@ export const objectDeleteStartAsync = (token, id, cb) => {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id })
+            body: JSON.stringify({id})
         })
             .then(res => res.json()).then(json => dispatch(objectDeleteSuccess(id)))
             .then(_ => cb())
@@ -179,7 +180,7 @@ export const fetchObjectStartAsync = (token, id, cb) => {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
         })
-            .then(res => res.json()).then(json => dispatch(objectFetchSuccess({...json, id}))).then(_ =>cb())
+            .then(res => res.json()).then(json => dispatch(objectFetchSuccess({...json, id}))).then(_ => cb())
             .catch(err => dispatch(objectFetchFailure(err.message)))
     }
 }
@@ -202,14 +203,15 @@ const objectUpdateSuccess = msg => ({
     payload: msg
 })
 
-export const objectUpdateStartAsync = (object, token, category, cb = () => {}) => {
+export const objectUpdateStartAsync = (object, token, category, cb = () => {
+}) => {
     object.rooms = String(object.rooms)
     object.room_to_sell = String(object.room_to_sell)
     object.separate_rooms = String(object.separate_rooms)
     object.storey = String(object.storey)
     object.storeys = String(object.storeys)
     let url
-    if(category ==='product'){
+    if (category === 'product') {
         url = `http://104.248.230.108/api/${category}`
     } else {
         url = `http://104.248.230.108/api/patch/${category}`
@@ -262,16 +264,17 @@ const objectsFetchByStringSuccess = objects => ({
     payload: objects
 })
 
-export const fetchObjectsByStringStartAsync = (string, cb) => {
+export const fetchObjectsByStringStartAsync = (string, page, page_size, sort_name, dir, cb) => {
     return async dispatch => {
         dispatch(objectsFetchByStringStart())
-        await fetch(`http://104.248.230.108/api/products?search=${string}`, {
+        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&
+            order_by=${sort_name}&order_direction=${dir}&search=${string}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
         })
-            .then(res => res.json()).then(json => dispatch(objectsFetchByStringSuccess(json))).then(_ =>cb())
+            .then(res => res.json()).then(json => dispatch(objectsFetchByStringSuccess(json))).then(_ => cb())
             .catch(err => dispatch(objectsFetchByStringFailure(err.message)))
     }
 }
