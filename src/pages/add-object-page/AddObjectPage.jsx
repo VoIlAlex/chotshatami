@@ -214,6 +214,7 @@ const AddObjectPage = props => {
         ) {
             setError(true)
         } else {
+            state.rooms = String(state.rooms)
             props.objectAddStartAsync({
                 ...stateMainCategory, ...stateCeoCategory, ...stateStatusCategory, parent: parent,
                 ...stateSellerCategory, ...stateLocationCategory, ...state

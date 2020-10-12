@@ -14,9 +14,8 @@ import GlobalHook from "../../global-loader/GlobalHook";
 import './table-body.css'
 
 function timestampToDate(ts) {
-    return ("" + (new Date(ts)).toISOString())
-        .replace(/^([^T]+)T(.+)$/, '$1')
-        .replace(/^(\d+)-(\d+)-(\d+)$/, '$3.$2.$1')
+    const date = new Date(ts * 1000)
+    return date.toLocaleString().split(',')[0]
 }
 
 const TableBody = props => {

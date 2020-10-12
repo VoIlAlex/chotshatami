@@ -67,11 +67,11 @@ const ProductImage = props => {
                 <input type="text" placeholder={'Загрузить изображение'}/>
                 <input type="file" name="file" id={'file'} className="inputfile" onChange={e => onFileChanged(e)}/>
                 <label htmlFor="file">Выбрать файл</label>
-                <TransparentButton
-                    width={'20%'}
-                    height={'45px'}
-                    margin={'0 0 0 1.4vw'}
-                >Загрузить</TransparentButton>
+                {/*<TransparentButton*/}
+                {/*    width={'20%'}*/}
+                {/*    height={'45px'}*/}
+                {/*    margin={'0 0 0 1.4vw'}*/}
+                {/*>Загрузить</TransparentButton>*/}
             </div>
             <form onSubmit={e => e.preventDefault()}>
                 {
