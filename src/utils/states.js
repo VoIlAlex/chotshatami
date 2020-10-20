@@ -145,7 +145,7 @@ export const locationState = {
     town_type: '',
     town_district_name: '',
     town_subdistrict_name: '',
-    house_number: ''
+    house_number: '',
 }
 
 export const sellerState = {

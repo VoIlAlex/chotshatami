@@ -86,8 +86,8 @@ const Location = props => {
                             margin={'15px 0 0'}
                             width={'100%'}
                             labelValue={'Название станции метро'}
-                            value={stateLocationCategory.metro || stateLocationCategory.metro}
-                            onChange={e => setState({...stateLocationCategory, metro: e.target.value})}
+                            value={stateLocationCategory.metro_station_name}
+                            onChange={e => setState({...stateLocationCategory, metro_station_name: e.target.value})}
                         />
                     }
                 </div>
@@ -114,6 +114,13 @@ const Location = props => {
                     labelValue={'Название микрорайона населенного пункта'}
                     value={stateLocationCategory.town_subdistrict_name}
                     onChange={e => setState({...stateLocationCategory, town_subdistrict_name: e.target.value})}
+                />
+                <FormInput
+                    margin={'15px 0 0'}
+                    width={'90%'}
+                    labelValue={'Название улицы'}
+                    value={stateLocationCategory.street_name}
+                    onChange={e => setState({...stateLocationCategory, street_name: e.target.value})}
                 />
                 <FormInput
                     margin={'15px 0 0'}

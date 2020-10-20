@@ -74,14 +74,14 @@ const TableBody = props => {
                             /></p>
                             {
                                 el.published? <p title={'Скрыть'}>
-                                        <NoViewLogo className={'tbody-options__option'}
+                                        <ViewLogo className={'tbody-options__option'}
                                                     onClick={() => objectUpdateStartAsync({
                                                         id: el.id,
                                                         published: false
                                                     }, token, 'status', () => changeView(el.id))}
                                         /></p>
                                 : <p title={'Опубликовать'}>
-                                        <ViewLogo className={'tbody-options__option'}
+                                        <NoViewLogo className={'tbody-options__option'}
                                                   onClick={() => objectUpdateStartAsync({
                                                       id: el.id,
                                                       published: true
