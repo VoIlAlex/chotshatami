@@ -67,6 +67,8 @@ const AddObjectPage = props => {
     const [additionalCategory, setAdditionalCategory] = useState(accodance[props.location.additionalCategory] || accodance[add] || '')
     const [settlementType, setSettlementType] = useState(props.updateObjectState === null ? '' : props.updateObjectState.town_type)
     const [error, setError] = useState(false)
+    const [selectedFile, setSelectedFile] = useState([])
+    const [imgToDisplay, setImgToDisplay] = useState([])
 
     const cityTypeHandler = name => {
         const newState = {}
@@ -221,8 +223,8 @@ const AddObjectPage = props => {
             state.storeys = String(state.storeys)
             props.objectAddStartAsync({
                 ...stateMainCategory, ...stateCeoCategory, ...stateStatusCategory, parent: parent,
-                ...stateSellerCategory, ...stateLocationCategory, ...state
-            }, props.token)
+                ...stateSellerCategory, ...stateLocationCategory,...state
+            }, props.token, selectedFile)
             setError(false)
         }
 
@@ -278,6 +280,10 @@ const AddObjectPage = props => {
                             id={id ? id : null}
                             token={props.token}
                             disabled={disabled}
+                            selectedFile={selectedFile}
+                            setSelectedFile={setSelectedFile}
+                            imgToDisplay={imgToDisplay}
+                            setImgToDisplay={setImgToDisplay}
                             images={props.updateObjectState ? props.updateObjectState.product_files : []}
                         />
                         <CEOData
@@ -424,7 +430,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    objectAddStartAsync: (object, token) => dispatch(objectAddStartAsync(object, token)),
+    objectAddStartAsync: (object, token, selectedFile) => dispatch(objectAddStartAsync(object, token, selectedFile)),
     startFetchOptionsAsync: (token, option) => dispatch(startFetchOptionsAsync(token, option)),
     objectUpdateStartAsync: (object, token, category) => dispatch(objectUpdateStartAsync(object, token, category)),
     successOptions: () => dispatch(successOptions())

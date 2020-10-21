@@ -35,7 +35,8 @@ const objectAddSuccess = msg => ({
     payload: msg
 })
 
-export const objectAddStartAsync = (object, token, cb) => {
+export const objectAddStartAsync = (object, token, selectedFile, cb) => {
+    console.log(selectedFile)
     return async dispatch => {
         dispatch(objectAddStart())
         await axios('http://104.248.230.108/api/product', {
@@ -46,7 +47,24 @@ export const objectAddStartAsync = (object, token, cb) => {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => dispatch(objectAddSuccess(res)))
+            .then(async res => {
+
+                // for (let i = 0; i <= selectedFile.length; i++) {
+                //     console.log('qq')
+                //     const formData = new FormData()
+                //     formData.append(`file`, selectedFile[i])
+                //     formData.append("id", res.id);
+                //     await axios('http://104.248.230.108/api/product/images ', {
+                //         method: 'post',
+                //         headers: {
+                //             Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                //         },
+                //         data: formData
+                //     })
+                // }
+
+                dispatch(objectAddSuccess(res))
+            })
             .then(res => {
                 dispatch(showSuccess())
 
@@ -110,7 +128,15 @@ export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_nam
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
         })
-            .then(res => res.json()).then(json => dispatch(objectsFetchSuccess(json)))
+            .then(res => {
+                if(res.status === 401 || res.status === 422){
+                    localStorage.removeItem('access_token')
+                    window.location.href = 'http://104.248.230.108/login'
+                }
+                return res.json()
+            }).then(json => {
+                dispatch(objectsFetchSuccess(json))
+            })
             .catch(err => dispatch(objectsFetchFailure(err.message)))
     }
 }
