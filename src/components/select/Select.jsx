@@ -18,7 +18,7 @@ const Select = props => {
         }
     }
     return (
-        <div className="select" style={{margin: props.margin}}>
+        <div className="select" style={{margin: props.margin, width: props.width}}>
             <label>{props.label}</label>
             <div className={'select-with-arrow'}>
                 <input type="text"
@@ -26,7 +26,7 @@ const Select = props => {
                        value={props.value}
                        onKeyDown={ handleKeyDown }
                        onFocus={() => props.setShowSelect(true)}
-                       className={'select__input'}
+                       className={`${props.mainCategory? 'main-category': ''} select__input`}
                        onChange={e => props.onChange(e)}
 
                 />

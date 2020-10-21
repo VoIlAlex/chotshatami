@@ -161,7 +161,8 @@ export const sellerState = {
 export const mainCategoryState = {
     content: '',
     dateCreated: '',
-    dateChange: ''
+    dateChange: '',
+    object:''
 }
 
 export const ceoCategoryState = {

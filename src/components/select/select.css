@@ -38,6 +38,10 @@
     cursor: pointer;
 }
 
+.select .main-category{
+    padding-left: 9px;
+}
+
 .select__options {
     padding-bottom: 2px;
     box-sizing: border-box;
@@ -51,6 +55,7 @@
     background: white;
     border-radius: 0 0 5px 5px;
     font-family: 'Roboto';
+    overflow-x: hidden;
 }
 
 .select__options::-webkit-scrollbar {

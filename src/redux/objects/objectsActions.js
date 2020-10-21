@@ -48,23 +48,22 @@ export const objectAddStartAsync = (object, token, selectedFile, cb) => {
             }
         })
             .then(async res => {
-
-                // for (let i = 0; i <= selectedFile.length; i++) {
-                //     console.log('qq')
-                //     const formData = new FormData()
-                //     formData.append(`file`, selectedFile[i])
-                //     formData.append("id", res.id);
-                //     await axios('http://104.248.230.108/api/product/images ', {
-                //         method: 'post',
-                //         headers: {
-                //             Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                //         },
-                //         data: formData
-                //     })
-                // }
-
-                dispatch(objectAddSuccess(res))
+                for (let i = 0; i <= selectedFile.length; i++) {
+                    console.log('qq')
+                    const formData = new FormData()
+                    formData.append(`file`, selectedFile[i])
+                    formData.append("id", res.data.id);
+                    await axios('http://104.248.230.108/api/product/images ', {
+                        method: 'post',
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                        },
+                        data: formData
+                    })
+                }
+                return res
             })
+            .then(res => dispatch(objectAddSuccess(res)))
             .then(res => {
                 dispatch(showSuccess())
 

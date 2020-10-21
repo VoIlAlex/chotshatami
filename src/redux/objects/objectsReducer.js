@@ -78,7 +78,8 @@ const initialState = {
         trim_style: [
             'есть',
             'нет'
-        ]
+        ],
+        object: []
     },
     deleteObjectLoading: false,
     deleteObjectError: null,

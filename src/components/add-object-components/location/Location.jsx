@@ -6,7 +6,7 @@ import Select from "../../select/Select";
 import FormInput from "../../form-input/FormInput";
 import './location.css'
 
-const type = ['г.', 'аг.', 'гп.', 'д.', 'пгт.', 'рп.', 'с.', 'снп.']
+const type = ['г.', 'аг.', 'гп.', 'д.', 'п.', 'кп.', 'с.', 'ст.']
 const regionsList = ['Брестская область', 'Витебская область', 'Гомельская область', 'Гродненская область', 'Минская область', 'Могилевская область']
 
 const Location = props => {

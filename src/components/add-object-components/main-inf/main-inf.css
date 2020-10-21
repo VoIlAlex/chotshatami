@@ -39,6 +39,10 @@
     box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
 }
 
+.main-inf__select {
+    width: 95%;
+}
+
 .main-inf__date-inputs {
     width: 97%;
     display: flex;
