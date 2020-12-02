@@ -40,7 +40,6 @@ const AsideClose= props => {
                 }
                 </NavLink>
             </AsideButton>
-            <AsideButton><Options className={'option-btn'}/></AsideButton>
         </aside>
     )
 }

@@ -32,7 +32,3 @@
 .aside-button.selected a {
     color: white;
 }
-
-.aside-button:last-of-type{
-    margin-top: 27vh;
-}

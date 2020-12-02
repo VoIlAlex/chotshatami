@@ -42,7 +42,6 @@ const AsideOpen = props => {
                     new: true
                 }}>Добавить объект</NavLink>
             </AsideButton>
-            <AsideButton><Options className={'option-btn'}/>Настройки</AsideButton>
         </aside>
     )
 }
