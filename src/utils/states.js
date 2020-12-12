@@ -160,8 +160,8 @@ export const sellerState = {
 
 export const mainCategoryState = {
     content: '',
-    dateCreated: '',
-    dateChange: '',
+    createdon: '',
+    editedon: '',
     object:''
 }
 

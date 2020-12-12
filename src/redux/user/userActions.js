@@ -61,10 +61,9 @@ const resetPasswordSuccess = msg => ({
 export const resetPasswordStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(resetPasswordStart())
-        await axios('http://104.248.230.108/api/reset', {
+        await axios('http://104.248.230.108/api/login/reset', {
             data: userCredentials,
-            method: "post",
-            withCredentials: true
+            method: "post"
         })
             .then(res => dispatch(resetPasswordSuccess(res.message)))
             .then(_ => cb())

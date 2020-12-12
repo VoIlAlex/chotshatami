@@ -141,16 +141,16 @@ const MainInf = props => {
                         placeholder={'dd.mm.yyyy'}
                         width={'45%'}
                         labelFontSize={'0.8em'}
-                        value={stateMainCategory.dateCreated}
-                        onChange={e => setState({...stateMainCategory, dateCreated: e.target.value})}
+                        value={stateMainCategory.createdon}
+                        onChange={e => setState({...stateMainCategory, createdon: e.target.value})}
                     />
                     <FormInput
                         labelValue={'Дата редактирования (ревизии) обьявления'}
                         placeholder={'dd.mm.yyyy'}
                         width={'50%'}
                         labelFontSize={'0.8em'}
-                        value={stateMainCategory.dateChange}
-                        onChange={e => setState({...stateMainCategory, dateChange: e.target.value})}
+                        value={stateMainCategory.editedon}
+                        onChange={e => setState({...stateMainCategory, editedon: e.target.value})}
                     />
                 </div>
             </div>

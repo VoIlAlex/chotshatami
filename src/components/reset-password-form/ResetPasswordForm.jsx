@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
+import { useHistory } from 'react-router-dom';
 
 import { resetPasswordStartAsync } from "../../redux/user/userActions";
 
@@ -11,7 +12,7 @@ import {ReactComponent as Loader} from "../../asserts/loader.svg";
 import './reset-password-form.css'
 
 const ResetPasswordForm = props => {
-
+    const history = useHistory();
     const [credentials, setCredentials] = useState({
         login: '',
         password: '',
@@ -25,7 +26,7 @@ const ResetPasswordForm = props => {
 
     const submitHandler = e => {
         e.preventDefault()
-        props.resetPasswordStartAsync(credentials)
+        props.resetPasswordStartAsync(credentials, () => history.push('/login'))
     }
     return (
         <form className={'reset-password-form'} onSubmit={submitHandler}>
@@ -78,7 +79,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    resetPasswordStartAsync: credentials => dispatch(resetPasswordStartAsync(credentials))
+    resetPasswordStartAsync: (credentials, cb) => dispatch(resetPasswordStartAsync(credentials, cb))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordForm)
