@@ -22,7 +22,7 @@ const signInSuccess = token => ({
 export const signInStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(signInStart())
-        await fetch('http://104.248.230.108/api/login', {
+        await fetch('/api/login', {
             body: JSON.stringify(userCredentials),
             method: "POST",
             headers: {
@@ -61,7 +61,7 @@ const resetPasswordSuccess = msg => ({
 export const resetPasswordStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(resetPasswordStart())
-        await axios('http://104.248.230.108/api/login/reset', {
+        await axios('/api/login/reset', {
             data: userCredentials,
             method: "post"
         })

@@ -26,7 +26,7 @@ const ProductImage = props => {
             const formData = new FormData()
             formData.append(`file`, selectedFile[i])
             formData.append("id", props.id);
-            axios('http://104.248.230.108/api/product/images ', {
+            axios('/api/product/images ', {
                 method: 'post',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -41,7 +41,7 @@ const ProductImage = props => {
             setImgToDisplay(imgToDisplay.filter(el => el !== id))
         } else if (param === 1) {
             setServerImg(serverImg.filter(el => el.id !== id))
-            axios('http://104.248.230.108/api/product/images ', {
+            axios('/api/product/images ', {
                 method: 'delete',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`

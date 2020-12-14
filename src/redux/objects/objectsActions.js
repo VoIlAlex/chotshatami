@@ -39,7 +39,7 @@ export const objectAddStartAsync = (object, token, selectedFile, cb) => {
     console.log(selectedFile)
     return async dispatch => {
         dispatch(objectAddStart())
-        await axios('http://104.248.230.108/api/product', {
+        await axios('/api/product', {
             data: object,
             method: "post",
             headers: {
@@ -53,7 +53,7 @@ export const objectAddStartAsync = (object, token, selectedFile, cb) => {
                     const formData = new FormData()
                     formData.append(`file`, selectedFile[i])
                     formData.append("id", res.data.id);
-                    await axios('http://104.248.230.108/api/product/images ', {
+                    await axios('/api/product/images ', {
                         method: 'post',
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -90,7 +90,7 @@ const successFetchOptions = (options, name) => ({
 export const startFetchOptionsAsync = (token, option) => {
     return async dispatch => {
         // TODO
-        await axios(`http://104.248.230.108/api/options/${option}`, {
+        await axios(`/api/options/${option}`, {
             method: 'get',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -120,7 +120,7 @@ const objectsFetchSuccess = objects => ({
 export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_name = 'id', order_direction = 'DESC', search='') => {
     return async dispatch => {
         dispatch(objectsFetchStart())
-        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&
+        await fetch(`/api/products?page=${page}&page_size=${page_size}&
             order_by=${sort_name}&order_direction=${order_direction}&search=${search}`, {
             method: "GET",
             headers: {
@@ -130,7 +130,7 @@ export const fetchObjectsStartAsync = (token, page = 1, page_size = 25, sort_nam
             .then(res => {
                 if(res.status === 401 || res.status === 422){
                     localStorage.removeItem('access_token')
-                    window.location.href = 'http://104.248.230.108/login'
+                    window.location.href = '/login'
                 }
                 return res.json()
             }).then(json => {
@@ -161,7 +161,7 @@ const objectDeleteSuccess = id => ({
 export const objectDeleteStartAsync = (token, id, cb) => {
     return async dispatch => {
         dispatch(objectDeleteStart())
-        await fetch(`http://104.248.230.108/api/product`, {
+        await fetch(`/api/product`, {
             method: "DELETE",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
@@ -199,7 +199,7 @@ const objectFetchSuccess = object => ({
 export const fetchObjectStartAsync = (token, id, cb) => {
     return async dispatch => {
         dispatch(objectFetchStart())
-        await fetch(`http://104.248.230.108/api/product?id=${id}`, {
+        await fetch(`/api/product?id=${id}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -237,9 +237,9 @@ export const objectUpdateStartAsync = (object, token, category, cb = () => {
     object.storeys = String(object.storeys)
     let url
     if (category === 'product') {
-        url = `http://104.248.230.108/api/${category}`
+        url = `/api/${category}`
     } else {
-        url = `http://104.248.230.108/api/patch/${category}`
+        url = `/api/patch/${category}`
     }
     return async dispatch => {
         dispatch(objectUpdateStart())
@@ -292,7 +292,7 @@ const objectsFetchByStringSuccess = objects => ({
 export const fetchObjectsByStringStartAsync = (string, page, page_size, sort_name, dir, cb) => {
     return async dispatch => {
         dispatch(objectsFetchByStringStart())
-        await fetch(`http://104.248.230.108/api/products?page=${page}&page_size=${page_size}&
+        await fetch(`/api/products?page=${page}&page_size=${page_size}&
             order_by=${sort_name}&order_direction=${dir}&search=${string}`, {
             method: "GET",
             headers: {
